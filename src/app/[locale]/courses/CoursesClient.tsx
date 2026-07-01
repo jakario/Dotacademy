@@ -1,0 +1,206 @@
+'use client';
+
+import { useState } from 'react';
+import { Link } from "@/i18n/routing";
+
+interface CourseItem {
+  id: string;
+  title: string;
+  description: string | null;
+  instructor: {
+    name: string | null;
+  };
+  _count: {
+    sections: number;
+  };
+  category?: string;
+}
+
+interface CoursesClientProps {
+  initialCourses: CourseItem[];
+  isAdminOrInstructor: boolean;
+  hasPassedAll: boolean;
+  totalQuizzes: number;
+  passedQuizzes: number;
+}
+
+export default function CoursesClient({ 
+  initialCourses, 
+  isAdminOrInstructor, 
+  hasPassedAll,
+  totalQuizzes,
+  passedQuizzes
+}: CoursesClientProps) {
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("ALL");
+
+  // Filter courses locally or categorize them based on metadata/keywords
+  const coursesWithCategory = initialCourses.map(course => {
+    // Generate a simple category based on titles for demo purposes if not present
+    let category = "ทั่วไป";
+    const title = course.title.toLowerCase();
+    if (title.includes("กฎกระทรวง") || title.includes("นโยบาย") || title.includes("ท่องเที่ยว")) {
+      category = "นโยบายและทิกทาง";
+    } else if (title.includes("ท่องเที่ยว") || title.includes("แหล่งท่องเที่ยว")) {
+      category = "การพัฒนาแหล่งท่องเที่ยว";
+    } else if (title.includes("สถิติ") || title.includes("ข้อมูล")) {
+      category = "ข้อมูลสถิติ";
+    }
+    return { ...course, category };
+  });
+
+  const categories = ["ALL", ...Array.from(new Set(coursesWithCategory.map(c => c.category)))];
+
+  const filteredCourses = coursesWithCategory.filter(course => {
+    const matchesSearch = 
+      course.title.toLowerCase().includes(search.toLowerCase()) || 
+      (course.description && course.description.toLowerCase().includes(search.toLowerCase()));
+    const matchesCategory = selectedCategory === "ALL" || course.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+          <div>
+            <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 tracking-tight">
+              หลักสูตรทั้งหมด
+            </h1>
+            <p className="text-slate-400 mt-2 text-sm">ค้นหาและกรองบทเรียนพัฒนาศักยภาพผู้เรียน</p>
+          </div>
+          <div className="flex items-center gap-4">
+            {isAdminOrInstructor && (
+              <Link href="/admin" className="px-4 py-2 bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-400 hover:to-rose-500 text-white font-bold rounded-xl text-xs transition-all shadow-md shadow-rose-500/10">
+                จัดการระบบ (Admin)
+              </Link>
+            )}
+            <Link href="/" className="text-slate-400 hover:text-white transition-colors text-sm font-semibold">
+              &larr; กลับหน้าหลัก
+            </Link>
+          </div>
+        </div>
+
+        {(hasPassedAll || isAdminOrInstructor) && (
+          <div className="mb-8 p-6 bg-gradient-to-r from-amber-500/10 via-yellow-500/10 to-orange-500/10 border border-amber-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg shadow-amber-500/5">
+            <div className="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
+              <span className="text-4xl animate-bounce">🏆</span>
+              <div>
+                <h3 className="text-base font-bold text-amber-400">
+                  {hasPassedAll ? "คุณผ่านการอบรมหลักสูตรเรียบร้อยแล้ว!" : "ตัวอย่างใบรับรอง (สิทธิ์ผู้ดูแลระบบ/ผู้สอน)"}
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  {hasPassedAll 
+                    ? "คุณได้สอบผ่านแบบทดสอบครบถ้วนทุกบทเรียน สามารถรับใบรับรองการอบรมเรื่อง ความรู้ทั่วไปเกี่ยวกับกรมการท่องเที่ยว ได้ทันที"
+                    : "คุณสามารถคลิกปุ่มเพื่อดูตัวอย่างและทดสอบการพิมพ์ไฟล์ใบรับรอง (Certificate) ได้ทันทีในฐานะผู้ดูแลระบบ"}
+                </p>
+              </div>
+            </div>
+            <Link 
+              href="/courses/certificate" 
+              className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-amber-500/20 transition-all whitespace-nowrap cursor-pointer"
+            >
+              🎓 รับใบรับรองการอบรม (PDF)
+            </Link>
+          </div>
+        )}
+
+        {!hasPassedAll && !isAdminOrInstructor && totalQuizzes > 0 && (
+          <div className="mb-8 p-6 bg-gradient-to-r from-blue-500/5 via-slate-800/80 to-indigo-500/5 border border-slate-700/50 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+            <div className="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
+              <span className="text-4xl animate-pulse">📝</span>
+              <div>
+                <h3 className="text-base font-bold text-slate-200">
+                  ความคืบหน้าแบบทดสอบเพื่อรับใบรับรอง
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  คุณชมวิดีโอครบแล้ว แต่ยังต้องสอบผ่าน **แบบทดสอบท้ายบท (Section Quiz)** ของแต่ละบทเรียนให้ผ่านเกณฑ์ทุกบทเรียนด้วยนะครับ
+                </p>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 mt-3">
+                  <div className="w-full sm:w-48 h-2.5 bg-slate-700 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-500"
+                      style={{ width: `${(passedQuizzes / totalQuizzes) * 100}%` }}
+                    />
+                  </div>
+                  <span className="text-xs text-blue-400 font-bold">สอบผ่านเกณฑ์แล้ว {passedQuizzes} / {totalQuizzes} แบบทดสอบ</span>
+                </div>
+              </div>
+            </div>
+            <button 
+              disabled
+              className="px-5 py-2.5 bg-slate-800/80 border border-slate-700 text-slate-500 text-xs font-bold rounded-xl whitespace-nowrap cursor-not-allowed"
+            >
+              🔒 ปลดล็อกเมื่อผ่านครบทุกบทเรียน
+            </button>
+          </div>
+        )}
+
+        {/* Filters */}
+        <div className="mb-8 flex flex-col sm:flex-row gap-4 items-center">
+          <div className="relative w-full sm:w-72">
+            <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500 text-sm">🔍</span>
+            <input
+              type="text"
+              placeholder="ค้นหาหลักสูตร..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-slate-800/40 border border-slate-700/50 rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            />
+          </div>
+
+          <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+                  selectedCategory === cat
+                    ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                    : "bg-slate-800/50 text-slate-400 hover:bg-slate-700/40 hover:text-slate-300"
+                }`}
+              >
+                {cat === "ALL" ? "ทั้งหมด" : cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Course Grid */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {filteredCourses.map((course) => (
+            <div key={course.id} className="bg-slate-800/30 rounded-2xl border border-slate-700/40 hover:border-slate-600 transition-all duration-300 overflow-hidden flex flex-col group shadow-sm hover:shadow-md">
+              <div className="h-44 bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center p-6 relative overflow-hidden">
+                <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <h3 className="text-white text-xl font-bold text-center drop-shadow-md line-clamp-3 relative z-10">
+                  {course.title}
+                </h3>
+              </div>
+              <div className="p-6 flex flex-col flex-grow">
+                <p className="text-slate-400 text-xs mb-4 line-clamp-3 flex-grow leading-relaxed">
+                  {course.description || "ไม่มีคำอธิบาย"}
+                </p>
+                <div className="flex items-center justify-between text-xs text-slate-500 mb-6 bg-slate-800/40 p-2.5 rounded-xl border border-slate-800">
+                  <span>ผู้สอน: {course.instructor.name || "ผู้ดูแลระบบ"}</span>
+                  <span>{course._count.sections} บทเรียน</span>
+                </div>
+                <Link
+                  href={`/courses/${course.id}`}
+                  className="w-full block text-center py-2.5 px-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs transition-colors shadow-lg shadow-blue-500/10"
+                >
+                  ดูรายละเอียด / เข้าเรียน
+                </Link>
+              </div>
+            </div>
+          ))}
+          
+          {filteredCourses.length === 0 && (
+            <div className="col-span-full text-center py-16 text-slate-500 text-sm">
+              ไม่พบหลักสูตรที่ตรงตามเงื่อนไข
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,230 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Link } from "@/i18n/routing";
+import toast from 'react-hot-toast';
+
+interface CourseItem {
+  id: string;
+  title: string;
+  description: string | null;
+  isPublished: boolean;
+  instructorName: string;
+  sectionsCount: number;
+  hasQuiz: boolean;
+}
+
+interface AdminDashboardClientProps {
+  initialCourses: CourseItem[];
+  stats: {
+    total: number;
+    published: number;
+    draft: number;
+  };
+}
+
+export default function AdminDashboardClient({ initialCourses, stats }: AdminDashboardClientProps) {
+  const [courses, setCourses] = useState<CourseItem[]>(initialCourses);
+  const [loading, setLoading] = useState<string | null>(null);
+  const router = useRouter();
+
+  // Create course handler
+  const handleCreateCourse = async () => {
+    setLoading('create');
+    try {
+      const res = await fetch('/api/admin/courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: 'หลักสูตรใหม่ที่ยังไม่ได้ตั้งชื่อ',
+          description: 'รายละเอียดเนื้อหาของหลักสูตรโดยย่อ'
+        })
+      });
+
+      const data = await res.json();
+      if (data.success && data.course) {
+        toast.success('สร้างหลักสูตรเรียบร้อยแล้ว');
+        router.push(`/admin/courses/${data.course.id}`);
+      } else {
+        toast.error('เกิดข้อผิดพลาดในการสร้างหลักสูตร: ' + (data.error || 'Unknown error'));
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error('ไม่สามารถสร้างหลักสูตรได้ในขณะนี้');
+    } finally {
+      setLoading(null);
+    }
+  };
+
+  // Delete course handler
+  const handleDeleteCourse = async (id: string, title: string) => {
+    if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบหลักสูตร "${title}"?\nการกระทำนี้จะไม่สามารถย้อนกลับได้ และบทเรียน/คำถามทั้งหมดจะถูกลบออกถาวร`)) {
+      return;
+    }
+
+    setLoading(id);
+    try {
+      const res = await fetch(`/api/admin/courses/${id}`, {
+        method: 'DELETE'
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        toast.success('ลบหลักสูตรเรียบร้อยแล้ว');
+        setCourses(courses.filter(c => c.id !== id));
+      } else {
+        toast.error('ไม่สามารถลบหลักสูตรได้: ' + (data.error || 'Unknown error'));
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+    } finally {
+      setLoading(null);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans">
+      
+      {/* Admin Header */}
+      <header className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-600 flex items-center justify-center font-bold text-white shadow-lg shadow-rose-500/20">
+              Admin
+            </div>
+            <div>
+              <h1 className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
+                ระบบจัดการหลังบ้าน DOT Academy
+              </h1>
+              <p className="text-xs text-slate-400">สำหรับผู้ดูแลระบบและวิทยากรฝึกอบรม</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link href="/courses" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              หน้าเว็บหลักสูตร &rarr;
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Container */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        {/* Quick Stats Panel */}
+        <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="bg-slate-800/40 rounded-2xl border border-slate-700/50 p-6 flex items-center justify-between shadow-md">
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">หลักสูตรทั้งหมด</p>
+              <h3 className="text-3xl font-black text-white mt-1">{stats.total}</h3>
+            </div>
+            <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl font-bold">📚</div>
+          </div>
+          
+          <div className="bg-slate-800/40 rounded-2xl border border-slate-700/50 p-6 flex items-center justify-between shadow-md">
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">เผยแพร่แล้ว</p>
+              <h3 className="text-3xl font-black text-emerald-400 mt-1">{stats.published}</h3>
+            </div>
+            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">✅</div>
+          </div>
+
+          <div className="bg-slate-800/40 rounded-2xl border border-slate-700/50 p-6 flex items-center justify-between shadow-md">
+            <div>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">ฉบับร่าง (Draft)</p>
+              <h3 className="text-3xl font-black text-amber-400 mt-1">{stats.draft}</h3>
+            </div>
+            <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl font-bold">📝</div>
+          </div>
+        </section>
+
+        {/* Course management header */}
+        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+          <h2 className="text-lg font-bold text-slate-200">รายการหลักสูตรในระบบ</h2>
+          <button
+            onClick={handleCreateCourse}
+            disabled={loading !== null}
+            className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:from-slate-700 disabled:to-slate-800 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all text-sm flex items-center gap-2"
+          >
+            {loading === 'create' ? 'กำลังสร้าง...' : (
+              <>
+                <span>+</span> สร้างหลักสูตรใหม่
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Courses Table / Cards */}
+        {courses.length === 0 ? (
+          <div className="text-center py-16 bg-slate-800/20 rounded-2xl border border-dashed border-slate-700">
+            <p className="text-slate-400 text-sm mb-4">ยังไม่มีหลักสูตรการสอนในระบบ</p>
+            <button
+              onClick={handleCreateCourse}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-xs font-bold text-white transition-colors"
+            >
+              คลิกเพื่อสร้างหลักสูตรแรก
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {courses.map((course) => (
+              <div 
+                key={course.id} 
+                className="bg-slate-800/30 rounded-2xl border border-slate-700/50 p-6 flex flex-col justify-between hover:border-slate-600 transition-colors shadow-sm"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wide uppercase ${
+                      course.isPublished 
+                        ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                        : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                    }`}>
+                      {course.isPublished ? 'Published' : 'Draft'}
+                    </span>
+                    <span className="text-[10px] text-slate-500">ID: {course.id}</span>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-white mb-2 leading-snug">{course.title}</h3>
+                  <p className="text-xs text-slate-400 line-clamp-2 mb-4 leading-relaxed">
+                    {course.description || 'ไม่มีคำอธิบายสำหรับหลักสูตรนี้'}
+                  </p>
+
+                  <div className="flex gap-4 text-xs text-slate-400 mb-6 bg-slate-800/40 p-3 rounded-xl border border-slate-800">
+                    <div className="flex items-center gap-1">
+                      <span>📁</span>
+                      <span>{course.sectionsCount} หมวดหมู่ย่อย</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span>📝</span>
+                      <span>{course.hasQuiz ? 'มีแบบทดสอบ' : 'ไม่มีแบบทดสอบ'}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between gap-3 border-t border-slate-800 pt-4 mt-auto">
+                  <span className="text-xs text-slate-500 truncate max-w-[150px]">ผู้เขียน: {course.instructorName}</span>
+                  <div className="flex items-center gap-2.5">
+                    <Link
+                      href={`/admin/courses/${course.id}`}
+                      className="px-3.5 py-1.5 bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white rounded-lg text-xs font-bold transition-all border border-blue-500/20 hover:border-blue-500"
+                    >
+                      แก้ไข/จัดการ
+                    </Link>
+                    <button
+                      onClick={() => handleDeleteCourse(course.id, course.title)}
+                      disabled={loading !== null}
+                      className="px-3.5 py-1.5 bg-rose-600/10 hover:bg-rose-600 text-rose-400 hover:text-white rounded-lg text-xs font-bold transition-all border border-rose-500/20 hover:border-rose-500 disabled:opacity-40"
+                    >
+                      {loading === course.id ? 'กำลังลบ...' : 'ลบ'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
