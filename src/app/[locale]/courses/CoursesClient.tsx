@@ -180,8 +180,7 @@ export default function CoursesClient({
                 <p className="text-slate-400 text-xs mb-4 line-clamp-3 flex-grow leading-relaxed">
                   {course.description || "ไม่มีคำอธิบาย"}
                 </p>
-                <div className="flex items-center justify-between text-xs text-slate-500 mb-6 bg-slate-800/40 p-2.5 rounded-xl border border-slate-800">
-                  <span>ผู้สอน: {course.instructor.name || "ผู้ดูแลระบบ"}</span>
+                <div className="flex items-center justify-end text-xs text-slate-500 mb-6 bg-slate-800/40 p-2.5 rounded-xl border border-slate-800">
                   <span>{course._count.sections} บทเรียน</span>
                 </div>
                 <Link
