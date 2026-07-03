@@ -3,6 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import CoursesClient from "./CoursesClient";
 
+export const dynamic = 'force-dynamic';
+
 export default async function CoursesPage() {
   const session = await getServerSession(authOptions);
   const courses = await prisma.course.findMany({

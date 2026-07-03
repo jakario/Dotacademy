@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import AdminDashboardClient from "./AdminDashboardClient";
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminDashboardPage() {
   const session = await getServerSession(authOptions);
 
