@@ -5,7 +5,7 @@
       "title": "เอกสารความรู้กรมการท่องเที่ยว",
       "description": "รวบรวมเอกสาร บทความ และมาตรฐานต่างๆ ของกรมการท่องเที่ยว",
       "imageUrl": null,
-      "isPublished": 1,
+      "isPublished": true,
       "price": null,
       "instructorId": "cmr4fhcao0000h7zo46sdvtag",
       "createdAt": 1782206405643,
@@ -16,7 +16,7 @@
       "title": "วิดีโอแนะนำและส่งเสริมการท่องเที่ยว",
       "description": "รวมวิดีโอแนะนำนโยบาย แหล่งท่องเที่ยว และการท่องเที่ยวเชิงสร้างสรรค์",
       "imageUrl": null,
-      "isPublished": 1,
+      "isPublished": true,
       "price": null,
       "instructorId": "cmr4fhcao0000h7zo46sdvtag",
       "createdAt": 1782206405696,
@@ -1117,1849 +1117,1849 @@
     {
       "id": "cmqqfofnu001c269xk43bnwqf",
       "text": "เพื่อพัฒนามาตรฐานการท่องเที่ยวและทะเบียนธุรกิจนำเที่ยวมัคคุเทศก์",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofnu001b269x1gkazl9y"
     },
     {
       "id": "cmqqfofnu001d269xllhgja3c",
       "text": "เพื่อสร้างสวนสนุกระดับชาติการส่งเสริมการท่องเที่ยวเชิงกีฬา",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001b269x1gkazl9y"
     },
     {
       "id": "cmqqfofnu001e269xa2cqnt1m",
       "text": "เพื่อควบคุมตรวจคนเข้าเมืองและคัดกรองวีซ่านักท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001b269x1gkazl9y"
     },
     {
       "id": "cmqqfofnu001f269xxqr9g9k9",
       "text": "เพื่อจัดจำหน่ายทัวร์ราคาถูกให้แก่ประชาชนทั่วไป",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001b269x1gkazl9y"
     },
     {
       "id": "cmqqfofnu001h269xab91636z",
       "text": "ตราสัญลักษณ์ช้างชูงวงเริงร่า (Thailand Tourism Standard)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofnu001g269x2nsswb47"
     },
     {
       "id": "cmqqfofnu001i269xzs914mq0",
       "text": "ตราสัญลักษณ์กินรีทองคำพ่นน้ำ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001g269x2nsswb47"
     },
     {
       "id": "cmqqfofnu001j269xdfz7r070",
       "text": "ตราสัญลักษณ์นกวายุภักษ์คู่ขนาน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001g269x2nsswb47"
     },
     {
       "id": "cmqqfofnu001k269xhicm4esi",
       "text": "ตราสัญลักษณ์ช้างเอราวัณสามเศียร",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001g269x2nsswb47"
     },
     {
       "id": "cmqqfofnu001m269xchb1eei2",
       "text": "ระบบ e-Services และระบบ e-License ของกรมการท่องเที่ยว",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofnu001l269xtpa295rb"
     },
     {
       "id": "cmqqfofnu001n269xf8cvs8hj",
       "text": "แอปพลิเคชันหมอพร้อมในการดูแลนักท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001l269xtpa295rb"
     },
     {
       "id": "cmqqfofnu001o269xzvgsthww",
       "text": "ระบบบูรณาการขนส่งมวลชนไทยสมายล์บัส",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001l269xtpa295rb"
     },
     {
       "id": "cmqqfofnu001p269xvzudvt2n",
       "text": "ระบบทะเบียนสถิติประชากรของกระทรวงมหาดไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001l269xtpa295rb"
     },
     {
       "id": "cmqqfofnu001r269xn5qiyabi",
       "text": "กระทรวงการท่องเที่ยวและกีฬา",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofnu001q269xdezu35z8"
     },
     {
       "id": "cmqqfofnu001s269xu41ku5r2",
       "text": "กระทรวงวัฒนธรรม",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001q269xdezu35z8"
     },
     {
       "id": "cmqqfofnu001t269xwj8xkzge",
       "text": "กระทรวงการต่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001q269xdezu35z8"
     },
     {
       "id": "cmqqfofnu001u269xzgjpt85k",
       "text": "กระทรวงมหาดไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001q269xdezu35z8"
     },
     {
       "id": "cmqqfofnu001w269xzzyqnkgd",
       "text": "การควบคุมดูแลการตั้งด่านตรวจคนเข้าเมืองและการเก็บค่าเหยียบแผ่นดิน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofnu001v269xl92bh0kp"
     },
     {
       "id": "cmqqfofnu001x269xasijnqrn",
       "text": "การขึ้นทะเบียนและกำกับดูแลการประกอบธุรกิจนำเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001v269xl92bh0kp"
     },
     {
       "id": "cmqqfofnu001y269xn963uiug",
       "text": "การพัฒนาและประเมินรับรองมาตรฐานแหล่งท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001v269xl92bh0kp"
     },
     {
       "id": "cmqqfofnu001z269xaulvx100",
       "text": "การส่งเสริมภาพยนตร์ต่างประเทศที่เข้ามาถ่ายทำในประเทศไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofnu001v269xl92bh0kp"
     },
     {
       "id": "cmqqfofo70027269xcjn8mwgt",
       "text": "ความยั่งยืน ความปลอดภัย และการยกระดับสู่มาตรฐานการท่องเที่ยวไทย",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofo70026269xk69snwkd"
     },
     {
       "id": "cmqqfofo70028269xc8nkiq48",
       "text": "การเพิ่มจำนวนนักท่องเที่ยวให้มากที่สุดโดยไม่จำกัดความจุ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo70026269xk69snwkd"
     },
     {
       "id": "cmqqfofo70029269xogtiq5ey",
       "text": "การสนับสนุนการสร้างคาสิโนและแหล่งบันเทิงขนาดใหญ่ในทุกแหล่งท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo70026269xk69snwkd"
     },
     {
       "id": "cmqqfofo7002a269xqwkgcxqw",
       "text": "การเลียนแบบการจัดการของแหล่งท่องเที่ยวในต่างประเทศทั้งหมด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo70026269xk69snwkd"
     },
     {
       "id": "cmqqfofo7002c269x3ag16o4l",
       "text": "การวิเคราะห์และประเมินศักยภาพแหล่งท่องเที่ยวพร้อมสร้างแผนงานร่วมกับชุมชน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofo7002b269xsp6ssxnz"
     },
     {
       "id": "cmqqfofo7002d269xygst7yyl",
       "text": "การทำโฆษณาประชาสัมพันธ์ในสื่อต่างประเทศทันที",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002b269xsp6ssxnz"
     },
     {
       "id": "cmqqfofo7002e269xa3eu4tjl",
       "text": "การเก็บค่าเข้าชมจากนักท่องเที่ยวต่างชาติในราคาที่สูงขึ้น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002b269xsp6ssxnz"
     },
     {
       "id": "cmqqfofo7002f269xucvskpfg",
       "text": "การก่อสร้างสิ่งอำนวยความสะดวกขนาดใหญ่ทันที",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002b269xsp6ssxnz"
     },
     {
       "id": "cmqqfofo7002h269x6558xhso",
       "text": "ชุมชนท้องถิ่น สิ่งแวดล้อม และระบบนิเวศของแหล่งท่องเที่ยว",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofo7002g269xtxnaebrh"
     },
     {
       "id": "cmqqfofo7002i269x7130xyz8",
       "text": "บริษัททัวร์รายใหญ่จากต่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002g269xtxnaebrh"
     },
     {
       "id": "cmqqfofo7002j269xezed7l3f",
       "text": "ระบบการจัดจำหน่ายของแพลตฟอร์มจองห้องพักออนไลน์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002g269xtxnaebrh"
     },
     {
       "id": "cmqqfofo7002k269xwu62ew9w",
       "text": "ผู้รับเหมาก่อสร้างสิ่งอำนวยความสะดวกในแหล่งท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002g269xtxnaebrh"
     },
     {
       "id": "cmqqfofo7002m269xovezsrt9",
       "text": "การกระจายรายได้จากการท่องเที่ยวสู่เมืองรองและชุมชนอย่างทั่วถึง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofo7002l269xry7l43t2"
     },
     {
       "id": "cmqqfofo7002n269x4yge53pf",
       "text": "การเน้นการท่องเที่ยวในเฉพาะเมืองหลักขนาดใหญ่เท่านั้น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002l269xry7l43t2"
     },
     {
       "id": "cmqqfofo7002o269x7mmhiyx4",
       "text": "การลดงบประมาณการพัฒนาแหล่งท่องเที่ยวของรัฐลงร้อยละ 50",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002l269xry7l43t2"
     },
     {
       "id": "cmqqfofo7002p269xbzlx43x9",
       "text": "การจ้างบริษัทต่างชาติเข้ามาบริหารจัดการแหล่งท่องเที่ยวทั้งหมด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002l269xry7l43t2"
     },
     {
       "id": "cmqqfofo7002r269xbtdzxn59",
       "text": "ขีดความสามารถในการรองรับนักท่องเที่ยว (Carrying Capacity)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofo7002q269x44oqwc7n"
     },
     {
       "id": "cmqqfofo7002s269x4301ikjy",
       "text": "จำนวนการแชร์และเช็คอินบนโซเชียลมีเดียในแต่ละวัน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002q269x44oqwc7n"
     },
     {
       "id": "cmqqfofo7002t269xl1nxfnbm",
       "text": "ยอดขายของที่ระลึกในร้านค้าของชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002q269x44oqwc7n"
     },
     {
       "id": "cmqqfofo7002u269xkmzc8zk1",
       "text": "ความหรูหราของรถโดยสารที่ใช้รับส่งนักท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofo7002q269x44oqwc7n"
     },
     {
       "id": "cmqqfofok0032269x8cvdr6t2",
       "text": "ความโดดเด่นและจุดเด่นของทรัพยากรเดิม",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofok0031269xuwgorp8f"
     },
     {
       "id": "cmqqfofok0033269xynmuoieo",
       "text": "งบประมาณสนับสนุนจากต่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofok0031269xuwgorp8f"
     },
     {
       "id": "cmqqfofok0034269xdtv977z5",
       "text": "จำนวนผู้ติดตามบนโซเชียลมีเดียของผู้นำชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofok0031269xuwgorp8f"
     },
     {
       "id": "cmqqfofol0035269xhh3xnuvp",
       "text": "คุณภาพของอาหารและเครื่องดื่มในโรงแรมระดับห้าดาว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofok0031269xuwgorp8f"
     },
     {
       "id": "cmqqfofol0037269xy7nvbmje",
       "text": "ป้องกันความขัดแย้งและสร้างการมีส่วนร่วมในระยะยาว",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofol0036269xmlxzl1dr"
     },
     {
       "id": "cmqqfofol0038269xc7ytuzc7",
       "text": "เพื่อให้ชุมชนช่วยออกทุนทรัพย์ในการก่อสร้าง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol0036269xmlxzl1dr"
     },
     {
       "id": "cmqqfofol0039269xr0uyr9a0",
       "text": "เพื่อจ้างคนในชุมชนทำความสะอาดเพียงอย่างเดียว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol0036269xmlxzl1dr"
     },
     {
       "id": "cmqqfofol003a269xy7iqhlew",
       "text": "เพื่อลดบทบาทของหน่วยงานภาครัฐในพื้นที่",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol0036269xmlxzl1dr"
     },
     {
       "id": "cmqqfofol003c269xhnypke3w",
       "text": "เส้นทางคมนาคม ป้ายบอกทาง และสิ่งอำนวยความสะดวกพื้นฐาน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofol003b269xfckcprz9"
     },
     {
       "id": "cmqqfofol003d269x2pmjedg0",
       "text": "ระบบการจองตั๋วเครื่องบินชั้นธุรกิจ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003b269xfckcprz9"
     },
     {
       "id": "cmqqfofol003e269xhndj93qe",
       "text": "การมีสปาและฟิตเนสระดับหรูในชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003b269xfckcprz9"
     },
     {
       "id": "cmqqfofol003f269xbljux1wn",
       "text": "การใช้อากาศโดรนในการส่งพัสดุสินค้า",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003b269xfckcprz9"
     },
     {
       "id": "cmqqfofol003h269xycyf72pg",
       "text": "ขีดความสามารถในการรองรับ (Carrying Capacity)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofol003g269xd8g6pkbu"
     },
     {
       "id": "cmqqfofol003i269xzuev9cxh",
       "text": "จำนวนรูปภาพที่ติดแฮชแท็กบน Instagram",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003g269xd8g6pkbu"
     },
     {
       "id": "cmqqfofol003j269xvrcbi20z",
       "text": "ราคาค่าตั๋วเฉลี่ยของบริษัททัวร์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003g269xd8g6pkbu"
     },
     {
       "id": "cmqqfofol003k269xi3iitd96",
       "text": "ปริมาณสินค้าโอทอปที่ขายได้ในรอบเดือน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003g269xd8g6pkbu"
     },
     {
       "id": "cmqqfofol003m269xfz0hx4rm",
       "text": "การวิเคราะห์แบบ SWOT Analysis",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofol003l269xh6uezuea"
     },
     {
       "id": "cmqqfofol003n269x2eju20h2",
       "text": "การสำรวจความพึงพอใจด้วยการสุ่มแจกใบปลิว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003l269xh6uezuea"
     },
     {
       "id": "cmqqfofol003o269xmsyy2l4t",
       "text": "การนับยอดสถิติผู้เข้าชมแบบรายปี",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003l269xh6uezuea"
     },
     {
       "id": "cmqqfofol003p269xha399f0e",
       "text": "การอ่านคอมเมนต์วิจารณ์บนเว็บท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofol003l269xh6uezuea"
     },
     {
       "id": "cmqqfofox003x269xvtmco5g5",
       "text": "การนำเอกลักษณ์และเรื่องราวท้องถิ่นมาสร้างคุณค่าและสร้างสรรค์นวัตกรรม",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofox003w269xihb5wume"
     },
     {
       "id": "cmqqfofox003y269x3bnhwijd",
       "text": "การลดราคาค่าตั๋วเครื่องบินและค่าโรงแรมให้ถูกที่สุด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox003w269xihb5wume"
     },
     {
       "id": "cmqqfofox003z269xc5wk79qu",
       "text": "การนำเข้าสินค้าสำเร็จรูปจากต่างประเทศมาวางขาย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox003w269xihb5wume"
     },
     {
       "id": "cmqqfofox0040269x0vtw51jj",
       "text": "การเลียนแบบสินค้าของชุมชนข้างเคียงแบบไม่มีการดัดแปลง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox003w269xihb5wume"
     },
     {
       "id": "cmqqfofox0042269xj71995i9",
       "text": "ความประทับใจและความพึงพอใจตลอดทั้งเส้นทางการเดินทาง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofox0041269x1cbrm6xa"
     },
     {
       "id": "cmqqfofox0043269xx8yxzey6",
       "text": "การขายทัวร์แพ็กเกจราคาแพงเพียงอย่างเดียว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox0041269x1cbrm6xa"
     },
     {
       "id": "cmqqfofox0044269xmvmh2wo9",
       "text": "การประหยัดงบค่าบริการการเดินทางลงให้เหลือศูนย์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox0041269x1cbrm6xa"
     },
     {
       "id": "cmqqfofox0045269xx7h994aj",
       "text": "การแจกของชำร่วยฟรีก่อนกลับประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox0041269x1cbrm6xa"
     },
     {
       "id": "cmqqfofox0047269xnbdy76el",
       "text": "กิจกรรมทำมือที่ใช้วัตถุดิบท้องถิ่นและเป็นมิตรกับสิ่งแวดล้อม",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofox0046269x6caos39d"
     },
     {
       "id": "cmqqfofox0048269xz6nzsnjw",
       "text": "ทัวร์ขับขี่รถวิบากบนแนวปะการังชายหาดธรรมชาติ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox0046269x6caos39d"
     },
     {
       "id": "cmqqfofox0049269xylsredaq",
       "text": "การขายอาหารจานด่วนสำเร็จรูปนำเข้า",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox0046269x6caos39d"
     },
     {
       "id": "cmqqfofox004a269xgkw4snrj",
       "text": "การจัดโปรแกรมซื้อของฝากในร้านค้าใหญ่ที่ไม่กระจายรายได้",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox0046269x6caos39d"
     },
     {
       "id": "cmqqfofox004c269x14cx9oos",
       "text": "ความลื่นไหล ความปลอดภัย และมอบเวลาเรียนรู้วัฒนธรรมอย่างเหมาะสม",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofox004b269x7pytrfdf"
     },
     {
       "id": "cmqqfofox004d269x0krjp8ja",
       "text": "การยัดเยียดสถานที่ท่องเที่ยวให้ได้มากที่สุดใน 1 วัน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox004b269x7pytrfdf"
     },
     {
       "id": "cmqqfofox004e269xl25k9f3d",
       "text": "การเลือกเฉพาะสถานที่ที่มีการขายของที่ระลึกราคาสูงเท่านั้น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox004b269x7pytrfdf"
     },
     {
       "id": "cmqqfofox004f269xqtiwixn3",
       "text": "การเดินทางด้วยรถความเร็วสูงตลอดวันโดยไม่มีเวลาพักผ่อน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox004b269x7pytrfdf"
     },
     {
       "id": "cmqqfofox004h269x4rf9r39w",
       "text": "สะดวก รวดเร็ว แม่นยำ และช่วยลดขยะกระดาษ",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofox004g269x043vyvj0"
     },
     {
       "id": "cmqqfofox004i269xa4vxw4lp",
       "text": "เพิ่มค่าครองชีพให้กับพนักงานท่องเที่ยวในระบบ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox004g269x043vyvj0"
     },
     {
       "id": "cmqqfofox004j269xj53rmvik",
       "text": "สามารถควบคุมดินฟ้าอากาศในแหล่งท่องเที่ยวได้",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox004g269x043vyvj0"
     },
     {
       "id": "cmqqfofox004k269xhp7bs9z4",
       "text": "ไม่จำเป็นต้องจ้างไกด์ท้องถิ่นทำงานอีกต่อไป",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofox004g269x043vyvj0"
     },
     {
       "id": "cmqqfofp8004s269xyyrjj1qe",
       "text": "ร่วมเปิดเวทีเสวนาพูดคุยเพื่อรับฟังความเห็นความต้องการและกำหนดเป้าหมายร่วมกัน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofp8004r269xuo2j2edl"
     },
     {
       "id": "cmqqfofp8004t269xxbzsvdbd",
       "text": "การนำเงินสดไปแจกให้กับหัวหน้าชุมชนเพื่อดำเนินการต่อ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp8004r269xuo2j2edl"
     },
     {
       "id": "cmqqfofp8004u269xhr9yt730",
       "text": "ส่งทหารหรือกำลังเจ้าหน้าที่เข้าควบคุมพื้นที่เพื่อความปลอดภัย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp8004r269xuo2j2edl"
     },
     {
       "id": "cmqqfofp8004v269xh6vq1gux",
       "text": "การนำแผนงานสำเร็จรูปจากส่วนกลางไปบังคับใช้ทันที",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp8004r269xuo2j2edl"
     },
     {
       "id": "cmqqfofp8004x269xbl0q6und",
       "text": "การให้ชุมชนเข้ามาร่วมวางแผน บริหารจัดการ และได้รับผลตอบแทนเป็นธรรม",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofp8004w269xf2dipel6"
     },
     {
       "id": "cmqqfofp9004y269xcjk93org",
       "text": "การกีดกันไม่ให้คนในพื้นที่เข้ามาขายของใกล้แหล่งท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp8004w269xf2dipel6"
     },
     {
       "id": "cmqqfofp9004z269xodp64t49",
       "text": "การจ้างบริษัทต่างประเทศเข้ามาบริหารและแบ่งกำไรให้ชุมชนร้อยละ 1",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp8004w269xf2dipel6"
     },
     {
       "id": "cmqqfofp90050269x07d5sngx",
       "text": "การเปลี่ยนชื่อแหล่งท่องเที่ยวเป็นภาษาต่างประเทศตามใจชอบ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp8004w269xf2dipel6"
     },
     {
       "id": "cmqqfofp90052269x0qtkgyym",
       "text": "ชุมชนเกิดความไม่พอใจ เกิดแรงต้าน และการพัฒนาไม่ยั่งยืน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofp90051269x02oocvzd"
     },
     {
       "id": "cmqqfofp90053269xau7gxkoa",
       "text": "นักท่องเที่ยวต่างชาติไม่กล้าเดินทางมาท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp90051269x02oocvzd"
     },
     {
       "id": "cmqqfofp90054269xtm5y4m0f",
       "text": "ภาครัฐสูญเสียงบประมาณในการทำโฆษณาในหนังสือพิมพ์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp90051269x02oocvzd"
     },
     {
       "id": "cmqqfofp90055269x9icw95yh",
       "text": "บริษัททัวร์ต้องปรับราคาโปรแกรมท่องเที่ยวลดลงครึ่งหนึ่ง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp90051269x02oocvzd"
     },
     {
       "id": "cmqqfofp90057269xkp6w6f20",
       "text": "ภาครัฐ ภาคเอกชน ชุมชนท้องถิ่น และปราชญ์ชาวบ้าน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofp90056269x0aoadwcs"
     },
     {
       "id": "cmqqfofp90058269xa9hlil7m",
       "text": "เฉพาะกลุ่มบริษัททัวร์ต่างชาติรายใหญ่เท่านั้น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp90056269x0aoadwcs"
     },
     {
       "id": "cmqqfofp90059269xfmt8gq4u",
       "text": "เฉพาะเจ้าหน้าที่กรมอุทยานแห่งชาติ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp90056269x0aoadwcs"
     },
     {
       "id": "cmqqfofp9005a269xd7fudhhp",
       "text": "ดารานักร้องและบล็อกเกอร์ท่องเที่ยวชื่อดังเท่านั้น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp90056269x0aoadwcs"
     },
     {
       "id": "cmqqfofp9005c269xdrdudsaq",
       "text": "จำนวนและสัดส่วนของคนในพื้นที่ที่ได้รับประโยชน์และเข้ามาทำงานจริง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofp9005b269xgw3orjng"
     },
     {
       "id": "cmqqfofp9005d269xjzwpvu7q",
       "text": "ปริมาณยอดวิวและยอดกดไลก์ของวิดีโอประชาสัมพันธ์บน YouTube",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp9005b269xgw3orjng"
     },
     {
       "id": "cmqqfofp9005e269xyoqde0lp",
       "text": "สถิติการสร้างตึกแถวหรืออาคารพาณิชย์รอบแหล่งท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp9005b269xgw3orjng"
     },
     {
       "id": "cmqqfofp9005f269x7bn00fbj",
       "text": "จำนวนรถบัสที่วิ่งผ่านแหล่งท่องเที่ยวในแต่วัน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofp9005b269xgw3orjng"
     },
     {
       "id": "cmqqfofpk005n269xfhxsyp0s",
       "text": "เพื่อรักษามาตรฐานคุณภาพ ความปลอดภัย และการรองรับนักท่องเที่ยวได้อย่างเหมาะสม",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpk005m269x1n40z104"
     },
     {
       "id": "cmqqfofpk005o269x770yii6e",
       "text": "เพื่อเพิ่มสิทธิ์การคิดค่าบริการจากนักท่องเที่ยวต่างชาติเพิ่มขึ้น 10 เท่า",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005m269x1n40z104"
     },
     {
       "id": "cmqqfofpk005p269xoe6k6ew3",
       "text": "เพื่อกีดกันนักท่องเที่ยวที่ไม่ได้มาจากกลุ่มประเทศร่ำรวย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005m269x1n40z104"
     },
     {
       "id": "cmqqfofpk005q269xdp8yjqj6",
       "text": "เพื่ออนุญาตให้มีการตั้งร้านค้าบุกรุกพื้นที่ชายหาดธรรมชาติ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005m269x1n40z104"
     },
     {
       "id": "cmqqfofpk005s269xvxxzdauw",
       "text": "รูปช้างชูงวงเริงร่า (Thailand Tourism Standard)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpk005r269xs7gqlg4w"
     },
     {
       "id": "cmqqfofpk005t269xws7qt1gv",
       "text": "รูปวัดอรุณจำลองประกายแสง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005r269xs7gqlg4w"
     },
     {
       "id": "cmqqfofpk005u269xiqeo3sda",
       "text": "รูปนางกวักโบกมือต้อนรับ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005r269xs7gqlg4w"
     },
     {
       "id": "cmqqfofpk005v269xbnlua41n",
       "text": "รูปแผนที่ประเทศไทยขอบทอง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005r269xs7gqlg4w"
     },
     {
       "id": "cmqqfofpk005x269xhoc6m672",
       "text": "ป้ายเตือนภัย อุปกรณ์ช่วยชีวิตพื้นฐาน และซ้อมแผนฉุกเฉินประจำปี",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpk005w269x955ozl7l"
     },
     {
       "id": "cmqqfofpk005y269xk0xduqjq",
       "text": "การจัดเตรียมเครื่องบินเจ็ทส่วนตัวช่วยเหลือตลอด 24 ชั่วโมง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005w269x955ozl7l"
     },
     {
       "id": "cmqqfofpl005z269xyqg4dy5v",
       "text": "การแจกประกันอุบัติเหตุฟรีก่อนจองตั๋วเข้าชม",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005w269x955ozl7l"
     },
     {
       "id": "cmqqfofpl0060269xuh8s3lr0",
       "text": "การปิดสถานบันเทิงทุกที่รอบแหล่งท่องเที่ยวทั้งหมด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpk005w269x955ozl7l"
     },
     {
       "id": "cmqqfofpl0062269xbn3aoa9f",
       "text": "ความสะอาด ปลอดภัย และมีแนวคิดอารยสถาปัตย์ (Universal Design)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpl0061269x3pic9u1d"
     },
     {
       "id": "cmqqfofpl0063269xocmjc2j9",
       "text": "การใช้วัสดุหรูหราราคาแพงที่สุดเพื่อดึงดูดระดับไฮเอนด์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpl0061269x3pic9u1d"
     },
     {
       "id": "cmqqfofpl0064269x0rqqhm9v",
       "text": "การหลีกเลี่ยงการทำสิ่งอำนวยความสะดวกสำหรับผู้พิการและคนชราเพื่อลดงบ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpl0061269x3pic9u1d"
     },
     {
       "id": "cmqqfofpl0065269xl796t70l",
       "text": "การลอกเลียนแบบศูนย์การค้าขนาดใหญ่กลางกรุง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpl0061269x3pic9u1d"
     },
     {
       "id": "cmqqfofpl0067269xz94mlx6r",
       "text": "กรมการท่องเที่ยว กระทรวงการท่องเที่ยวและกีฬา",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpl0066269xlwguushl"
     },
     {
       "id": "cmqqfofpl0068269xr1furcyo",
       "text": "การท่องเที่ยวแห่งประเทศไทย (ททท.)",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpl0066269xlwguushl"
     },
     {
       "id": "cmqqfofpl0069269xoxl1gzk9",
       "text": "กรมป่าไม้ กระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpl0066269xlwguushl"
     },
     {
       "id": "cmqqfofpl006a269xc0oc5ojq",
       "text": "กรมโยธาธิการและผังเมือง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpl0066269xlwguushl"
     },
     {
       "id": "cmqqfofpx006i269x7s7d8q3y",
       "text": "การนำเสนอเรื่องราว (Storytelling) และโปรโมตอัตลักษณ์ท้องถิ่นที่เป็นเอกลักษณ์ของชุมชน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpx006h269xmtlth356"
     },
     {
       "id": "cmqqfofpx006j269x9jerwqlo",
       "text": "การทำทัวร์ศูนย์เหรียญเพื่อเน้นปริมาณคนจำนวนมากๆ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006h269xmtlth356"
     },
     {
       "id": "cmqqfofpx006k269xxfr9cdjb",
       "text": "การโฆษณาแจกของรางวัลฟรีโดยไม่มีข้อมูลทางวัฒนธรรม",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006h269xmtlth356"
     },
     {
       "id": "cmqqfofpx006l269xacih5gxz",
       "text": "การเลียนแบบกิจกรรมท่องเที่ยวของต่างประเทศทั้งหมด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006h269xmtlth356"
     },
     {
       "id": "cmqqfofpx006n269xbfs8fvu1",
       "text": "การใช้ Social Media และ Short-video แพลตฟอร์ม เช่น TikTok, Instagram, Facebook",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpx006m269xnohh3qoq"
     },
     {
       "id": "cmqqfofpx006o269xqvpppix9",
       "text": "การจ้างรถแห่กระจายเสียงตามชุมชนต่างๆ ทั่วประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006m269xnohh3qoq"
     },
     {
       "id": "cmqqfofpx006p269xepcu5nco",
       "text": "การซื้อพื้นที่โฆษณาในหนังสือพิมพ์รายสัปดาห์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006m269xnohh3qoq"
     },
     {
       "id": "cmqqfofpx006q269xjigh2ix3",
       "text": "การจัดพิมพ์แผ่นพับกระดาษแจกตามสี่แยกไฟแดง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006m269xnohh3qoq"
     },
     {
       "id": "cmqqfofpx006s269xs5fi7vge",
       "text": "การสร้างความตระหนักรู้ในการอนุรักษ์ธรรมชาติ การลดขยะพลาสติก และการกระจายรายได้",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpx006r269xsbvaf1lt"
     },
     {
       "id": "cmqqfofpx006t269xs7j1v8wi",
       "text": "การโฆษณาว่าราคาที่พักและสินค้าถูกที่สุดในโลก",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006r269xsbvaf1lt"
     },
     {
       "id": "cmqqfofpx006u269x2lwnq5qv",
       "text": "การอวดความพร้อมของสนามกอล์ฟระดับพรีเมียมในพื้นที่ป่า",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006r269xsbvaf1lt"
     },
     {
       "id": "cmqqfofpx006v269x8zdejklu",
       "text": "การจัดโปรโมชั่นกินบุฟเฟต์ฟรีตลอด 24 ชั่วโมง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006r269xsbvaf1lt"
     },
     {
       "id": "cmqqfofpx006x269x04zr37e8",
       "text": "นักท่องเที่ยวมีกำลังซื้อสูง พำนักนาน และส่งผลกระทบต่อสิ่งแวดล้อมค่อนข้างต่ำ",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpx006w269xqfw337av"
     },
     {
       "id": "cmqqfofpx006y269xd4zwxzi6",
       "text": "ได้ปริมาณคนนับล้านคนเข้ามาเบียดเสียดในที่เดียวกัน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006w269xqfw337av"
     },
     {
       "id": "cmqqfofpx006z269xy56x5pla",
       "text": "ไม่ต้องใช้งบประมาณในการทำโฆษณาหรือการจัดการใดๆ เลย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006w269xqfw337av"
     },
     {
       "id": "cmqqfofpx0070269xemtg8zln",
       "text": "ชุมชนไม่ต้องมีปราชญ์ชาวบ้านคอยให้ความรู้อีกต่อไป",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx006w269xqfw337av"
     },
     {
       "id": "cmqqfofpx0072269x8ws99rqb",
       "text": "อัตราการเดินทางกลับมาเที่ยวซ้ำและความพึงพอใจสะสมของนักท่องเที่ยว",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofpx0071269xnlp2ctmw"
     },
     {
       "id": "cmqqfofpx0073269xsn2k77rt",
       "text": "จำนวนกล่องขยะพลาสติกที่ตกค้างตามจุดบริการนักท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx0071269xnlp2ctmw"
     },
     {
       "id": "cmqqfofpx0074269x22ebvofg",
       "text": "ยอดผู้ใช้บริการรถเช่าราคาถูกนอกระบบในชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx0071269xnlp2ctmw"
     },
     {
       "id": "cmqqfofpx0075269xgouv9eew",
       "text": "จำนวนรีสอร์ทสร้างขึ้นใหม่แบบไม่มีการรับรองคุณภาพ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofpx0071269xnlp2ctmw"
     },
     {
       "id": "cmqqfofq8007d269xndfszbgz",
       "text": "เน้นให้นักท่องเที่ยวมีส่วนร่วมเรียนรู้และทำกิจกรรมร่วมกับคนท้องถิ่นจริง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofq8007c269xbwlrvbcw"
     },
     {
       "id": "cmqqfofq8007e269xusa2glno",
       "text": "เน้นการเดินห้างสรรพสินค้าและซื้อของแบรนด์เนมนำเข้า",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007c269xbwlrvbcw"
     },
     {
       "id": "cmqqfofq8007f269xp2snqo3d",
       "text": "เน้นการนั่งรถทัวร์ถ่ายรูปจากหน้าต่างโดยไม่ต้องคุยกับชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007c269xbwlrvbcw"
     },
     {
       "id": "cmqqfofq8007g269xqoz8fv7d",
       "text": "เน้นการพักในโรงแรมหรูและใช้บริการสระว่ายน้ำระบบปิด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007c269xbwlrvbcw"
     },
     {
       "id": "cmqqfofq8007i269xk715qchd",
       "text": "การลงมือหัดปั้นถ้วยชามศิลาดลกับปราชญ์ชุมชนท้องถิ่น",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofq8007h269xyaf5z0sv"
     },
     {
       "id": "cmqqfofq8007j269xp5qfy0f4",
       "text": "การนั่งชมการแสดงทางวัฒนธรรมในโรงละครเวทีขนาดใหญ่",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007h269xyaf5z0sv"
     },
     {
       "id": "cmqqfofq8007k269x0cioji2o",
       "text": "การเล่นเกมสวนน้ำนานาชาติที่จัดขึ้นใกล้กรุงเทพฯ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007h269xyaf5z0sv"
     },
     {
       "id": "cmqqfofq8007l269xcorxgknm",
       "text": "การทานอาหารนานาชาติในร้านสะดวกซื้อที่เปิดบริการ 24 ชั่วโมง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007h269xyaf5z0sv"
     },
     {
       "id": "cmqqfofq8007n269xhp2r6dr7",
       "text": "การแลกเปลี่ยนวัฒนธรรม การลงมือปฏิบัติ และส่งเสริมการใช้ความคิดสร้างสรรค์",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofq8007m269xll7z61x9"
     },
     {
       "id": "cmqqfofq8007o269xv9mxmbng",
       "text": "การลงทุนด้วยงบประมาณก่อสร้างที่สูงที่สุดในประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007m269xll7z61x9"
     },
     {
       "id": "cmqqfofq8007p269xhfiz9a8w",
       "text": "การลดบทบาทการมีส่วนร่วมของคนในพื้นที่ให้เหลือศูนย์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007m269xll7z61x9"
     },
     {
       "id": "cmqqfofq8007q269xhhojvadn",
       "text": "การแปลงอัตลักษณ์ท้องถิ่นให้กลายเป็นธุรกิจขายสินค้าแมสเสจ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007m269xll7z61x9"
     },
     {
       "id": "cmqqfofq8007s269xgmbodl3u",
       "text": "สร้างอาชีพและเกิดการกระจายรายได้สู่ชุมชนเจ้าของทักษะและปราชญ์ชาวบ้านโดยตรง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofq8007r269xjd8ad8oy"
     },
     {
       "id": "cmqqfofq8007t269xl8x33lho",
       "text": "ช่วยให้นักท่องเที่ยวต่างชาติซื้อสินค้าโดยไม่ต้องผ่านพิธีการศุลกากร",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007r269xjd8ad8oy"
     },
     {
       "id": "cmqqfofq8007u269x3z8761eq",
       "text": "ช่วยลดเวลาในการเดินทางไปยังจุดเช็คอินต่างๆ ให้น้อยลง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007r269xjd8ad8oy"
     },
     {
       "id": "cmqqfofq8007v269xusy9kzbt",
       "text": "ส่งเสริมการผูกขาดธุรกิจท่องเที่ยวโดยกลุ่มทุนข้ามชาติขนาดใหญ่",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007r269xjd8ad8oy"
     },
     {
       "id": "cmqqfofq8007x269xtfbr0og4",
       "text": "ปราชญ์ท้องถิ่น ชุมชนผู้สืบทอด และผู้นำกิจกรรมชุมชน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofq8007w269x5i2qytw5"
     },
     {
       "id": "cmqqfofq8007y269xrfrkyrbk",
       "text": "เจ้าหน้าที่รักษาความปลอดภัยของกรมป่าไม้",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007w269x5i2qytw5"
     },
     {
       "id": "cmqqfofq8007z269xx202w4kp",
       "text": "บล็อกเกอร์ต่างชาติที่มารีวิวโรงแรมรีสอร์ท",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007w269x5i2qytw5"
     },
     {
       "id": "cmqqfofq80080269xc8ssjs7a",
       "text": "พนักงานขายหน้าร้านแฟรนไชส์ขนาดใหญ่",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofq8007w269x5i2qytw5"
     },
     {
       "id": "cmqqfofqj0088269xdmjr2ncq",
       "text": "ระบบให้บริการฐานข้อมูลและสร้างความเชื่อมั่นเพื่ออำนวยความสะดวกการท่องเที่ยวปลอดภัย",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqj0087269xgynzrf9t"
     },
     {
       "id": "cmqqfofqj0089269xpmnfjdt5",
       "text": "ศูนย์บำบัดรักษาพยาบาลฉุกเฉินสำหรับผู้พิการและนักท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqj0087269xgynzrf9t"
     },
     {
       "id": "cmqqfofqj008a269xi7cp61yc",
       "text": "แอปพลิเคชันสะสมแคลอรี่ในการเดินขึ้นเขาของอุทยานแห่งชาติ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqj0087269xgynzrf9t"
     },
     {
       "id": "cmqqfofqj008b269xz0n943su",
       "text": "คณะกรรมการจัดระดับโรงแรมระดับ 5 ดาวทั่วมหาสมุทรอินเดีย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqj0087269xgynzrf9t"
     },
     {
       "id": "cmqqfofqj008d269x4g5y9oty",
       "text": "เพื่อสร้างความเชื่อมั่น ยกระดับความปลอดภัย และให้บริการข้อมูลด้านการท่องเที่ยวที่ถูกต้อง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqj008c269xur50pwt0"
     },
     {
       "id": "cmqqfofqj008e269xuojkhhee",
       "text": "เพื่อลดความน่าสนใจของเส้นทางท่องเที่ยวชุมชนนอกกระแส",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqj008c269xur50pwt0"
     },
     {
       "id": "cmqqfofqj008f269xsywhluya",
       "text": "เพื่อจัดจำหน่ายตั๋วเข้าชมนิทรรศการลดราคาพิเศษให้กับข้าราชการ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqj008c269xur50pwt0"
     },
     {
       "id": "cmqqfofqj008g269xcdy52qnt",
       "text": "เพื่อกีดกันนักท่องเที่ยวไม่ให้ยื่นขอรับการตรวจสอบข้อมูลออนไลน์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqj008c269xur50pwt0"
     },
     {
       "id": "cmqqfofqk008i269xdwzb3fsr",
       "text": "ตรวจสอบสถานะและรายชื่อของมัคคุเทศก์และผู้ประกอบการนำเที่ยวที่จดทะเบียนถูกต้องตามกฎหมาย",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqk008h269x9kdv56qr"
     },
     {
       "id": "cmqqfofqk008j269xnoke41f9",
       "text": "เช็คประวัติอาชญากรรมของคนขับรถแท็กซี่ทุกคนในพื้นที่กรุงเทพฯ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008h269x9kdv56qr"
     },
     {
       "id": "cmqqfofqk008k269xhfya5hud",
       "text": "จองสิทธิ์การขึ้นเครื่องบินทหารในเที่ยวบินพิเศษระหว่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008h269x9kdv56qr"
     },
     {
       "id": "cmqqfofqk008l269x74afamzm",
       "text": "คำนวณปริมาณโซเดียมในอาหารที่ซื้อทานในตลาดชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008h269x9kdv56qr"
     },
     {
       "id": "cmqqfofqk008n269xx6bq86im",
       "text": "ระบบดิจิทัลที่รวมศูนย์ฐานข้อมูลผู้ให้บริการท่องเที่ยวและช่วยคัดกรองไกด์เถื่อน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqk008m269xunz6nvc8"
     },
     {
       "id": "cmqqfofqk008o269x2yhwomue",
       "text": "การใช้หุ่นยนต์ช่วยทำความสะอาดทางเดินบนอุทยาน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008m269xunz6nvc8"
     },
     {
       "id": "cmqqfofqk008p269xl1g3t7b1",
       "text": "ระบบโทรศัพท์ผ่านจานดาวเทียมทางไกลฟรี",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008m269xunz6nvc8"
     },
     {
       "id": "cmqqfofqk008q269xsryq5ihg",
       "text": "การแจกสมาร์ทโฟนฟรีก่อนเดินทางไปเที่ยวตามชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008m269xunz6nvc8"
     },
     {
       "id": "cmqqfofqk008s269xfpbswz9p",
       "text": "เว็บไซต์ออนไลน์และฐานข้อมูลตรวจสอบดิจิทัลของกรมการท่องเที่ยว",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqk008r269xoh391pc5"
     },
     {
       "id": "cmqqfofqk008t269xy075b4mp",
       "text": "การส่งไปรษณีย์ตอบรับแบบจดหมายลงทะเบียน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008r269xoh391pc5"
     },
     {
       "id": "cmqqfofqk008u269xhrxvpdol",
       "text": "การเดินทางมายื่นคำร้องด้วยตนเองที่กระทรวงการท่องเที่ยวและกีฬา",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008r269xoh391pc5"
     },
     {
       "id": "cmqqfofqk008v269xyn06gtpj",
       "text": "การดาวน์โหลดซอฟต์แวร์ประมวลผลความเร็วสูงบนพีซีเท่านั้น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqk008r269xoh391pc5"
     },
     {
       "id": "cmqqfofqx0093269xmu84fu72",
       "text": "การจับกระแสสังคม ไวรัล หรือเหตุการณ์เด่นปัจจุบันมาส่งเสริมและชวนคนท่องเที่ยวทันที",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqx0092269x9u9t36v4"
     },
     {
       "id": "cmqqfofqx0094269xi6lbwr8y",
       "text": "การวางแผนจัดกิจกรรมโฆษณาล่วงหน้าระยะยาว 10 ปี",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx0092269x9u9t36v4"
     },
     {
       "id": "cmqqfofqx0095269xzg07y2l1",
       "text": "การใช้นาฬิกาข้อมือจับเวลาการเดินของไกด์นำเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx0092269x9u9t36v4"
     },
     {
       "id": "cmqqfofqx0096269x71ehbpur",
       "text": "การสร้างเว็บไซต์ท่องเที่ยวที่อัปเดตข้อมูลปีละหนึ่งครั้ง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx0092269x9u9t36v4"
     },
     {
       "id": "cmqqfofqx0098269xvkta1q1j",
       "text": "Social Listening Tools หรือระบบติดตามความเห็นในสื่อออนไลน์",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqx0097269xjt1csygb"
     },
     {
       "id": "cmqqfofqx0099269xnkax1ts2",
       "text": "การทำแบบสอบถามความคิดเห็นส่งทางกล่องรับจดหมายตามบ้าน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx0097269xjt1csygb"
     },
     {
       "id": "cmqqfofqx009a269xaz0oqemc",
       "text": "การสัมภาษณ์แบบกลุ่มนักศึกษาปริญญาตรีในมหาวิทยาลัย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx0097269xjt1csygb"
     },
     {
       "id": "cmqqfofqx009b269xvwpmb5lk",
       "text": "การจ้างพนักงานจดบันทึกสถิตินักท่องเที่ยวด้วยมือที่สถานีรถไฟ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx0097269xjt1csygb"
     },
     {
       "id": "cmqqfofqx009d269xruowbd78",
       "text": "สามารถสร้างยอดการรับรู้และแชร์ต่อได้ทันทีด้วยงบประชาสัมพันธ์ที่ค่อนข้างต่ำ",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqx009c269xaqgpe8bi"
     },
     {
       "id": "cmqqfofqx009e269xj90mpenp",
       "text": "ช่วยจำกัดไม่ให้นักท่องเที่ยวเข้ามาในชุมชนหนาแน่นเกินไป",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009c269xaqgpe8bi"
     },
     {
       "id": "cmqqfofqx009f269x95b7fkr1",
       "text": "ทำให้ไม่จำเป็นต้องปรับปรุงโครงสร้างความปลอดภัยในแหล่งท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009c269xaqgpe8bi"
     },
     {
       "id": "cmqqfofqx009g269xwaybuuu8",
       "text": "ช่วยให้คนในพื้นที่ขายสินค้าได้ราคาแพงกว่าป้าย 5 เท่า",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009c269xaqgpe8bi"
     },
     {
       "id": "cmqqfofqx009i269x7jb5v7dl",
       "text": "ความอ่อนไหวของข้อมูล วัฒนธรรมท้องถิ่น และหลีกเลี่ยงกระแสเชิงลบหรือขัดกฎหมาย",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqx009h269x805iif4o"
     },
     {
       "id": "cmqqfofqx009j269xfllxx964",
       "text": "งบประมาณที่อาจจะเหลือสะสมมากเกินไปจนเสียดาย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009h269x805iif4o"
     },
     {
       "id": "cmqqfofqx009k269x2rh26v5f",
       "text": "การไม่มีช่องทางโซเชียลมีเดียรองรับในตลาดต่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009h269x805iif4o"
     },
     {
       "id": "cmqqfofqx009l269x3fcxnbzy",
       "text": "ปัญหาการขาดแคลนกระดาษพิมพ์ใบปลิวประชาสัมพันธ์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009h269x805iif4o"
     },
     {
       "id": "cmqqfofqx009n269xdos2t6tw",
       "text": "การจัดทริปตามรอยภาพยนตร์ หรือ มิวสิกวิดีโอชื่อดังที่กำลังเป็นกระแสร้อนแรงในโซเชียล",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofqx009m269xf09ee5fy"
     },
     {
       "id": "cmqqfofqx009o269xw4u5153v",
       "text": "การจัดอบรมสัมมนามัคคุเทศก์ในห้องประชุมสำนักงานแบบปิด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009m269xf09ee5fy"
     },
     {
       "id": "cmqqfofqx009p269xph4wq30m",
       "text": "การพิมพ์สมุดคู่มือรวมแผนผังประวัติศาสตร์แบบดั้งเดิมแจกสถาบันการศึกษา",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009m269xf09ee5fy"
     },
     {
       "id": "cmqqfofqx009q269xgmm2kuq6",
       "text": "การลดราคาตั๋วเครื่องบินสำหรับเที่ยวบินช่วงฤดูหนาวปีถัดไป",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofqx009m269xf09ee5fy"
     },
     {
       "id": "cmqqfofr9009y269xh28d3wy2",
       "text": "การพัฒนา ยกระดับ และส่งเสริมการท่องเที่ยว กีฬา นันทนาการ และอุตสาหกรรมบริการที่เกี่ยวข้อง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofr9009x269x5d52tw4i"
     },
     {
       "id": "cmqqfofr9009z269xvhm9xk1b",
       "text": "การจัดสรรงบประมาณกระตุ้นอสังหาริมทรัพย์และก่อสร้างรถไฟฟ้าความเร็วสูง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr9009x269x5d52tw4i"
     },
     {
       "id": "cmqqfofr900a0269x5mq2n36g",
       "text": "การควบคุมภาษีนำเข้าและจัดระเบียบศุลกากรระหว่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr9009x269x5d52tw4i"
     },
     {
       "id": "cmqqfofr900a1269xs1qbvmx2",
       "text": "การจัดสอบใบอนุญาตขับขี่สาธารณะทั่วราชอาณาจักร",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr9009x269x5d52tw4i"
     },
     {
       "id": "cmqqfofr900a3269xxdfwj4xv",
       "text": "กรมการท่องเที่ยว (Department of Tourism)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofr900a2269xkxfje3q2"
     },
     {
       "id": "cmqqfofr900a4269xwba54677",
       "text": "กรมพลศึกษา (Department of Physical Education)",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900a2269xkxfje3q2"
     },
     {
       "id": "cmqqfofr900a5269xsuniv0az",
       "text": "การท่องเที่ยวแห่งประเทศไทย (ททท.)",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900a2269xkxfje3q2"
     },
     {
       "id": "cmqqfofr900a6269xh81003r3",
       "text": "สำนักงานปลัดกระทรวงการท่องเที่ยวและกีฬา",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900a2269xkxfje3q2"
     },
     {
       "id": "cmqqfofr900a8269xwtt32ej1",
       "text": "รวมศูนย์บริการข้อมูล การลงทะเบียน ความปลอดภัย และอำนวยความสะดวกแก่นักท่องเที่ยวขาเข้า",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofr900a7269xvll7r4wa"
     },
     {
       "id": "cmqqfofr900a9269xegjn7ole",
       "text": "แพลตฟอร์มสั่งซื้อตั๋วฟุตบอลทีมชาติและรับสิทธิ์เล่นเกมชิงโชค",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900a7269xvll7r4wa"
     },
     {
       "id": "cmqqfofr900aa269xszdurayt",
       "text": "ระบบตรวจสอบการเสียภาษีของมัคคุเทศก์และไกด์ชาวไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900a7269xvll7r4wa"
     },
     {
       "id": "cmqqfofr900ab269xid77h75o",
       "text": "ช่องทางการขอเงินกู้ดอกเบี้ยต่ำสำหรับเปิดสปาและโรงแรมขนาดใหญ่",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900a7269xvll7r4wa"
     },
     {
       "id": "cmqqfofr900ad269x9o458097",
       "text": "การใช้อัตลักษณ์ทางวัฒนธรรม อาหาร มวยไทย เทศกาล และศิลปะในการสร้างรายได้และจุดเด่นของชาติ",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofr900ac269xluike1es"
     },
     {
       "id": "cmqqfofr900ae269xj8xubj24",
       "text": "การจัดซื้อคอมพิวเตอร์และแท็บเล็ตแจกโรงเรียนท้องถิ่น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900ac269xluike1es"
     },
     {
       "id": "cmqqfofr900af269x29pycfyg",
       "text": "การสร้างสนามกีฬาแห่งชาติขนาดใหญ่ในทุกตำบล",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900ac269xluike1es"
     },
     {
       "id": "cmqqfofr900ag269xxb4s180r",
       "text": "การสั่งซื้อและนำเข้าเทคโนโลยี AI จากยุโรปมาช่วยวิเคราะห์กีฬา",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900ac269xluike1es"
     },
     {
       "id": "cmqqfofr900ai269xm7u2ra89",
       "text": "รณรงค์การออกกำลังกายให้เกิดการสะสมแต้มสุขภาพและแปลงเป็นรางวัล/สิทธิพิเศษ",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofr900ah269xb9x51bw1"
     },
     {
       "id": "cmqqfofr900aj269xpeqtkyvz",
       "text": "การจำกัดน้ำหนักและสัดส่วนของมัคคุเทศก์ก่อนยื่นต่อใบอนุญาต",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900ah269xb9x51bw1"
     },
     {
       "id": "cmqqfofr900ak269x3ii8k9sq",
       "text": "การแข่งขันกินอาหารคลีนและควบคุมน้ำหนักของนักกีฬาทีมชาติ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900ah269xb9x51bw1"
     },
     {
       "id": "cmqqfofr900al269xgyuu4nye",
       "text": "การคิดเงินค่าปรับนักท่องเที่ยวที่ปล่อยขยะหรือสิ่งแวดล้อมเป็นมลพิษ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofr900ah269xb9x51bw1"
     },
     {
       "id": "cmqqfofrj00at269xlcuh6hi0",
       "text": "การท่องเที่ยวแห่งประเทศไทย (ททท.)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofrj00as269xt2emw16w"
     },
     {
       "id": "cmqqfofrj00au269xwjb5bxuc",
       "text": "กรมการท่องเที่ยว กระทรวงการท่องเที่ยวและกีฬา",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00as269xt2emw16w"
     },
     {
       "id": "cmqqfofrj00av269x4oexut3e",
       "text": "กรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00as269xt2emw16w"
     },
     {
       "id": "cmqqfofrj00aw269xyoxb9a3e",
       "text": "สภาอุตสาหกรรมการท่องเที่ยวแห่งประเทศไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00as269xt2emw16w"
     },
     {
       "id": "cmqqfofrj00ay269x29cq060t",
       "text": "สร้างการรับรู้แบรนด์ประเทศไทยในฐานะจุดหมายปลายทางยอดนิยมระดับโลกที่มีเสน่ห์เฉพาะตัว",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofrj00ax269xa2ne05oc"
     },
     {
       "id": "cmqqfofrj00az269x5nd40por",
       "text": "การเสนอราคาโรงแรมห้าดาวให้ถูกที่สุดเพื่อสู้กับคู่แข่ง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00ax269xa2ne05oc"
     },
     {
       "id": "cmqqfofrj00b0269xyfllsx6x",
       "text": "การรับจ้างจองตั๋วเข้าชมนิทรรศการและพิพิธภัณฑ์ทางประวัติศาสตร์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00ax269xa2ne05oc"
     },
     {
       "id": "cmqqfofrj00b1269xo9argfoj",
       "text": "การลดบทบาทการท่องเที่ยววิถีไทยเพื่อมุ่งเน้นการค้าระหว่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00ax269xa2ne05oc"
     },
     {
       "id": "cmqqfofrj00b3269x167cykn4",
       "text": "Food (อาหาร), Film (ภาพยนตร์), Fashion (แฟชั่น), Fighting (มวยไทย), Festival (เทศกาล)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofrj00b2269x6rqtzs5q"
     },
     {
       "id": "cmqqfofrj00b4269x1aucj53v",
       "text": "Football, Fishing, Fitness, Finance, Future",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00b2269x6rqtzs5q"
     },
     {
       "id": "cmqqfofrj00b5269xxxsu3wkz",
       "text": "Forest, Flower, Farm, Factory, Family",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00b2269x6rqtzs5q"
     },
     {
       "id": "cmqqfofrj00b6269xc0s456dc",
       "text": "Freedom, Friendship, Funny, Fortune, Famous",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00b2269x6rqtzs5q"
     },
     {
       "id": "cmqqfofrj00b8269xp99btjl6",
       "text": "กระตุ้นเศรษฐกิจและการพำนักระยะยาว ยกระดับไทยเป็นศูนย์กลางท่องเที่ยวและอีเวนต์กีฬาระดับสากล",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofrj00b7269xnj2u4eat"
     },
     {
       "id": "cmqqfofrj00b9269xosnqqn9j",
       "text": "การเชิญชวนให้นักเรียนไทยลดเวลาเรียนวิชาพละเพื่อหันมาเล่นกีฬาสู่ความเป็นเลิศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00b7269xnj2u4eat"
     },
     {
       "id": "cmqqfofrj00ba269xsp8jflzw",
       "text": "การจัดประกวดการทำอาหารเช้าของโรงแรมทั่วประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00b7269xnj2u4eat"
     },
     {
       "id": "cmqqfofrj00bb269x5akft2wh",
       "text": "การสร้างแนวปะการังเทียมทดแทนในมหาสมุทรแปซิฟิก",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00b7269xnj2u4eat"
     },
     {
       "id": "cmqqfofrj00bd269xq8k1hftp",
       "text": "การจัดนิทรรศการ Roadshow, วิดีโอโปรโมทการท่องเที่ยว, และร่วมงานกับพันธมิตรระดับสากล",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofrj00bc269xqhsz6mt6"
     },
     {
       "id": "cmqqfofrj00be269xqu8nr9y6",
       "text": "การจ้างพนักงานโทรศัพท์หานักท่องเที่ยวต่างชาติทีละคนเพื่อแนะนำแหล่งท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00bc269xqhsz6mt6"
     },
     {
       "id": "cmqqfofrj00bf269x5swvtcen",
       "text": "การจัดพิมพ์คู่มือนำเที่ยวเล่มหนาส่งทางเรือไปยังสถานทูตไทยทั่วโลก",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00bc269xqhsz6mt6"
     },
     {
       "id": "cmqqfofrj00bg269xmhngappm",
       "text": "การแจกของชำร่วยรักษ์โลกที่หน้าเคาน์เตอร์เช็คอินสายการบินสากล",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrj00bc269xqhsz6mt6"
     },
     {
       "id": "cmqqfofry00bo269xrnlqbth5",
       "text": "กรมการท่องเที่ยว ร่วมกับ กรมการเปลี่ยนแปลงสภาพภูมิอากาศและสิ่งแวดล้อม",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofrx00bn269xmd8st1tc"
     },
     {
       "id": "cmqqfofry00bp269xbhjuk798",
       "text": "สำนักงานสถิติแห่งชาติ ร่วมกับ กระทรวงมหาดไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrx00bn269xmd8st1tc"
     },
     {
       "id": "cmqqfofry00bq269x9cm9aof9",
       "text": "กรมทางหลวง ร่วมกับ สมาคมสปาไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrx00bn269xmd8st1tc"
     },
     {
       "id": "cmqqfofry00br269xqsc6csaa",
       "text": "กรมศิลปากร ร่วมกับ กองทุนพัฒนาสื่อสร้างสรรค์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofrx00bn269xmd8st1tc"
     },
     {
       "id": "cmqqfofry00bt269x55fta9sw",
       "text": "การจัดการพลังงาน การจัดการน้ำ ของเสีย และการมีส่วนร่วมทางสังคมและชุมชน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofry00bs269xoo5q4emo"
     },
     {
       "id": "cmqqfofry00bu269xyuzqaupx",
       "text": "การใช้เฟอร์นิเจอร์นำเข้าราคาแพงเพื่อความหรูหรา",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00bs269xoo5q4emo"
     },
     {
       "id": "cmqqfofry00bv269xhtlry8al",
       "text": "การให้บริการห้องพักที่มีขนาดมากกว่า 100 ตารางเมตรขึ้นไปทุกห้อง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00bs269xoo5q4emo"
     },
     {
       "id": "cmqqfofry00bw269xuyuujeci",
       "text": "การมีสระว่ายน้ำระบบคลอรีนขนาดใหญ่ที่สุดในจังหวัด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00bs269xoo5q4emo"
     },
     {
       "id": "cmqqfofry00by269x6f55ymzs",
       "text": "การคัดแยกขยะตั้งแต่ต้นทาง งดการใช้พลาสติกแบบครั้งเดียวทิ้ง และทำปุ๋ยจากเศษอาหาร",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofry00bx269xnqgxmfyt"
     },
     {
       "id": "cmqqfofry00bz269xod2mdt48",
       "text": "การนำขยะและพลาสติกมารวมกันแล้วเผาทำลายหลังรีสอร์ทช่วงเช้ามืด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00bx269xnqgxmfyt"
     },
     {
       "id": "cmqqfofry00c0269xbi12j29h",
       "text": "การจ้างบริษัทขนขยะนำไปฝังกลบในพื้นที่ป่าสงวนหลังชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00bx269xnqgxmfyt"
     },
     {
       "id": "cmqqfofry00c1269xxq52b3rm",
       "text": "การปล่อยน้ำเสียจากห้องครัวลงสู่คลองธรรมชาติโดยตรง",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00bx269xnqgxmfyt"
     },
     {
       "id": "cmqqfofry00c3269x69rsof02",
       "text": "การเลือกซื้อสินค้า วัตถุดิบประกอบอาหาร และอุปกรณ์ที่ผลิตในท้องถิ่นและเป็นมิตรกับธรรมชาติ",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofry00c2269xcdq3w9so"
     },
     {
       "id": "cmqqfofry00c4269xul5et4f7",
       "text": "การสั่งซื้อของตกแต่งและอาหารหรูราคาแพงนำเข้าทางอากาศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00c2269xcdq3w9so"
     },
     {
       "id": "cmqqfofry00c5269x37lj4v1i",
       "text": "การเลือกใช้น้ำยาทำความสะอาดที่มีส่วนผสมของเคมีเข้มข้นที่สุดเพื่อให้สะอาดเร็ว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00c2269xcdq3w9so"
     },
     {
       "id": "cmqqfofry00c6269xux7d7okf",
       "text": "การจ้างบริษัทคู่สัญญาภายนอกที่ไม่มีนโยบายดูแลสิ่งแวดล้อมเพื่อประหยัดงบ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00c2269xcdq3w9so"
     },
     {
       "id": "cmqqfofry00c8269xhq675n13",
       "text": "การลดต้นทุนพลังงานระยะยาว และสร้างแรงดึงดูดใจให้นักท่องเที่ยวคุณภาพกลุ่มอนุรักษ์ธรรมชาติ",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofry00c7269xk4yp5g01"
     },
     {
       "id": "cmqqfofry00c9269x1wk5w9wj",
       "text": "การยกเว้นไม่ต้องชำระภาษีเงินได้นิติบุคคลตลอดชีพ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00c7269xk4yp5g01"
     },
     {
       "id": "cmqqfofry00ca269xttqv9tqr",
       "text": "การได้รับสิทธิ์ในการบุกรุกสร้างอาคารขยายเข้าไปในเขตอุทยานแห่งชาติ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00c7269xk4yp5g01"
     },
     {
       "id": "cmqqfofry00cb269xtz9mwfqw",
       "text": "การเพิ่มราคาค่าเช่าห้องพักได้ตามใจชอบโดยไม่ต้องแจ้งสมาคมท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofry00c7269xk4yp5g01"
     },
     {
       "id": "cmqqfofsg00cj269xqerjjx6d",
       "text": "ควบคุมดูแลการออกใบอนุญาต การต่ออายุ และกำกับธุรกิจนำเที่ยวมัคคุเทศก์ให้เป็นไปตามกฎหมาย",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsg00ci269xbxgojdw6"
     },
     {
       "id": "cmqqfofsg00ck269xtvidqlv6",
       "text": "จัดทริปท่องเที่ยวลดราคาและเปิดจำหน่ายตั๋วราคาประหยัด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00ci269xbxgojdw6"
     },
     {
       "id": "cmqqfofsg00cl269x5qdmwcud",
       "text": "การดูแลการขนส่งมวลชน รถทัวร์ และเรือสำราญในทะเลสากล",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00ci269xbxgojdw6"
     },
     {
       "id": "cmqqfofsg00cm269xt4wb0tx4",
       "text": "การคัดกรองวีซ่าและควบคุมความสงบในท่าอากาศยานนานาชาติ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00ci269xbxgojdw6"
     },
     {
       "id": "cmqqfofsg00co269xmwc9ag3i",
       "text": "ส่งเสริมการดึงเงินลงทุนจากกองถ่ายภาพยนตร์ต่างชาติเข้ามาถ่ายทำในประเทศไทยและพิจารณาอนุญาต",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsg00cn269xh0c1rrbb"
     },
     {
       "id": "cmqqfofsg00cp269xx7w6fdyd",
       "text": "การจัดทำละครโทรทัศน์ส่งเสริมความรักชาติเพื่อเผยแพร่ภายในประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cn269xh0c1rrbb"
     },
     {
       "id": "cmqqfofsg00cq269x3z7pqtvl",
       "text": "การจัดทำภาพยนตร์โฆษณาประชาสัมพันธ์การท่องเที่ยวไทยแทน ททท.",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cn269xh0c1rrbb"
     },
     {
       "id": "cmqqfofsg00cr269xsndqlmeg",
       "text": "การตรวจสอบและเซ็นเซอร์เนื้อหาภาพยนตร์ที่ฉายในโรงภาพยนตร์ไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cn269xh0c1rrbb"
     },
     {
       "id": "cmqqfofsg00ct269xhtozjnic",
       "text": "มาตรฐานช้างชูงวงเริงร่า (Thailand Tourism Standard) และมาตรฐานไทย Good Travel",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsg00cs269xr5g5e37p"
     },
     {
       "id": "cmqqfofsg00cu269x8g4mquir",
       "text": "สัญลักษณ์โอทอปห้าดาวสีทองพรีเมียม",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cs269xr5g5e37p"
     },
     {
       "id": "cmqqfofsg00cv269x0uj9y1qd",
       "text": "เครื่องหมายรับรองอาหารปลอดภัย ฮาลาล และเจ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cs269xr5g5e37p"
     },
     {
       "id": "cmqqfofsg00cw269xprnwg8n2",
       "text": "ป้ายการันตีความอร่อยเชลล์ชวนชิมและมิชลินไกด์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cs269xr5g5e37p"
     },
     {
       "id": "cmqqfofsg00cy269x7z0q2doo",
       "text": "กองพัฒนาบริการท่องเที่ยว",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsg00cx269x3vj53bqi"
     },
     {
       "id": "cmqqfofsg00cz269x5kvpoknh",
       "text": "สำนักงานเลขานุการกรม",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cx269x3vj53bqi"
     },
     {
       "id": "cmqqfofsg00d0269x17qqk7mb",
       "text": "กองพัฒนามาตรฐานบุคลากรด้านการท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cx269x3vj53bqi"
     },
     {
       "id": "cmqqfofsg00d1269xk158m9dq",
       "text": "กองกิจการภาพยนตร์และวีดิทัศน์ต่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00cx269x3vj53bqi"
     },
     {
       "id": "cmqqfofsg00d3269x2jqwg4t3",
       "text": "ระบบ e-Services (e-License) ของกรมการท่องเที่ยว (www.dot.go.th)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsg00d2269xvh8sksdd"
     },
     {
       "id": "cmqqfofsg00d4269xldyeg0df",
       "text": "การแชทไลน์ถามบอทอัจฉริยะของกระทรวงพาณิชย์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00d2269xvh8sksdd"
     },
     {
       "id": "cmqqfofsg00d5269x2nixo0bw",
       "text": "การส่งข้อความส่วนตัวไปยังเพจสมาคมมัคคุเทศก์แห่งประเทศไทย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00d2269xvh8sksdd"
     },
     {
       "id": "cmqqfofsg00d6269x4vwwcz9z",
       "text": "การกรอกแบบฟอร์มเอกสารกระดาษและส่งทางไปรษณีย์ EMS เท่านั้น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsg00d2269xvh8sksdd"
     },
     {
       "id": "cmqqfofsx00de269x4nhdrxbg",
       "text": "เยียวยาและชดเชยค่าเสียหายต่อนักท่องเที่ยวที่ได้รับความเสียหายจากบริการธุรกิจนำเที่ยว",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsx00dd269xa3ijzs07"
     },
     {
       "id": "cmqqfofsx00df269xb9evzhqp",
       "text": "แจกทุนการศึกษาให้แก่บุตรหลานของไกด์นำเที่ยวทั่วประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dd269xa3ijzs07"
     },
     {
       "id": "cmqqfofsx00dg269xpr9yilxn",
       "text": "ปล่อยเงินกู้ดอกเบี้ยร้อยละศูนย์ให้ผู้มีรายได้น้อยไปเที่ยวต่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dd269xa3ijzs07"
     },
     {
       "id": "cmqqfofsx00dh269x1tr1f8gh",
       "text": "การควบคุมราคาสินค้าอุปโภคบริโภคตามร้านของฝากในชุมชน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dd269xa3ijzs07"
     },
     {
       "id": "cmqqfofsx00dj269xkvytn9di",
       "text": "เมื่อผู้ประกอบการธุรกิจนำเที่ยวไม่ปฏิบัติตามข้อตกลง ยกเลิกทริป หรือผิดสัญญาและไม่คืนเงิน",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsx00di269xre4nnggj"
     },
     {
       "id": "cmqqfofsx00dk269xg78yrthz",
       "text": "เมื่อสายการบินเลื่อนเวลาเที่ยวบินดีเลย์เนื่องจากสภาพอากาศแปรปรวน",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00di269xre4nnggj"
     },
     {
       "id": "cmqqfofsx00dl269xnyi80oo1",
       "text": "เมื่อนักท่องเที่ยวลืมสิ่งของมีค่าไว้บนแท็กซี่สาธารณะในเมืองท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00di269xre4nnggj"
     },
     {
       "id": "cmqqfofsx00dm269xq1chaf33",
       "text": "เมื่อนักท่องเที่ยวไม่พึงพอใจในคุณภาพอากาศฝุ่นละออง PM 2.5",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00di269xre4nnggj"
     },
     {
       "id": "cmqqfofsx00do269xtm1egz6u",
       "text": "ประธานกรรมการโดยตำแหน่ง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsx00dn269x19of6mme"
     },
     {
       "id": "cmqqfofsx00dp269xlqruy30g",
       "text": "เลขานุการกองทุนเท่านั้น",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dn269x19of6mme"
     },
     {
       "id": "cmqqfofsx00dq269xxhnjffrx",
       "text": "ผู้ทรงคุณวุฒิที่ได้รับเลือกเป็นรายปี",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dn269x19of6mme"
     },
     {
       "id": "cmqqfofsx00dr269xqyefz8v8",
       "text": "ที่ปรึกษากองทุนกิตติมศักดิ์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dn269x19of6mme"
     },
     {
       "id": "cmqqfofsx00dt269xecmpk2c1",
       "text": "เพื่อให้การคุ้มครองและใช้ชดใช้ความเสียหายแก่นักท่องเที่ยวตามข้อกำหนดกฎหมาย",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsx00ds269xvbqx67y9"
     },
     {
       "id": "cmqqfofsx00du269x7f195u3q",
       "text": "เพื่อนำเงินไปฝากธนาคารสะสมผลประโยชน์ส่วนตัวของข้าราชการ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00ds269xvbqx67y9"
     },
     {
       "id": "cmqqfofsx00dv269xa947bvi9",
       "text": "เพื่อช่วยอำนวยความสะดวกในการจัดซื้ออุปกรณ์คอมพิวเตอร์ให้กรม",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00ds269xvbqx67y9"
     },
     {
       "id": "cmqqfofsx00dw269xo1urn87v",
       "text": "เพื่อใช้เป็นส่วนลดราคาตั๋วเครื่องบินสำหรับคู่ค้าในต่างประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00ds269xvbqx67y9"
     },
     {
       "id": "cmqqfofsx00dy269x6bsyfk3y",
       "text": "ภายในสองปี นับตั้งแต่วันที่เกิดความเสียหายขึ้นจริง",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfofsx00dx269xzzhtfkdb"
     },
     {
       "id": "cmqqfofsx00dz269xnevsxagd",
       "text": "ภายใน 30 วันนับแต่วันจองโปรแกรมนำเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dx269xzzhtfkdb"
     },
     {
       "id": "cmqqfofsx00e0269xmnziu1uk",
       "text": "ภายในเวลาใดก็ได้ไม่มีการหมดอายุความทางกฎหมาย",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dx269xzzhtfkdb"
     },
     {
       "id": "cmqqfofsx00e1269xt7m8ap6b",
       "text": "ภายใน 7 วันก่อนเดินทางออกนอกประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfofsx00dx269xzzhtfkdb"
     },
     {
       "id": "cmqqfoft600e5269xv31va4m0",
       "text": "การพัฒนามาตรฐานการบริการท่องเที่ยว แหล่งท่องเที่ยว และการสนับสนุนธุรกิจนำเที่ยวและมัคคุเทศก์",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfoft600e4269xob22t2qm"
     },
     {
       "id": "cmqqfoft600e6269xzi71sedw",
       "text": "การจัดทริปท่องเที่ยวฟรีแก่ต่างชาติ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfoft600e4269xob22t2qm"
     },
     {
       "id": "cmqqfoft600e7269xe2wr8gps",
       "text": "การควบคุมอุทยานแห่งชาติทั้งหมด",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfoft600e4269xob22t2qm"
     },
     {
       "id": "cmqqfoft600e8269xjtt80j96",
       "text": "การสร้างโรงแรมและที่พักห้าดาวทั่วประเทศ",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfoft600e4269xob22t2qm"
     },
     {
       "id": "cmqqfoft600ea269x2hb1l4tx",
       "text": "สำนักงานเลขานุการกรม",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfoft600e9269xoha675ll"
     },
     {
       "id": "cmqqfoft600eb269xypg8i0ro",
       "text": "กองกิจการภาพยนตร์และวีดิทัศน์ต่างประเทศ (Thailand Film Office)",
-      "isCorrect": 1,
+      "isCorrect": true,
       "questionId": "cmqqfoft600e9269xoha675ll"
     },
     {
       "id": "cmqqfoft600ec269xr46hqb3k",
       "text": "กองทะเบียนธุรกิจนำเที่ยวและมัคคุเทศก์",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfoft600e9269xoha675ll"
     },
     {
       "id": "cmqqfoft600ed269xiyaar9mi",
       "text": "กองพัฒนาแหล่งท่องเที่ยว",
-      "isCorrect": 0,
+      "isCorrect": false,
       "questionId": "cmqqfoft600e9269xoha675ll"
     }
   ]
