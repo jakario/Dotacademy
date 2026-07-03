@@ -23,20 +23,14 @@ export async function GET() {
     const sections = [
       {
         title: "บทที่ 1: บทนำและความสำคัญ",
-        content: "เนื้อหาเกริ่นนำเกี่ยวกับกรมการท่องเที่ยว",
-        order: 1,
         courseId: course.id
       },
       {
         title: "บทที่ 2: นโยบายและทิศทาง",
-        content: "ทิศทางการดำเนินงานของกรมการท่องเที่ยวในปีปัจจุบัน",
-        order: 2,
         courseId: course.id
       },
       {
         title: "บทที่ 3: สรุปและแบบทดสอบ",
-        content: "สรุปเนื้อหาทั้งหมดที่ได้เรียนมา",
-        order: 3,
         courseId: course.id
       }
     ];
@@ -44,6 +38,22 @@ export async function GET() {
     await prisma.section.createMany({
       data: sections
     });
+    
+    // Add some resources for the sections
+    const createdSections = await prisma.section.findMany({
+      where: { courseId: course.id }
+    });
+    
+    for (const sec of createdSections) {
+      await prisma.resource.create({
+        data: {
+          title: "เนื้อหาการเรียน: " + sec.title,
+          type: "TEXT",
+          content: "นี่คือเนื้อหาสำหรับ " + sec.title + " โปรดศึกษาให้ครบถ้วน",
+          sectionId: sec.id
+        }
+      });
+    }
 
     return NextResponse.json({
       success: true,
