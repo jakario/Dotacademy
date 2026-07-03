@@ -156,7 +156,6 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
               <h1 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300 truncate max-w-[200px] sm:max-w-md">
                 {course.title}
               </h1>
-              <p className="text-xs text-slate-400">ผู้สอน: {course.instructor.name || 'ผู้ดูแลระบบ'}</p>
             </div>
           </div>
           <Link href="/courses" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
