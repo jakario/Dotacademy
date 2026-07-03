@@ -46,13 +46,20 @@ export default async function CoursesPage() {
     }
   }
 
-  return (
-    <CoursesClient 
-      initialCourses={courses as any} 
-      isAdminOrInstructor={!!isAdminOrInstructor} 
-      hasPassedAll={hasPassedAll}
-      totalQuizzes={totalQuizzes}
-      passedQuizzes={passedQuizzes}
-    />
-  );
-}
+    const dbDebug = {
+      courseCount: await prisma.course.count(),
+      userCount: await prisma.user.count(),
+      dbHost: process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL).host : 'no-url'
+    };
+  
+    return (
+      <CoursesClient 
+        initialCourses={courses as any} 
+        isAdminOrInstructor={!!isAdminOrInstructor} 
+        hasPassedAll={hasPassedAll}
+        totalQuizzes={totalQuizzes}
+        passedQuizzes={passedQuizzes}
+        dbDebug={dbDebug}
+      />
+    );
+  }

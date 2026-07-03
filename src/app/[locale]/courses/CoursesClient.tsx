@@ -22,6 +22,7 @@ interface CoursesClientProps {
   hasPassedAll: boolean;
   totalQuizzes: number;
   passedQuizzes: number;
+  dbDebug?: any;
 }
 
 export default function CoursesClient({ 
@@ -29,7 +30,8 @@ export default function CoursesClient({
   isAdminOrInstructor, 
   hasPassedAll,
   totalQuizzes,
-  passedQuizzes
+  passedQuizzes,
+  dbDebug
 }: CoursesClientProps) {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("ALL");
@@ -62,6 +64,15 @@ export default function CoursesClient({
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 font-sans py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        {dbDebug && (
+          <div className="mb-4 p-4 bg-red-900 text-white rounded">
+            DEBUG DB INFO: 
+            User Count: {dbDebug.userCount} | 
+            Course Count: {dbDebug.courseCount} | 
+            Host: {dbDebug.dbHost} | 
+            Initial Courses Array Length: {initialCourses?.length}
+          </div>
+        )}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
             <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 tracking-tight">
