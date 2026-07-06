@@ -40,7 +40,26 @@ export async function GET(request: Request) {
     });
 
     const completedIds = completedProgress.map(p => p.resourceId);
-    return NextResponse.json({ success: true, completedIds });
+
+    // Fetch all user passed quizzes under the course sections
+    const passedAttempts = await prisma.quizAttempt.findMany({
+      where: {
+        userId,
+        passed: true,
+        quiz: {
+          section: {
+            courseId
+          }
+        }
+      },
+      select: {
+        quizId: true
+      }
+    });
+
+    const passedQuizIds = passedAttempts.map(a => a.quizId);
+
+    return NextResponse.json({ success: true, completedIds, passedQuizIds });
   } catch (error: any) {
     console.error("GET progress error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

@@ -89,6 +89,7 @@ function YouTubePlayer({ videoId, title, onEnded }: { videoId: string; title: st
 
 export default function CourseDetailClient({ course }: CourseDetailClientProps) {
   const [completedResources, setCompletedResources] = useState<string[]>([]);
+  const [passedQuizIds, setPassedQuizIds] = useState<string[]>([]);
   const [loaded, setLoaded] = useState(false);
   const searchParams = useSearchParams();
 
@@ -99,8 +100,9 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
         const res = await fetch(`/api/progress?courseId=${course.id}`);
         if (res.ok) {
           const data = await res.json();
-          if (data.success && data.completedIds) {
-            setCompletedResources(data.completedIds);
+          if (data.success) {
+            if (data.completedIds) setCompletedResources(data.completedIds);
+            if (data.passedQuizIds) setPassedQuizIds(data.passedQuizIds);
           }
         }
       } catch (e) {
@@ -142,6 +144,11 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
 
   const totalVideos = allVideoResources.length;
   const completedVideos = allVideoResources.filter(r => completedResources.includes(r.id)).length;
+
+  const allQuizzes = course.sections.map(s => s.quiz).filter(Boolean);
+  const totalQuizzes = allQuizzes.length;
+  const passedQuizzes = allQuizzes.filter(q => passedQuizIds.includes(q!.id)).length;
+  const remainingQuizzes = totalQuizzes - passedQuizzes;
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans">
@@ -192,6 +199,26 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                 <p className="text-xs text-slate-400">หลักสูตรนี้เป็นเนื้อหาประเภทเอกสารอ่าน</p>
               )}
             </div>
+
+            {/* Quiz Progress Section */}
+            {totalQuizzes > 0 && (
+              <div className="p-6 bg-slate-800/80 border-b border-slate-700/50">
+                <h2 className="text-base font-bold text-slate-200 mb-3">ผลการทดสอบ</h2>
+                <div className="flex justify-between text-xs text-slate-400 mb-1.5 font-medium">
+                  <span>ทำแบบทดสอบผ่านแล้ว</span>
+                  <span className="text-emerald-400 font-bold">{passedQuizzes} / {totalQuizzes} บท</span>
+                </div>
+                <div className="flex justify-between text-[10px] text-slate-500 mb-2">
+                  <span>เหลือที่ยังไม่ผ่าน: <span className="text-rose-400 font-semibold">{remainingQuizzes}</span></span>
+                </div>
+                <div className="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500 ease-out"
+                    style={{ width: `${totalQuizzes > 0 ? (passedQuizzes / totalQuizzes) * 100 : 0}%` }}
+                  />
+                </div>
+              </div>
+            )}
 
             {/* Content list */}
             <div className="p-4 space-y-2.5 max-h-[calc(100vh-320px)] overflow-y-auto">
@@ -397,14 +424,23 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                   {(() => {
                     const sectionVideos = activeSection.resources.filter(r => r.type === 'VIDEO');
                     const isSectionQuizUnlocked = sectionVideos.every(v => completedResources.includes(v.id));
+                    const isQuizPassed = activeSection.quiz && passedQuizIds.includes(activeSection.quiz.id);
 
                     return isSectionQuizUnlocked ? (
-                      <Link
-                        href={`/courses/${course.id}/quiz?sectionId=${activeSection.id}`}
-                        className="inline-block py-2.5 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-blue-500/10 hover:-translate-y-0.5"
-                      >
-                        ทำแบบทดสอบ: {activeSection.quiz.title}
-                      </Link>
+                      <div className="inline-flex flex-col items-center gap-3">
+                        {isQuizPassed && (
+                          <span className="text-emerald-400 text-sm font-bold flex items-center gap-1">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            คุณสอบผ่านบทนี้แล้ว!
+                          </span>
+                        )}
+                        <Link
+                          href={`/courses/${course.id}/quiz?sectionId=${activeSection.id}`}
+                          className={`inline-block py-2.5 px-6 font-bold rounded-xl text-sm transition-all shadow-lg hover:-translate-y-0.5 ${isQuizPassed ? 'bg-slate-700 hover:bg-slate-600 text-white shadow-slate-900/50' : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-blue-500/10'}`}
+                        >
+                          {isQuizPassed ? 'ทำแบบทดสอบอีกครั้ง' : `ทำแบบทดสอบ: ${activeSection.quiz.title}`}
+                        </Link>
+                      </div>
                     ) : (
                       <div className="inline-flex flex-col items-center gap-2">
                         <span className="py-2 px-5 bg-slate-800 border border-slate-700 text-slate-500 font-bold rounded-xl text-xs cursor-not-allowed">
