@@ -290,7 +290,6 @@ export async function GET() {
           data: {
             quizId,
             text: qData.text,
-            order: i + 1,
           },
         });
 
