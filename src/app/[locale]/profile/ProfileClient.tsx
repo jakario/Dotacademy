@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import toast from 'react-hot-toast';
 
@@ -48,7 +48,7 @@ function getInitials(name: string | null, email: string | null) {
 }
 
 export default function ProfileClient() {
-  const { data: session, update: updateSession } = useSession();
+  const router = useRouter();
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
@@ -88,8 +88,8 @@ export default function ProfileClient() {
       if (data.success) {
         toast.success('บันทึกข้อมูลเรียบร้อยแล้ว');
         setEditing(false);
-        await updateSession({ name: nameInput.trim() });
         fetchProfile();
+        router.refresh();
       } else {
         toast.error(data.error || 'บันทึกไม่สำเร็จ');
       }
