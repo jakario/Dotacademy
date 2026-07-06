@@ -4,6 +4,7 @@ import "../globals.css";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], variable: "--font-noto-thai" });
@@ -30,6 +31,7 @@ export default async function RootLayout({
           {children}
           <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
