@@ -13,8 +13,11 @@ export default async function HomePage() {
         {session ? (
           <div className="flex items-center gap-4">
             <span className="text-gray-700">สวัสดี, {session.user?.name}</span>
+            <Link href="/profile" className="text-blue-600 font-semibold hover:underline">
+              โปรไฟล์ของฉัน
+            </Link>
             {((session.user as any).role === 'ADMIN' || (session.user as any).role === 'INSTRUCTOR') && (
-              <Link href="/admin" className="text-blue-600 font-semibold hover:underline">
+              <Link href="/admin" className="text-amber-600 font-semibold hover:underline">
                 จัดการระบบ (Admin)
               </Link>
             )}
