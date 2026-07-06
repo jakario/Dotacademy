@@ -25,6 +25,15 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     }
 
     const { id } = await params;
+    const userId = (session.user as any).id;
+
+    if (role === "INSTRUCTOR") {
+      const existingCourse = await prisma.course.findUnique({ where: { id } });
+      if (!existingCourse || existingCourse.instructorId !== userId) {
+        return NextResponse.json({ error: "Forbidden: You do not own this course" }, { status: 403 });
+      }
+    }
+
     const body = await request.json();
     const result = updateCourseSchema.safeParse(body);
     if (!result.success) {
@@ -61,6 +70,15 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
     }
 
     const { id } = await params;
+    const userId = (session.user as any).id;
+
+    if (role === "INSTRUCTOR") {
+      const existingCourse = await prisma.course.findUnique({ where: { id } });
+      if (!existingCourse || existingCourse.instructorId !== userId) {
+        return NextResponse.json({ error: "Forbidden: You do not own this course" }, { status: 403 });
+      }
+    }
+
     await prisma.course.delete({
       where: { id }
     });
