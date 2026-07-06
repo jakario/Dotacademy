@@ -170,7 +170,7 @@ export default function CertificateClient() {
             เรื่อง <span className="text-amber-800 font-black text-lg">ความรู้ทั่วไปเกี่ยวกับกรมการท่องเที่ยว</span>
           </p>
           <p className="text-xs text-slate-500 mt-2.5">
-            เป็นผู้ผ่านการอบรมตามกรอบการพัฒนาบุคลากรเบื้องต้นกรมการท่องเที่ยว
+            เป็นผู้ผ่านการอบรมตามกรอบการพัฒนาบุคลากรเบื้องต้น
           </p>
         </div>
 
@@ -189,11 +189,22 @@ export default function CertificateClient() {
           </div>
           
           <div className="text-center flex flex-col items-center">
-            {/* Mock signature vector graphic */}
-            <svg className="w-24 h-8 text-amber-800 opacity-80" viewBox="0 0 100 30" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M10 20 C 30 5, 40 25, 60 10 C 75 0, 85 25, 95 15" strokeLinecap="round"/>
-            </svg>
-            <div className="w-36 border-t border-slate-300 mt-1 pt-1 font-bold text-slate-900">
+            {/* Signature styled like Donald Trump's vertical, jagged, compressed handwriting */}
+            <div className="w-48 h-12 flex items-center justify-center text-amber-900 opacity-90 overflow-hidden">
+              <span style={{ 
+                fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Impact', cursive", 
+                fontSize: "1.25rem", 
+                fontWeight: "900",
+                transform: "scaleX(0.4) scaleY(2.2) rotate(-3deg)",
+                display: "inline-block",
+                transformOrigin: "center",
+                whiteSpace: "nowrap",
+                letterSpacing: "-1.5px"
+              }}>
+                Department of tourism
+              </span>
+            </div>
+            <div className="w-auto px-4 border-t border-slate-400 mt-1 pt-1 font-bold text-slate-900 whitespace-nowrap">
               ( ผู้ดูแลระบบ DOT Academy )
             </div>
             <p className="text-[10px] text-slate-400 font-semibold">ผู้จัดการอบรม</p>
