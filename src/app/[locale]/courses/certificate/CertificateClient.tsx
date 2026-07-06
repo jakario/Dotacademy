@@ -201,11 +201,11 @@ export default function CertificateClient() {
                 whiteSpace: "nowrap",
                 letterSpacing: "-1.5px"
               }}>
-                Department of tourism
+                Administrator
               </span>
             </div>
             <div className="w-auto px-6 border-t border-slate-400 pt-1.5 font-bold text-slate-900 whitespace-nowrap text-sm">
-              ( ผู้ดูแลระบบ DOT Academy )
+              ( Administrator )
             </div>
             <p className="text-[10px] text-slate-400 font-semibold mt-0.5">ผู้จัดการอบรม</p>
           </div>
