@@ -250,7 +250,7 @@ export default function ProfileClient() {
             <div className="flex items-center gap-4">
               <div className="text-4xl">🎓</div>
               <div>
-                <h3 className="font-bold text-amber-300 text-base">คุณมีสิทธิ์รับใบรับรองการอบรม!</h3>
+                <h3 className="font-bold text-amber-300 text-base">ต้องเรียนครบ ถึงมีสิทธิ์รับใบรับรองการอบรม</h3>
                 <p className="text-xs text-slate-400 mt-1">
                   เรียนจบครบ {completedCourses.length} หลักสูตร
                   {certEligibleDate && ` · ล่าสุด ${formatThaiDate(certEligibleDate.toISOString())}`}
