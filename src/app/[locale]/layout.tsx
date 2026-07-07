@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], variable: "--font-noto-thai" });
 
 export const metadata: Metadata = {
-  title: "DOT Academy",
+  title: "DOT Academy | ระบบการเรียนรู้ออนไลน์ กรมการท่องเที่ยว",
   description: "E-Learning Platform",
 };
 
