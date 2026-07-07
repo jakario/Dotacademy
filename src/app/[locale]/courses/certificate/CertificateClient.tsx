@@ -190,21 +190,21 @@ export default function CertificateClient() {
           
           <div className="text-center flex flex-col items-center">
             {/* Signature styled like Donald Trump's vertical, jagged, compressed handwriting */}
-            <div className="w-64 h-20 flex items-end justify-center text-amber-900 opacity-90 overflow-hidden pb-2">
+            <div className="w-full flex items-end justify-center text-amber-900 opacity-90 pb-2 pt-8 px-6">
               <span style={{ 
                 fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Impact', cursive", 
-                fontSize: "2.5rem", 
+                fontSize: "2rem", 
                 fontWeight: "900",
-                transform: "scaleX(0.45) scaleY(2.0) rotate(-4deg)",
+                transform: "scaleX(0.6) scaleY(2.2) rotate(-4deg)",
                 display: "inline-block",
                 transformOrigin: "bottom center",
                 whiteSpace: "nowrap",
-                letterSpacing: "-1.5px"
+                letterSpacing: "-0.5px"
               }}>
                 Administrator
               </span>
             </div>
-            <div className="w-auto px-6 border-t border-slate-400 pt-1.5 font-bold text-slate-900 whitespace-nowrap text-sm">
+            <div className="w-auto px-4 border-t border-slate-400 pt-1.5 font-bold text-slate-900 whitespace-nowrap text-sm">
               ( ผู้ดูแลระบบ DOT Academy )
             </div>
             <p className="text-[10px] text-slate-400 font-semibold mt-0.5">ผู้จัดการอบรม</p>
