@@ -11,6 +11,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "กรุณากรอกข้อมูลให้ครบถ้วน" }, { status: 400 });
     }
 
+    // Password Policy: min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special character
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#-])[A-Za-z\d@$!%*?&_#-]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return NextResponse.json({ 
+        message: "รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร และประกอบด้วย ตัวพิมพ์ใหญ่ ตัวพิมพ์เล็ก ตัวเลข และตัวอักษรพิเศษ" 
+      }, { status: 400 });
+    }
+
     // Check if user exists
     const existingUser = await prisma.user.findUnique({
       where: { email }
