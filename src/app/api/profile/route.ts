@@ -87,48 +87,93 @@ export async function GET() {
 
     // Calculate completion per course
     const courseCompletionMap: Record<string, { total: number; completed: number; lastActivity: Date | null }> = {};
-
-    for (const enrollment of user.courses) {
-      const course = await prisma.course.findUnique({
-        where: { id: enrollment.courseId },
-        include: {
-          sections: {
-            include: { resources: true, quiz: true },
-          },
+    
+    // Extract unique course IDs from explicit enrollments, progress, and quiz attempts
+    const enrolledCourseIds = new Set<string>();
+    user.courses.forEach(e => enrolledCourseIds.add(e.courseId));
+    user.progress.forEach(p => enrolledCourseIds.add(p.resource.section.courseId));
+    user.quizAttempts.forEach(a => enrolledCourseIds.add(a.quiz.section.courseId));
+    
+    const courseIds = Array.from(enrolledCourseIds);
+    
+    const activeCourses = await prisma.course.findMany({
+      where: { id: { in: courseIds } },
+      include: {
+        sections: {
+          include: { resources: true, quiz: true },
         },
-      });
-      if (!course) continue;
+      },
+    });
 
+    for (const course of activeCourses) {
       const totalResources = course.sections.reduce((sum, s) => sum + s.resources.length, 0);
       const totalQuizzes = course.sections.filter(s => s.quiz).length;
       const totalItems = totalResources + totalQuizzes;
 
       const completedResources = user.progress.filter(
-        p => p.resource.section.courseId === enrollment.courseId
+        p => p.resource.section.courseId === course.id
       ).length;
 
       const passedQuizzesForCourse = user.quizAttempts.filter(
-        a => a.quiz.section.courseId === enrollment.courseId
+        a => a.quiz.section.courseId === course.id
       ).length;
 
       const completedItems = completedResources + passedQuizzesForCourse;
       
       // Last activity
       const progressDates = user.progress
-        .filter(p => p.resource.section.courseId === enrollment.courseId)
+        .filter(p => p.resource.section.courseId === course.id)
         .map(p => new Date(p.createdAt));
       const attemptDates = user.quizAttempts
-        .filter(a => a.quiz.section.courseId === enrollment.courseId)
+        .filter(a => a.quiz.section.courseId === course.id)
         .map(a => new Date(a.createdAt));
       const allDates = [...progressDates, ...attemptDates];
       const lastActivity = allDates.length > 0 ? new Date(Math.max(...allDates.map(d => d.getTime()))) : null;
 
-      courseCompletionMap[enrollment.courseId] = {
+      courseCompletionMap[course.id] = {
         total: totalItems,
         completed: completedItems,
         lastActivity,
       };
     }
+
+    // Determine the enrollment date (minimum of explicit enrollment, first progress, or first quiz attempt)
+    const enrollmentsResponse = activeCourses.map(course => {
+      let enrolledAt = new Date();
+      const explicitEnrollment = user.courses.find(e => e.courseId === course.id);
+      if (explicitEnrollment) {
+        enrolledAt = new Date(explicitEnrollment.createdAt);
+      } else {
+        const progressDates = user.progress
+          .filter(p => p.resource.section.courseId === course.id)
+          .map(p => new Date(p.createdAt));
+        const attemptDates = user.quizAttempts
+          .filter(a => a.quiz.section.courseId === course.id)
+          .map(a => new Date(a.createdAt));
+        const allDates = [...progressDates, ...attemptDates];
+        if (allDates.length > 0) {
+          enrolledAt = new Date(Math.min(...allDates.map(d => d.getTime())));
+        }
+      }
+
+      return {
+        courseId: course.id,
+        title: course.title,
+        enrolledAt,
+        completion: courseCompletionMap[course.id] || { total: 0, completed: 0, lastActivity: null },
+        isCompleted:
+          (courseCompletionMap[course.id]?.total || 0) > 0 &&
+          (courseCompletionMap[course.id]?.completed || 0) >=
+            (courseCompletionMap[course.id]?.total || 1),
+      };
+    });
+
+    // Sort by most recent activity or enrollment
+    enrollmentsResponse.sort((a, b) => {
+      const timeA = a.completion.lastActivity?.getTime() || a.enrolledAt.getTime();
+      const timeB = b.completion.lastActivity?.getTime() || b.enrolledAt.getTime();
+      return timeB - timeA;
+    });
 
     return NextResponse.json({
       id: user.id,
@@ -137,16 +182,7 @@ export async function GET() {
       image: user.image,
       role: user.role,
       memberSince: user.createdAt,
-      enrollments: user.courses.map(e => ({
-        courseId: e.courseId,
-        title: e.course.title,
-        enrolledAt: e.createdAt,
-        completion: courseCompletionMap[e.courseId] || { total: 0, completed: 0, lastActivity: null },
-        isCompleted:
-          (courseCompletionMap[e.courseId]?.total || 0) > 0 &&
-          (courseCompletionMap[e.courseId]?.completed || 0) >=
-            (courseCompletionMap[e.courseId]?.total || 1),
-      })),
+      enrollments: enrollmentsResponse,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
