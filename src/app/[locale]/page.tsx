@@ -2,17 +2,27 @@ import {getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/routing';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
 
 export default async function HomePage() {
   const t = await getTranslations('Index');
   const session = await getServerSession(authOptions);
+
+  let userName = session?.user?.name;
+  if (session && (session.user as any).id) {
+    const dbUser = await prisma.user.findUnique({ 
+      where: { id: (session.user as any).id }, 
+      select: { name: true } 
+    });
+    if (dbUser?.name) userName = dbUser.name;
+  }
   
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-gradient-to-b from-blue-50 to-white">
       <div className="absolute top-4 right-8">
         {session ? (
           <div className="flex items-center gap-4">
-            <span className="text-gray-700">สวัสดี, {session.user?.name}</span>
+            <span className="text-gray-700">สวัสดี, {userName}</span>
             <Link href="/profile" className="text-blue-600 font-semibold hover:underline">
               โปรไฟล์ของฉัน
             </Link>
