@@ -229,12 +229,11 @@ export default function ProfileClient() {
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-3 gap-4">
           {[
             { label: 'หลักสูตรทั้งหมด', value: profile.enrollments.length, icon: '📚', color: 'from-blue-600/20 to-blue-700/10 border-blue-500/20' },
             { label: 'กำลังเรียน', value: inProgressCourses.length, icon: '⏳', color: 'from-amber-600/20 to-amber-700/10 border-amber-500/20' },
             { label: 'เรียนจบแล้ว', value: completedCourses.length, icon: '✅', color: 'from-emerald-600/20 to-emerald-700/10 border-emerald-500/20' },
-            { label: 'ใบรับรอง', value: completedCourses.length, icon: '🎓', color: 'from-violet-600/20 to-violet-700/10 border-violet-500/20' },
           ].map((stat) => (
             <div key={stat.label} className={`bg-gradient-to-br ${stat.color} border rounded-2xl p-4 text-center`}>
               <div className="text-2xl mb-1">{stat.icon}</div>
@@ -252,8 +251,7 @@ export default function ProfileClient() {
               <div>
                 <h3 className="font-bold text-amber-300 text-base">ต้องเรียนครบ ถึงมีสิทธิ์รับใบรับรองการอบรม</h3>
                 <p className="text-xs text-slate-400 mt-1">
-                  เรียนจบครบ {completedCourses.length} หลักสูตร
-                  {certEligibleDate && ` · ล่าสุด ${formatThaiDate(certEligibleDate.toISOString())}`}
+                  {certEligibleDate ? `ได้รับใบรับรอง เมื่อวันที่ ${formatThaiDate(certEligibleDate.toISOString())}` : 'รอการอนุมัติใบรับรอง'}
                 </p>
               </div>
             </div>
