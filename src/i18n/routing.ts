@@ -6,7 +6,6 @@ export const routing = defineRouting({
   defaultLocale: 'th',
   localeCookie: {
     secure: process.env.NODE_ENV === 'production',
-    httpOnly: true,
     sameSite: 'lax'
   }
 });

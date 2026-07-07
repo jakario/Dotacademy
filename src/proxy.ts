@@ -28,7 +28,7 @@ export default async function middleware(req: NextRequest) {
 
   // Rate limit NextAuth Credentials login (max 5 requests per minute per IP)
   if (pathname === '/api/auth/callback/credentials' && req.method === 'POST') {
-    const ip = req.ip || req.headers.get('x-forwarded-for') || 'unknown';
+    const ip = req.headers.get('x-forwarded-for') || 'unknown';
     const now = Date.now();
     const attempt = rateLimitMap.get(ip) || { count: 0, lastAttempt: now };
     
