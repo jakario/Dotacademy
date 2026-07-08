@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic'; // Prevent static generation
+
 export async function GET() {
   try {
     const courses = await prisma.course.findMany();
