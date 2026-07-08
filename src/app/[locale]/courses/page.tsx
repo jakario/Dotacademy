@@ -12,7 +12,8 @@ export default async function CoursesPage() {
       _count: {
         select: { sections: true, enrollments: true }
       }
-    }
+    },
+    orderBy: { order: 'asc' }
   });
 
   const isAdminOrInstructor = session && ((session.user as any).role === 'ADMIN' || (session.user as any).role === 'INSTRUCTOR');
