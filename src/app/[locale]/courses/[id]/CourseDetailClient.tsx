@@ -43,7 +43,13 @@ interface CourseDetailClientProps {
 
 // Helper to extract YouTube Video ID
 function getYouTubeId(url: string) {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  if (!url) return null;
+  if (url.includes('<iframe')) {
+    const srcMatch = url.match(/src="([^"]+)"/);
+    if (srcMatch) url = srcMatch[1];
+  }
+  url = url.trim();
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
   const match = url.match(regExp);
   return (match && match[2].length === 11) ? match[2] : null;
 }

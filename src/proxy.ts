@@ -50,16 +50,7 @@ export default async function middleware(req: NextRequest) {
       }
     }
 
-    // Protect session endpoint – 401 when no token
-    if (pathname.startsWith('/api/auth/session')) {
-      const token = await getToken({
-        req,
-        secret: process.env.NEXTAUTH_SECRET || 'supersecretkey',
-      });
-      if (!token) {
-        return new NextResponse('Unauthorized', { status: 401 });
-      }
-    }
+
 
     // All other API routes pass through untouched
     return NextResponse.next();
