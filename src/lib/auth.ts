@@ -91,6 +91,7 @@ export const authOptions: AuthOptions = {
   },
   pages: {
     signIn: "/th/login",
+    error: "/th/login",  // Redirect auth errors to login page (prevents /th/api/auth/error 404)
   },
   session: {
     strategy: "jwt"
