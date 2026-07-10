@@ -203,7 +203,7 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
                 </div>
 
                 <div className="flex items-center justify-between gap-3 border-t border-slate-800 pt-4 mt-auto">
-                  <span className="text-xs text-slate-500 truncate max-w-[150px]">ผู้เขียน: {course.instructorName}</span>
+                  <span className="text-xs text-slate-500 truncate max-w-[150px]"></span>
                   <div className="flex items-center gap-2.5">
                     <Link
                       href={`/admin/courses/${course.id}`}
