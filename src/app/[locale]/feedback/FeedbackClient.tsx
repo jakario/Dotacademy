@@ -2,9 +2,9 @@
 
 import { Link } from "@/i18n/routing";
 
-// ✅ ลิงก์จาก Google Form ที่คุณส่งมา - เปลี่ยน /viewform เป็น /viewform?embedded=true
+// ✅ URL จริงจาก https://forms.gle/FhamwnwHzyofKhvG7 (เพิ่ม ?embedded=true เพื่อ embed ใน iframe)
 const GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdlQIi5jsgYSXeodw8I0bF_Vm9rTJIlX_e-nt6Z9aDg5IhpXg/viewform?embedded=true";
+  "https://docs.google.com/forms/d/e/1FAIpQLSfY9v89eh1QXnzorBQwRwnhkzGumyAnu6E6kg2Ig01MjUL5hA/viewform?embedded=true";
 
 export function FeedbackClient() {
   return (
@@ -63,7 +63,7 @@ export function FeedbackClient() {
         </div>
 
         <p className="mt-5 text-center text-xs text-slate-500">
-          ข้อมูลที่กรอกจะถูกส่งไปยัง Google Forms และเก็บไว้ใน Google Sheets ของกรมการท่องเที่ยวเท่านั้น
+          ข้อมูลที่กรอกจะถูกส่งไปยัง Google Forms และเก็บไว้ใน Google Sheets
         </p>
       </main>
     </div>
