@@ -127,9 +127,17 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
               <p className="text-xs text-slate-400">สำหรับผู้ดูแลระบบและวิทยากรฝึกอบรม</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/courses" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              หน้าเว็บหลักสูตร &rarr;
+          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3">
+            <Link href="/admin/users" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              จัดการผู้ใช้
+            </Link>
+            <span className="hidden sm:inline text-slate-700">|</span>
+            <Link href="/admin/enrollments" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              จัดการการลงทะเบียน
+            </Link>
+            <span className="hidden sm:inline text-slate-700">|</span>
+            <Link href="/courses" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              ดูหน้าเว็บหลักสูตร &rarr;
             </Link>
           </div>
         </div>
