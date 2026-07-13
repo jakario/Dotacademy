@@ -33,7 +33,21 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [courseToDelete, setCourseToDelete] = useState<{id: string, title: string} | null>(null);
   
+  // Search and filter state
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState<'all' | 'published' | 'draft'>('all');
+
   const router = useRouter();
+
+  const filteredCourses = courses.filter(c => {
+    const searchLower = search.toLowerCase();
+    const titleMatch = c.title.toLowerCase().includes(searchLower);
+    const descMatch = c.description?.toLowerCase().includes(searchLower);
+    const matchSearch = titleMatch || descMatch;
+    
+    const matchFilter = filter === 'all' || (filter === 'published' && c.isPublished) || (filter === 'draft' && !c.isPublished);
+    return matchSearch && matchFilter;
+  });
 
   // Create course handler
   const handleCreateCourse = async () => {
@@ -151,20 +165,48 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
           </div>
         </section>
 
-        {/* Course management header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        {/* Course management header with Search/Filter */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 gap-4">
           <h2 className="text-lg font-bold text-slate-200">รายการหลักสูตรในระบบ</h2>
-          <button
-            onClick={handleCreateCourse}
-            disabled={loading !== null}
-            className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:from-slate-700 disabled:to-slate-800 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all text-sm flex items-center gap-2"
-          >
-            {loading === 'create' ? 'กำลังสร้าง...' : (
-              <>
-                <span>+</span> สร้างหลักสูตรใหม่
-              </>
-            )}
-          </button>
+          
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            {/* Search Input */}
+            <div className="relative w-full sm:w-64">
+              <input
+                type="text"
+                placeholder="ค้นหาชื่อ หรือรายละเอียด..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full bg-slate-800/80 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-500"
+              />
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs">
+                🔍
+              </span>
+            </div>
+
+            {/* Filter Dropdown */}
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value as any)}
+              className="w-full sm:w-auto bg-slate-800/80 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500 transition-all"
+            >
+              <option value="all">สถานะทั้งหมด</option>
+              <option value="published">เผยแพร่แล้ว (Published)</option>
+              <option value="draft">ฉบับร่าง (Draft)</option>
+            </select>
+
+            <button
+              onClick={handleCreateCourse}
+              disabled={loading !== null}
+              className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:from-slate-700 disabled:to-slate-800 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all text-sm flex items-center justify-center gap-2 flex-shrink-0"
+            >
+              {loading === 'create' ? 'กำลังสร้าง...' : (
+                <>
+                  <span>+</span> สร้างหลักสูตร
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Courses Table / Cards */}
@@ -178,9 +220,13 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
               คลิกเพื่อสร้างหลักสูตรแรก
             </button>
           </div>
+        ) : filteredCourses.length === 0 ? (
+          <div className="text-center py-16 bg-slate-800/10 rounded-2xl border border-dashed border-slate-700/50">
+            <p className="text-slate-400 text-sm">ไม่พบหลักสูตรที่ตรงกับการค้นหา</p>
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {courses.map((course) => (
+            {filteredCourses.map((course) => (
               <div 
                 key={course.id} 
                 className="bg-slate-800/30 rounded-2xl border border-slate-700/50 p-6 flex flex-col justify-between hover:border-slate-600 transition-colors shadow-sm"
