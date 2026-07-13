@@ -51,6 +51,12 @@ export default function CoursesClient({
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
               โปรไฟล์ของฉัน
             </Link>
+            <Link
+              href="/feedback"
+              className="flex items-center gap-1.5 px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 hover:border-amber-400/50 text-amber-400 hover:text-amber-300 font-semibold rounded-xl text-xs transition-all"
+            >
+              💬 ข้อเสนอแนะเพิ่มเติม
+            </Link>
             <Link href="/" className="text-slate-400 hover:text-white transition-colors text-xs font-semibold">
               ← กลับหน้าหลัก
             </Link>
@@ -145,6 +151,25 @@ export default function CoursesClient({
               ไม่พบหลักสูตร
             </div>
           )}
+        </div>
+
+        {/* Feedback Banner */}
+        <div className="mt-12 p-6 bg-gradient-to-r from-blue-900/30 via-slate-800/50 to-amber-900/20 border border-slate-700/60 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
+            <span className="text-3xl">💬</span>
+            <div>
+              <h3 className="text-sm font-bold text-white">ข้อเสนอแนะเพิ่มเติม</h3>
+              <p className="text-xs text-slate-400 mt-0.5">
+                ร่วมแบ่งความคิดเห็นและข้อเสนอแนะ เพื่อพัฒนาระบบอบรมออนไลน์ของกรมการท่องเที่ยวให้ดียิ่งขึ้น
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/feedback"
+            className="shrink-0 px-5 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all whitespace-nowrap"
+          >
+            💬 กรอกแบบสอบถามความพึงพอใจ
+          </Link>
         </div>
       </div>
     </div>
