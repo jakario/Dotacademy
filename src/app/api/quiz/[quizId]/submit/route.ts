@@ -55,12 +55,53 @@ export async function POST(
       }
     });
 
+    // ---- Top-20 Reward Claim Logic ----
+    let wonReward = false;
+    if (passed) {
+      try {
+        // Get courseId via section -> quiz relation
+        const quizWithSection = await prisma.quiz.findUnique({
+          where: { id: quiz.id },
+          include: { section: { select: { courseId: true } } }
+        });
+        const courseId = quizWithSection?.section?.courseId;
+
+        if (courseId) {
+          const userId = (session.user as any).id;
+
+          // Check if user already has a claim for this course
+          const existingClaim = await (prisma as any).rewardClaim.findUnique({
+            where: { userId_courseId: { userId, courseId } }
+          });
+
+          if (!existingClaim) {
+            // Count current claims for this course
+            const claimCount = await (prisma as any).rewardClaim.count({
+              where: { courseId }
+            });
+
+            if (claimCount < 20) {
+              await (prisma as any).rewardClaim.create({
+                data: { userId, courseId }
+              });
+              wonReward = true;
+            }
+          }
+        }
+      } catch (rewardError) {
+        // Reward table may not exist yet; silently skip
+        console.warn("RewardClaim skipped:", rewardError);
+      }
+    }
+    // ------------------------------------
+
     return NextResponse.json({
       score,
       passed,
       correctCount,
       totalQuestions,
-      attemptId: attempt.id
+      attemptId: attempt.id,
+      wonReward,
     });
   } catch (error) {
     console.error(error);

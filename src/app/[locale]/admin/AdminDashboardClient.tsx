@@ -136,6 +136,10 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
               จัดการการลงทะเบียน
             </Link>
             <span className="hidden sm:inline text-slate-700">|</span>
+            <Link href="/admin/rewards" className="text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors">
+              🏆 รางวัล 20 คนแรก
+            </Link>
+            <span className="hidden sm:inline text-slate-700">|</span>
             <Link href="/courses" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
               ดูหน้าเว็บหลักสูตร &rarr;
             </Link>
