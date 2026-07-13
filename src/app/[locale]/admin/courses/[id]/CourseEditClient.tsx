@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Link } from "@/i18n/routing";
 import toast from 'react-hot-toast';
+import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 
 interface Resource {
   id: string;
@@ -53,6 +54,13 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
   const router = useRouter();
   const [course, setCourse] = useState<CourseData>(initialCourse);
   const [savingCourse, setSavingCourse] = useState(false);
+
+  // --- Confirm Dialog States ---
+  const [deleteSectionDialogOpen, setDeleteSectionDialogOpen] = useState(false);
+  const [sectionToDelete, setSectionToDelete] = useState<{id: string, title: string} | null>(null);
+
+  const [deleteResourceDialogOpen, setDeleteResourceDialogOpen] = useState(false);
+  const [resourceToDelete, setResourceToDelete] = useState<{sectionId: string, resourceId: string, title: string} | null>(null);
 
   // --- Course Metadata Handlers ---
   const handleUpdateCourseMetadata = async (e: React.FormEvent) => {
@@ -131,8 +139,14 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
     }
   };
 
-  const handleDeleteSection = async (sectionId: string, title: string) => {
-    if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่ "${title}"?\nบทเรียนย่อยและแบบทดสอบทั้งหมดในนี้จะถูกลบไปด้วย`)) return;
+  const promptDeleteSection = (sectionId: string, title: string) => {
+    setSectionToDelete({ id: sectionId, title });
+    setDeleteSectionDialogOpen(true);
+  };
+
+  const executeDeleteSection = async () => {
+    if (!sectionToDelete) return;
+    const { id: sectionId } = sectionToDelete;
 
     try {
       const res = await fetch(`/api/admin/sections/${sectionId}`, {
@@ -149,6 +163,8 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
     } catch (e) {
       console.error(e);
       toast.error('เกิดข้อผิดพลาด');
+    } finally {
+      setSectionToDelete(null);
     }
   };
 
@@ -233,8 +249,14 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
     }
   };
 
-  const handleDeleteResource = async (sectionId: string, resourceId: string, title: string) => {
-    if (!confirm(`ต้องการลบบทเรียน "${title}" หรือไม่?`)) return;
+  const promptDeleteResource = (sectionId: string, resourceId: string, title: string) => {
+    setResourceToDelete({ sectionId, resourceId, title });
+    setDeleteResourceDialogOpen(true);
+  };
+
+  const executeDeleteResource = async () => {
+    if (!resourceToDelete) return;
+    const { sectionId, resourceId } = resourceToDelete;
 
     try {
       const res = await fetch(`/api/admin/resources/${resourceId}`, {
@@ -257,6 +279,8 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
     } catch (e) {
       console.error(e);
       toast.error('เกิดข้อผิดพลาดในการลบบทเรียน');
+    } finally {
+      setResourceToDelete(null);
     }
   };
 
@@ -493,7 +517,7 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
                         </button>
                         
                         <button
-                          onClick={() => handleDeleteSection(section.id, section.title)}
+                          onClick={() => promptDeleteSection(section.id, section.title)}
                           className="text-rose-500 hover:text-rose-400 font-bold"
                         >
                           ลบ
@@ -530,7 +554,7 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
                               แก้ไขเนื้อหา
                             </button>
                             <button
-                              onClick={() => handleDeleteResource(section.id, res.id, res.title)}
+                              onClick={() => promptDeleteResource(section.id, res.id, res.title)}
                               className="text-xs text-rose-500 hover:text-rose-450 font-bold px-1"
                             >
                               ลบ
@@ -860,6 +884,25 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
         </div>
       )}
 
+      <ConfirmDialog 
+        open={deleteSectionDialogOpen} 
+        onOpenChange={setDeleteSectionDialogOpen}
+        title="ยืนยันการลบหมวดหมู่?"
+        description={`คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่ "${sectionToDelete?.title}"? บทเรียนย่อยและแบบทดสอบทั้งหมดในนี้จะถูกลบไปด้วย`}
+        confirmText="ลบหมวดหมู่"
+        variant="danger"
+        onConfirm={executeDeleteSection}
+      />
+      
+      <ConfirmDialog 
+        open={deleteResourceDialogOpen} 
+        onOpenChange={setDeleteResourceDialogOpen}
+        title="ยืนยันการลบบทเรียน?"
+        description={`ต้องการลบบทเรียน "${resourceToDelete?.title}" หรือไม่?`}
+        confirmText="ลบบทเรียน"
+        variant="danger"
+        onConfirm={executeDeleteResource}
+      />
     </div>
   );
 }

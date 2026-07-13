@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Link } from "@/i18n/routing";
 import toast from 'react-hot-toast';
+import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 
 interface CourseItem {
   id: string;
@@ -27,6 +28,11 @@ interface AdminDashboardClientProps {
 export default function AdminDashboardClient({ initialCourses, stats }: AdminDashboardClientProps) {
   const [courses, setCourses] = useState<CourseItem[]>(initialCourses);
   const [loading, setLoading] = useState<string | null>(null);
+  
+  // Dialog state
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [courseToDelete, setCourseToDelete] = useState<{id: string, title: string} | null>(null);
+  
   const router = useRouter();
 
   // Create course handler
@@ -57,11 +63,16 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
     }
   };
 
-  // Delete course handler
-  const handleDeleteCourse = async (id: string, title: string) => {
-    if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบหลักสูตร "${title}"?\nการกระทำนี้จะไม่สามารถย้อนกลับได้ และบทเรียน/คำถามทั้งหมดจะถูกลบออกถาวร`)) {
-      return;
-    }
+  // Trigger delete dialog
+  const promptDeleteCourse = (id: string, title: string) => {
+    setCourseToDelete({ id, title });
+    setDeleteDialogOpen(true);
+  };
+
+  // Execute actual deletion
+  const executeDeleteCourse = async () => {
+    if (!courseToDelete) return;
+    const { id } = courseToDelete;
 
     setLoading(id);
     try {
@@ -81,6 +92,7 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
       toast.error('เกิดข้อผิดพลาดในการเชื่อมต่อ');
     } finally {
       setLoading(null);
+      setCourseToDelete(null);
     }
   };
 
@@ -212,7 +224,7 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
                       แก้ไข/จัดการ
                     </Link>
                     <button
-                      onClick={() => handleDeleteCourse(course.id, course.title)}
+                      onClick={() => promptDeleteCourse(course.id, course.title)}
                       disabled={loading !== null}
                       className="px-3.5 py-1.5 bg-rose-600/10 hover:bg-rose-600 text-rose-400 hover:text-white rounded-lg text-xs font-bold transition-all border border-rose-500/20 hover:border-rose-500 disabled:opacity-40"
                     >
@@ -225,6 +237,16 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
           </div>
         )}
       </main>
+      
+      <ConfirmDialog 
+        open={deleteDialogOpen} 
+        onOpenChange={setDeleteDialogOpen}
+        title="ยืนยันการลบหลักสูตร?"
+        description={`คุณแน่ใจหรือไม่ว่าต้องการลบหลักสูตร "${courseToDelete?.title}"? การกระทำนี้จะไม่สามารถย้อนกลับได้ และบทเรียน/คำถามทั้งหมดจะถูกลบออกถาวร`}
+        confirmText="ลบหลักสูตร"
+        variant="danger"
+        onConfirm={executeDeleteCourse}
+      />
     </div>
   );
 }
