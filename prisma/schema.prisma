@@ -28,7 +28,7 @@ model User {
   accounts       Account[]
   sessions       Session[]
   progress       UserProgress[]
-  RewardClaim    RewardClaim[]
+  rewardClaims   RewardClaim[]
 }
 
 model Course {
@@ -46,9 +46,9 @@ model Course {
   sections    Section[]
   enrollments CourseEnrollment[]
 
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  RewardClaim RewardClaim[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  rewardClaims RewardClaim[]
 }
 
 model Section {
