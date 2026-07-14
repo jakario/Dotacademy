@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import CourseDetailClient from "./CourseDetailClient";
@@ -25,6 +26,14 @@ export default async function CourseDetailPage({
     notFound();
   }
 
-  return <CourseDetailClient course={course} />;
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-slate-400">
+        กำลังโหลดเนื้อหา...
+      </div>
+    }>
+      <CourseDetailClient course={course} />
+    </Suspense>
+  );
 }
 
