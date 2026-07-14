@@ -2,9 +2,8 @@
 
 import { Link } from "@/i18n/routing";
 
-// ✅ URL จริงจาก https://forms.gle/FhamwnwHzyofKhvG7 (เพิ่ม ?embedded=true เพื่อ embed ใน iframe)
 const GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfY9v89eh1QXnzorBQwRwnhkzGumyAnu6E6kg2Ig01MjUL5hA/viewform?embedded=true";
+  "https://docs.google.com/forms/d/e/1FAIpQLSfY9v89eh1QXnzorBQwRwnhkzGumyAnu6E6kg2Ig01MjUL5hA/viewform";
 
 export function FeedbackClient() {
   return (
@@ -30,41 +29,71 @@ export function FeedbackClient() {
       </header>
 
       {/* Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Banner */}
-        <div className="mb-8 rounded-2xl overflow-hidden bg-gradient-to-r from-blue-900/40 via-slate-800/60 to-amber-900/30 border border-slate-700 p-6 flex flex-col sm:flex-row items-center gap-5">
-          <div className="text-5xl shrink-0">🏛️</div>
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 py-16">
+
+        {/* Top Banner */}
+        <div className="mb-10 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-900/40 via-slate-800/60 to-amber-900/30 border border-slate-700 p-8 flex flex-col items-center text-center gap-4">
+          <div className="text-6xl">🏛️</div>
           <div>
-            <h2 className="text-lg font-black text-white mb-1">
+            <h2 className="text-2xl font-black text-white mb-2">
               เสียงของคุณมีความสำคัญ
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
-              กรมการท่องเที่ยวใส่ใจทุกความคิดเห็นและข้อเสนอแนะจากผู้เข้าอบรม
+            <p className="text-sm text-slate-300 leading-relaxed max-w-md">
+              กรมการท่องเที่ยวใส่ใจทุกความคิดเห็นจากผู้เข้าอบรม
               เพื่อนำไปพัฒนาหลักสูตรและระบบอบรมออนไลน์ให้ตอบโจทย์ยิ่งขึ้น
-              กรุณากรอกแบบสอบถามด้านล่าง ขอบคุณครับ/ค่ะ
             </p>
           </div>
         </div>
 
-        {/* Google Form Embed */}
-        <div className="rounded-2xl overflow-hidden border border-slate-700 bg-white shadow-2xl shadow-slate-950/50">
-          <iframe
-            src={GOOGLE_FORM_URL}
-            width="100%"
-            height="900"
-            frameBorder="0"
-            marginHeight={0}
-            marginWidth={0}
-            title="แบบสอบถามข้อเสนอแนะเพิ่มเติม — DOT Academy"
-            className="block w-full"
+        {/* CTA Card */}
+        <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-8 flex flex-col items-center text-center gap-6 shadow-xl">
+          
+          {/* Steps */}
+          <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 mb-2">
+            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-slate-900/60">
+              <span className="text-2xl">1️⃣</span>
+              <p className="text-xs text-slate-300 font-medium">กดปุ่มด้านล่าง</p>
+              <p className="text-[10px] text-slate-500">เปิด Google Forms ในแท็บใหม่</p>
+            </div>
+            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-slate-900/60">
+              <span className="text-2xl">2️⃣</span>
+              <p className="text-xs text-slate-300 font-medium">กรอกแบบสอบถาม</p>
+              <p className="text-[10px] text-slate-500">ใช้เวลาเพียง 2-3 นาที</p>
+            </div>
+            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-slate-900/60">
+              <span className="text-2xl">3️⃣</span>
+              <p className="text-xs text-slate-300 font-medium">กดส่ง</p>
+              <p className="text-[10px] text-slate-500">ข้อมูลถูกบันทึกทันที</p>
+            </div>
+          </div>
+
+          {/* Main CTA Button */}
+          <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white font-black text-base rounded-2xl shadow-xl shadow-blue-500/20 transition-all hover:scale-105 active:scale-95"
           >
-            กำลังโหลดแบบสอบถาม...
-          </iframe>
+            <span className="text-xl">📋</span>
+            กรอกแบบสอบถามความพึงพอใจ
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+
+          <p className="text-[11px] text-slate-500">
+            🔒 ข้อมูลจะถูกเก็บรักษาไว้ใน Google Forms อย่างปลอดภัย
+          </p>
         </div>
 
-        <p className="mt-5 text-center text-xs text-slate-500">
-          ข้อมูลที่กรอกจะถูกส่งไปยัง Google Forms และเก็บไว้ใน Google Sheets
-        </p>
+        {/* Alternative link */}
+        <div className="mt-6 text-center">
+          <p className="text-xs text-slate-500 mb-2">หรือคัดลอกลิงก์ด้านล่างเพื่อเปิดในเบราว์เซอร์</p>
+          <div className="flex items-center justify-center gap-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5">
+            <code className="text-[11px] text-blue-400 break-all select-all">{GOOGLE_FORM_URL}</code>
+          </div>
+        </div>
+
       </main>
     </div>
   );
