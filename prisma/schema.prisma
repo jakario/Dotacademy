@@ -3,12 +3,14 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [vector]
 }
 
 model User {
@@ -76,6 +78,17 @@ model Resource {
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
   progress  UserProgress[]
+  embedding ResourceEmbedding?
+}
+
+model ResourceEmbedding {
+  id         String   @id @default(cuid())
+  resourceId String   @unique
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  content    String   @db.Text
+  embedding  Unsupported("vector(768)")
+
+  createdAt  DateTime @default(now())
 }
 
 model CourseEnrollment {

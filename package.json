@@ -9,10 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^4.0.16",
+    "@ai-sdk/openai": "^4.0.14",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@radix-ui/react-dialog": "^1.1.19",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
+    "ai": "^7.0.28",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",
