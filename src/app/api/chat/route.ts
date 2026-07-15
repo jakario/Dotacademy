@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     `;
 
     // 5. Generate and stream the response using Gemini 1.5 Flash
-    const result = streamText({
+    const result = await streamText({
       model: google('gemini-1.5-flash'),
       system: systemPrompt,
       messages: messages,
