@@ -18,7 +18,7 @@ export default function ChatPage() {
               🤖
             </div>
             <div>
-              <h1 className="font-bold text-lg leading-tight">DOT AI Assistant</h1>
+              <h1 className="font-bold text-lg leading-tight">Mr.Wick Assistant</h1>
               <p className="text-blue-100 text-xs">ถาม-ตอบ ทุกเรื่องเกี่ยวกับกรมการท่องเที่ยว</p>
             </div>
           </div>

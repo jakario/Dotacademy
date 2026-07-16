@@ -2,6 +2,7 @@
 
 import { useChat } from 'ai/react';
 import { useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 
 export default function ChatClient() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
@@ -10,9 +11,13 @@ export default function ChatClient() {
       {
         id: 'welcome',
         role: 'assistant',
-        content: 'สวัสดีครับ ผมคือ DOT AI Assistant มีคำถามอะไรเกี่ยวกับบทเรียนหรือการท่องเที่ยว สอบถามผมได้เลยครับ'
+        content: 'สวัสดีครับ ผมคือ Mr.Wick มีคำถามอะไรเกี่ยวกับบทเรียนหรือการท่องเที่ยว สอบถามผมได้เลยครับ'
       }
-    ]
+    ],
+    onError: (error) => {
+      console.error('Chat Error:', error);
+      toast.error('ขออภัยครับ เกิดข้อผิดพลาด: ' + (error.message || 'ไม่สามารถเชื่อมต่อได้'));
+    }
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
