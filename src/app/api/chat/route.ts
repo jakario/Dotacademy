@@ -56,9 +56,9 @@ export async function POST(req: Request) {
 ${contextText}
     `;
 
-    // 5. Generate and stream the response using Groq (Llama 3 70B)
+    // 5. Generate and stream the response using Groq (Llama 3.3 70B)
     const result = await streamText({
-      model: groq('llama3-70b-8192'),
+      model: groq('llama-3.3-70b-versatile'),
       system: systemPrompt,
       messages: messages,
     });
