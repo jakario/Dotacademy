@@ -59,9 +59,16 @@ export default function ProfileClient() {
     try {
       const res = await fetch('/api/profile');
       const data = await res.json();
+      if (!res.ok) {
+        // API returned an error — log it but don't crash the UI
+        console.error('[Profile] API error:', data);
+        toast.error('โหลดข้อมูลโปรไฟล์ไม่สำเร็จ: ' + (data?.error || res.status));
+        return;
+      }
       setProfile(data);
       setNameInput(data.name || '');
-    } catch {
+    } catch (err) {
+      console.error('[Profile] Fetch error:', err);
       toast.error('โหลดข้อมูลโปรไฟล์ไม่สำเร็จ');
     } finally {
       setLoading(false);
@@ -114,7 +121,20 @@ export default function ProfileClient() {
     );
   }
 
-  if (!profile) return null;
+  if (!profile) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center gap-4 text-slate-400">
+        <div className="text-4xl">⚠️</div>
+        <p className="text-sm">ไม่สามารถโหลดข้อมูลโปรไฟล์ได้</p>
+        <button
+          onClick={() => { setLoading(true); fetchProfile(); }}
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-xl transition-colors"
+        >
+          ลองใหม่อีกครั้ง
+        </button>
+      </div>
+    );
+  }
 
   const completedCourses = profile.enrollments.filter(e => e.isCompleted);
   const inProgressCourses = profile.enrollments.filter(e => !e.isCompleted);
