@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
     // 1. Generate an embedding for the user's query using Google
     const { embedding } = await embed({
-      model: google.textEmbeddingModel('text-embedding-004'),
+      model: google.textEmbeddingModel('embedding-001'),
       value: query,
     });
 
