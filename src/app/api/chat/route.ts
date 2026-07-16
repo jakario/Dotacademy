@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { embed, streamText, Message } from 'ai';
-import { google } from '@ai-sdk/google';
+import { streamText, Message } from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
 
 // Initialize Groq provider using OpenAI SDK wrapper
@@ -25,24 +24,26 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'No query provided' }, { status: 400 });
     }
 
-    // 1. Generate an embedding for the user's query using Google
-    const { embedding } = await embed({
-      model: google.textEmbeddingModel('embedding-001'),
-      value: query,
+    // Fallback to keyword search in Prisma (No Google API needed!)
+    const keywords = query.split(' ').filter(k => k.length > 2);
+    const searchConditions = keywords.length > 0 
+      ? keywords.map(k => ({ content: { contains: k, mode: 'insensitive' as const } }))
+      : [{ content: { contains: query, mode: 'insensitive' as const } }];
+
+    const similarResources = await prisma.resource.findMany({
+      where: {
+        OR: searchConditions,
+        type: { in: ['TEXT', 'HTML'] }
+      },
+      take: 3,
+      select: {
+        title: true,
+        content: true,
+      }
     });
 
-    // 2. Search for similar resources in the database
-    // Ensure you have pgvector configured in your DB and prisma
-    const similarResources = await prisma.$queryRaw<Array<{ title: string; content: string; url: string; similarity: number }>>`
-      SELECT title, content, url, 1 - (embedding <=> ${embedding}::vector) as similarity
-      FROM "ResourceEmbedding"
-      WHERE 1 - (embedding <=> ${embedding}::vector) > 0.5
-      ORDER BY similarity DESC
-      LIMIT 3
-    `;
-
     // 3. Prepare the context from similar resources
-    const contextText = similarResources.map(r => `Title: ${r.title}\nContent: ${r.content}\nSource: ${r.url}`).join('\n\n');
+    const contextText = similarResources.map(r => `Title: ${r.title}\nContent: ${r.content?.substring(0, 1000)}`).join('\n\n');
 
     // 4. Create the system prompt
     const systemPrompt = `คุณคือผู้ช่วย AI ชื่อ DOT Assistant สำหรับเว็บไซต์กรมการท่องเที่ยว (Department of Tourism)
