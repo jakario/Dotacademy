@@ -32,7 +32,8 @@
     "zod": "^4.4.3"
   },
   "overrides": {
-    "uuid": "^14.0.1"
+    "uuid": "^14.0.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@prisma/client": "^5.22.0",
