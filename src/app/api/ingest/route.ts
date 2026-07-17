@@ -46,9 +46,9 @@ export async function POST() {
       // Create a contextual text for embedding
       const contextualText = `Course: ${resource.section.course.title}\nSection: ${resource.section.title}\nTopic: ${resource.title}\nContent: ${cleanContent}`;
 
-      // 2. Generate embedding using Google Generative AI (embedding-001)
+      // 2. Generate embedding using Google Generative AI (text-embedding-004)
       const { embedding } = await embed({
-        model: google.textEmbeddingModel('embedding-001'),
+        model: google.textEmbeddingModel('text-embedding-004'),
         value: contextualText,
       });
 
