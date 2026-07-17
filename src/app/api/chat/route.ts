@@ -26,19 +26,25 @@ export async function POST(req: Request) {
     }
 
     // 1. Generate an embedding for the user's query using Google
-    const { embedding } = await embed({
-      model: google.textEmbeddingModel('text-embedding-004'),
-      value: query,
-    });
+    let similarResources: Array<{ title: string; content: string; similarity: number }> = [];
+    try {
+      const { embedding } = await embed({
+        model: google.textEmbeddingModel('text-embedding-004'),
+        value: query,
+      });
 
-    // 2. Search for similar resources in the database (Vector Search)
-    const similarResources = await prisma.$queryRaw<Array<{ title: string; content: string; similarity: number }>>`
-      SELECT title, content, 1 - (embedding <=> ${embedding}::vector) as similarity
-      FROM "ResourceEmbedding"
-      WHERE 1 - (embedding <=> ${embedding}::vector) > 0.5
-      ORDER BY similarity DESC
-      LIMIT 3
-    `;
+      // 2. Search for similar resources in the database (Vector Search)
+      similarResources = await prisma.$queryRaw<Array<{ title: string; content: string; similarity: number }>>`
+        SELECT title, content, 1 - (embedding <=> ${embedding}::vector) as similarity
+        FROM "ResourceEmbedding"
+        WHERE 1 - (embedding <=> ${embedding}::vector) > 0.5
+        ORDER BY similarity DESC
+        LIMIT 3
+      `;
+    } catch (embeddingError) {
+      console.warn("Embedding failed, falling back to basic prompt injection. Error:", embeddingError);
+      // Fallback: Continue without RAG context
+    }
 
     // Fetch all published courses to always provide general course information
     const availableCourses = await prisma.course.findMany({
