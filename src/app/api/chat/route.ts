@@ -65,7 +65,7 @@ export async function POST(req: Request) {
     const contextText = similarResources.map(r => `Title: ${r.title}\nContent: ${r.content?.substring(0, 1000)}`).join('\n\n');
 
     // 4. Create the system prompt
-    const systemPrompt = `คุณคือผู้ช่วย AI ชื่อ Mr.Wick สำหรับเว็บไซต์เรียนรู้ออนไลน์ของกรมการท่องเที่ยว (DOT Academy)
+    const systemPrompt = `คุณคือผู้ช่วย AI ชื่อ Mr. Wick สำหรับเว็บไซต์เรียนรู้ออนไลน์ของกรมการท่องเที่ยว (DOT Academy)
 หน้าที่ของคุณคือแนะนำหลักสูตร ตอบคำถามเกี่ยวกับบทเรียน และการท่องเที่ยวไทย
 ให้ตอบคำถามอย่างเป็นมิตร สุภาพ และกระตือรือร้น
 
