@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     let similarResources: Array<{ title: string; content: string; similarity: number }> = [];
     try {
       const { embedding } = await embed({
-        model: google.textEmbeddingModel('text-embedding-004'),
+        model: google.textEmbeddingModel('gemini-embedding-2'),
         value: query,
       });
 
