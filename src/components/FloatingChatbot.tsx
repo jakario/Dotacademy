@@ -15,7 +15,7 @@ export default function FloatingChatbot() {
       {
         id: 'welcome',
         role: 'assistant',
-        content: 'สวัสดีครับ ผมคือ Mr.Wick มีคำถามอะไรเกี่ยวกับบทเรียนหรือการท่องเที่ยว สอบถามผมได้เลยครับ'
+        content: 'สวัสดีครับ ผมคือ Mr. Wick มีคำถามอะไรเกี่ยวกับบทเรียนหรือการท่องเที่ยว สอบถามผมได้เลยครับ'
       }
     ],
     onError: (error) => {
@@ -46,10 +46,10 @@ export default function FloatingChatbot() {
         <div className="bg-blue-600 px-4 py-3 flex items-center justify-between text-white">
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/20">
-              <Image src="/mr-wick.jpg" alt="Mr.Wick" fill className="object-cover" />
+              <Image src="/mr-wick.jpg" alt="Mr. Wick" fill className="object-cover" />
             </div>
             <div>
-              <div className="font-semibold text-sm">Mr.Wick Assistant</div>
+              <div className="font-semibold text-sm">Mr. Wick Assistant</div>
               <div className="text-blue-100 text-xs">ถาม-ตอบ ทุกเรื่องเกี่ยวกับการท่องเที่ยว</div>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function FloatingChatbot() {
             isHovered ? 'scale-100 opacity-100' : 'scale-90 opacity-0 pointer-events-none'
           }`}
         >
-          <div className="text-sm font-semibold text-slate-800">Mr.Wick</div>
+          <div className="text-sm font-semibold text-slate-800">Mr. Wick</div>
           <div className="text-xs text-slate-500">มีคำถามอะไร ถามผมได้เลยครับ!</div>
           <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white border-b border-r border-blue-100 transform rotate-45"></div>
         </div>
@@ -134,7 +134,7 @@ export default function FloatingChatbot() {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white/20">
-          <Image src="/mr-wick.jpg" alt="Mr.Wick Chatbot" fill className="object-cover" />
+          <Image src="/mr-wick.jpg" alt="Mr. Wick Chatbot" fill className="object-cover" />
         </div>
         {!isOpen && (
           <span className="absolute top-0 right-0 flex h-4 w-4">
