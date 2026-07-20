@@ -98,6 +98,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
   const [passedQuizIds, setPassedQuizIds] = useState<string[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [wonReward, setWonReward] = useState(false);
+  const [hasReward, setHasReward] = useState(false);
   const searchParams = useSearchParams();
 
   // Load progress from API on client mount
@@ -110,6 +111,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
           if (data.success) {
             if (data.completedIds) setCompletedResources(data.completedIds);
             if (data.passedQuizIds) setPassedQuizIds(data.passedQuizIds);
+            if (data.hasReward) setHasReward(true);
           }
         }
       } catch (e) {
@@ -183,6 +185,18 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
           </Link>
         </div>
       </header>
+
+      {/* Persistent Reward Banner */}
+      {loaded && hasReward && !wonReward && (
+        <div className="bg-gradient-to-r from-amber-500 to-orange-600 px-4 py-3 shadow-lg shadow-amber-500/10">
+          <div className="max-w-7xl mx-auto flex items-center justify-center gap-3">
+            <span className="text-2xl animate-bounce">🏆</span>
+            <p className="text-white font-bold text-sm sm:text-base">
+              ยินดีด้วย! คุณคือ 1 ใน 20 คนแรกที่เรียนจบและได้รับสิทธิ์รับของรางวัลจากหลักสูตรนี้!
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Main Container */}
       <div className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col lg:flex-row gap-8">
