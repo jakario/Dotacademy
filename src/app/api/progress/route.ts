@@ -101,7 +101,23 @@ export async function POST(request: Request) {
       }
     });
 
-    return NextResponse.json({ success: true, progress });
+    // Check if this completion makes the entire course completed (and grant reward if so)
+    let wonReward = false;
+    try {
+      const resourceWithCourse = await prisma.resource.findUnique({
+        where: { id: resourceId },
+        include: { section: { select: { courseId: true } } }
+      });
+      const courseId = resourceWithCourse?.section?.courseId;
+      if (courseId) {
+        const { checkAndGrantReward } = await import("@/lib/courseProgress");
+        wonReward = await checkAndGrantReward(userId, courseId);
+      }
+    } catch (rewardError) {
+      console.warn("RewardClaim from progress skipped:", rewardError);
+    }
+
+    return NextResponse.json({ success: true, progress, wonReward });
   } catch (error: any) {
     console.error("POST progress error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
