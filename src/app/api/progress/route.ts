@@ -59,7 +59,16 @@ export async function GET(request: Request) {
 
     const passedQuizIds = passedAttempts.map(a => a.quizId);
 
-    return NextResponse.json({ success: true, completedIds, passedQuizIds });
+    // Check if user already won reward
+    let hasReward = false;
+    try {
+      const existingClaim = await (prisma as any).rewardClaim.findUnique({
+        where: { userId_courseId: { userId, courseId } }
+      });
+      if (existingClaim) hasReward = true;
+    } catch (e) {}
+
+    return NextResponse.json({ success: true, completedIds, passedQuizIds, hasReward });
   } catch (error: any) {
     console.error("GET progress error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
