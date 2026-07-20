@@ -97,6 +97,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
   const [completedResources, setCompletedResources] = useState<string[]>([]);
   const [passedQuizIds, setPassedQuizIds] = useState<string[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [wonReward, setWonReward] = useState(false);
   const searchParams = useSearchParams();
 
   // Load progress from API on client mount
@@ -131,13 +132,19 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
     setCompletedResources(updated);
 
     try {
-      await fetch('/api/progress', {
+      const res = await fetch('/api/progress', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ resourceId }),
       });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.wonReward) {
+          setWonReward(true);
+        }
+      }
     } catch (e) {
       console.error("Failed to update progress to API:", e);
     }
@@ -460,13 +467,17 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                             // Call api to save progress for each video
                             for (const vid of sectionVideoIds) {
                               try {
-                                await fetch('/api/progress', {
+                                const res = await fetch('/api/progress', {
                                   method: 'POST',
                                   headers: {
                                     'Content-Type': 'application/json',
                                   },
                                   body: JSON.stringify({ resourceId: vid }),
                                 });
+                                if (res.ok) {
+                                  const data = await res.json();
+                                  if (data.wonReward) setWonReward(true);
+                                }
                               } catch (e) {
                                 console.error("Failed to unlock via progress API:", e);
                               }
@@ -489,6 +500,38 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
           )}
         </main>
       </div>
+
+      {/* Reward Winner Modal */}
+      {wonReward && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+          <div className="bg-slate-900 border border-amber-500/40 rounded-3xl shadow-2xl p-8 sm:p-12 text-center max-w-lg w-full relative animate-in zoom-in-95 duration-300">
+            <button 
+              onClick={() => setWonReward(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="mb-6 p-5 rounded-2xl bg-gradient-to-r from-amber-900/50 via-yellow-800/30 to-amber-900/50 border border-amber-500/40 animate-pulse">
+              <div className="text-5xl mb-2">🎉</div>
+              <h2 className="text-xl font-black text-amber-300">
+                ยินดีด้วย! คุณคือ 1 ใน 20 คนแรกที่เรียนจบ!
+              </h2>
+              <p className="text-sm text-amber-200/80 mt-2">
+                คุณได้รับสิทธิ์รับของรางวัลพิเศษจากกรมการท่องเที่ยว<br/>
+                ทีมงานจะติดต่อกลับผ่านอีเมลที่ลงทะเบียนไว้ค่ะ
+              </p>
+            </div>
+            <button
+              onClick={() => setWonReward(false)}
+              className="px-8 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-amber-500/20"
+            >
+              รับทราบ
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
