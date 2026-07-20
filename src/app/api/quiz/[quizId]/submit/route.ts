@@ -68,25 +68,10 @@ export async function POST(
 
         if (courseId) {
           const userId = (session.user as any).id;
-
-          // Check if user already has a claim for this course
-          const existingClaim = await (prisma as any).rewardClaim.findUnique({
-            where: { userId_courseId: { userId, courseId } }
-          });
-
-          if (!existingClaim) {
-            // Count current claims for this course
-            const claimCount = await (prisma as any).rewardClaim.count({
-              where: { courseId }
-            });
-
-            if (claimCount < 20) {
-              await (prisma as any).rewardClaim.create({
-                data: { userId, courseId }
-              });
-              wonReward = true;
-            }
-          }
+          
+          // Import dynamic helper to avoid circular dependencies if any
+          const { checkAndGrantReward } = await import("@/lib/courseProgress");
+          wonReward = await checkAndGrantReward(userId, courseId);
         }
       } catch (rewardError) {
         // Reward table may not exist yet; silently skip
