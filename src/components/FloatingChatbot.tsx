@@ -50,7 +50,7 @@ export default function FloatingChatbot() {
             </div>
             <div>
               <div className="font-semibold text-sm">Mr. Wick Assistant</div>
-              <div className="text-blue-100 text-xs">ถาม-ตอบ ทุกเรื่องเกี่ยวกับการท่องเที่ยว</div>
+              <div className="text-blue-100 text-xs">ถาม-ตอบ ความรู้กรมการท่องเที่ยว</div>
             </div>
           </div>
           <button 
