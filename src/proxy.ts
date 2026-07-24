@@ -14,7 +14,17 @@ const CRED_RATE_LIMIT = Number(process.env.CRED_RATE_LIMIT ?? 10);
 
 // Auth middleware – redirects to /th/login on unauthenticated access
 const authMiddleware = withAuth(
-  (req) => intlMiddleware(req),
+  (req) => {
+    const token = req.nextauth.token;
+    const pathname = req.nextUrl.pathname;
+    
+    const isAdminRoute = /^\/(th|en)?\/admin/.test(pathname);
+    if (isAdminRoute && token?.role !== 'ADMIN') {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+    
+    return intlMiddleware(req);
+  },
   {
     callbacks: {
       authorized: ({ token }) => token != null,
@@ -51,6 +61,17 @@ export default async function middleware(req: NextRequest) {
     }
 
 
+
+    // RBAC for /api/admin routes
+    if (pathname.startsWith('/api/admin')) {
+      const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET || "supersecretkey" });
+      if (!token || token.role !== 'ADMIN') {
+        return new NextResponse(JSON.stringify({ error: "Unauthorized" }), { 
+          status: 401,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+    }
 
     // All other API routes pass through untouched
     return NextResponse.next();
