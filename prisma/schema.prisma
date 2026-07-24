@@ -31,6 +31,7 @@ model User {
   sessions       Session[]
   progress       UserProgress[]
   rewardClaims   RewardClaim[]
+  auditLogs      AuditLog[]
 }
 
 model Course {
@@ -212,4 +213,16 @@ model RewardClaim {
   claimedAt DateTime @default(now())
 
   @@unique([userId, courseId])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String   // e.g. "RESET_REWARDS", "DELETE_REWARD_CLAIM"
+  userId    String?  // Optional: User who performed the action
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  entity    String?  // The entity affected (e.g. "RewardClaim", "Course")
+  entityId  String?  // The ID of the affected entity
+  details   String?  @db.Text // JSON string of details
+  ipAddress String?  
+  createdAt DateTime @default(now())
 }

@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { checkRateLimit } from "@/lib/rateLimit";
 import { prisma } from '@/lib/prisma';
 import { embed, streamText, Message } from 'ai';
 import { google } from '@ai-sdk/google';
@@ -15,6 +18,14 @@ export const maxDuration = 30;
 
 export async function POST(req: Request) {
   try {
+    const session = await getServerSession(authOptions);
+    // Rate Limit Check
+    const ip = req.headers.get("x-forwarded-for") || "127.0.0.1";
+    const { success } = await checkRateLimit(`chat_${ip}`, 10, 60000); // 10 requests per minute
+    if (!success) {
+      return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
+    }
+
     const { messages } = await req.json();
 
     // Get the last message from the user

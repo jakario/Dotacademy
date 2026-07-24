@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { logAudit } from "@/lib/audit";
 
 // PUT: update status (e.g. PENDING -> DELIVERED)
 export async function PUT(
@@ -20,6 +21,14 @@ export async function PUT(
     const updated = await (prisma as any).rewardClaim.update({
       where: { id },
       data: { status },
+    });
+
+    await logAudit({
+      action: "UPDATE_REWARD_STATUS",
+      userId: (session.user as any).id,
+      entity: "RewardClaim",
+      entityId: id,
+      details: { newStatus: status }
     });
 
     return NextResponse.json({ success: true, claim: updated });
@@ -43,6 +52,13 @@ export async function DELETE(
 
     await (prisma as any).rewardClaim.delete({
       where: { id },
+    });
+
+    await logAudit({
+      action: "DELETE_REWARD_CLAIM",
+      userId: (session.user as any).id,
+      entity: "RewardClaim",
+      entityId: id,
     });
 
     return NextResponse.json({ success: true });
