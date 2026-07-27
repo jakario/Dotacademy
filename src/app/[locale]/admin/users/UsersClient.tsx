@@ -47,9 +47,33 @@ export function UsersClient() {
     }
   };
 
+  const [editingUser, setEditingUser] = useState<UserItem | null>(null);
+  const [newRole, setNewRole] = useState<string>('STUDENT');
+
   const handleEditUser = (user: UserItem) => {
-    // For now just a toast, a full edit modal would be better
-    toast('ระบบแก้ไขผู้ใช้อยู่ระหว่างการพัฒนา');
+    setEditingUser(user);
+    setNewRole(user.role || 'STUDENT');
+  };
+
+  const submitEditUser = async () => {
+    if (!editingUser) return;
+    try {
+      const res = await fetch(`/api/admin/users/${editingUser.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role: newRole })
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success('อัปเดตสิทธิ์ผู้ใช้งานสำเร็จ');
+        setUsers(users.map(u => u.id === editingUser.id ? { ...u, role: newRole } : u));
+        setEditingUser(null);
+      } else {
+        toast.error(data.error || 'Failed to update user');
+      }
+    } catch (err) {
+      toast.error('Error connecting to server');
+    }
   };
 
   return (
@@ -80,6 +104,45 @@ export function UsersClient() {
           />
         )}
       </main>
+
+      {/* Edit Role Modal */}
+      {editingUser && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 w-full max-w-sm shadow-2xl">
+            <h3 className="text-lg font-bold text-white mb-4">เปลี่ยนสิทธิ์ผู้ใช้งาน</h3>
+            <div className="mb-4">
+              <label className="block text-sm text-slate-400 mb-1">อีเมล</label>
+              <div className="text-slate-200">{editingUser.email}</div>
+            </div>
+            <div className="mb-6">
+              <label className="block text-sm text-slate-400 mb-2">เลือกสิทธิ์ใหม่</label>
+              <select
+                value={newRole}
+                onChange={(e) => setNewRole(e.target.value)}
+                className="w-full bg-slate-900 border border-slate-700 rounded-md px-3 py-2 text-slate-200 focus:outline-none focus:border-blue-500"
+              >
+                <option value="STUDENT">ผู้เรียน (STUDENT)</option>
+                <option value="INSTRUCTOR">ผู้สอน (INSTRUCTOR)</option>
+                <option value="ADMIN">แอดมิน (ADMIN)</option>
+              </select>
+            </div>
+            <div className="flex justify-end gap-3">
+              <button 
+                onClick={() => setEditingUser(null)}
+                className="px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors"
+              >
+                ยกเลิก
+              </button>
+              <button 
+                onClick={submitEditUser}
+                className="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-500 transition-colors"
+              >
+                บันทึก
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

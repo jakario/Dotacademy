@@ -9,7 +9,7 @@ const updateUserSchema = z.object({
   name: z.string().min(1, "Name is required").optional(),
   email: z.string().email("Invalid email").optional(),
   password: z.string().min(6, "Password must be at least 6 characters").optional().or(z.literal("")),
-  role: z.enum(["STUDENT", "INSTRUCTOR", "ADMIN"]).optional(),
+  role: z.enum(["STUDENT", "INSTRUCTOR", "ADMIN", "SUPER_ADMIN"]).optional(),
 });
 
 export async function PUT(
@@ -18,7 +18,8 @@ export async function PUT(
 ) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || (session.user as any).role !== "ADMIN") {
+    const userRole = (session?.user as any)?.role;
+    if (!session || !["ADMIN", "SUPER_ADMIN"].includes(userRole)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -32,6 +33,11 @@ export async function PUT(
 
     const { name, email, password, role } = result.data;
     
+    // Only SUPER_ADMIN can change roles
+    if (role && userRole !== "SUPER_ADMIN") {
+      return NextResponse.json({ error: "Only SUPER_ADMIN can change user roles" }, { status: 403 });
+    }
+
     const updateData: any = {};
     if (name) updateData.name = name;
     if (email) updateData.email = email;
@@ -73,7 +79,7 @@ export async function DELETE(
 ) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || (session.user as any).role !== "ADMIN") {
+    if (!session || !["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

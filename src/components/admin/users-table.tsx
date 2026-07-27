@@ -104,7 +104,7 @@ export function UsersTable({ users, onDeleteUser, onEditUser }: UsersTableProps)
                     <td className="px-4 py-3">{user.email || '-'}</td>
                     <td className="px-4 py-3">
                       <span className={`px-2 py-1 rounded-md text-[10px] font-bold tracking-wide ${
-                        user.role === 'ADMIN' ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' :
+                        ["ADMIN", "SUPER_ADMIN"].includes(user.role) ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' :
                         user.role === 'INSTRUCTOR' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' :
                         'bg-blue-500/10 text-blue-400 border border-blue-500/20'
                       }`}>

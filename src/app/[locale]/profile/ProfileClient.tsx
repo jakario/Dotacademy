@@ -183,14 +183,14 @@ export default function ProfileClient() {
                     {getInitials(profile.name, profile.email)}
                   </div>
                 )}
-                <span className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-slate-950 ${profile.role === 'ADMIN' ? 'bg-amber-500' : profile.role === 'INSTRUCTOR' ? 'bg-purple-500' : 'bg-emerald-500'}`} title={profile.role} />
+                <span className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-slate-950 ${["ADMIN", "SUPER_ADMIN"].includes(profile.role) ? 'bg-amber-500' : profile.role === 'INSTRUCTOR' ? 'bg-purple-500' : 'bg-emerald-500'}`} title={profile.role} />
               </div>
               <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${
-                profile.role === 'ADMIN' ? 'bg-amber-500/10 text-amber-400 border-amber-500/30' :
+                ["ADMIN", "SUPER_ADMIN"].includes(profile.role) ? 'bg-amber-500/10 text-amber-400 border-amber-500/30' :
                 profile.role === 'INSTRUCTOR' ? 'bg-purple-500/10 text-purple-400 border-purple-500/30' :
                 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
               }`}>
-                {profile.role === 'ADMIN' ? '👑 ผู้ดูแลระบบ' : profile.role === 'INSTRUCTOR' ? '🎓 ผู้สอน' : '📚 ผู้เรียน'}
+                {["ADMIN", "SUPER_ADMIN"].includes(profile.role) ? '👑 ผู้ดูแลระบบ' : profile.role === 'INSTRUCTOR' ? '🎓 ผู้สอน' : '📚 ผู้เรียน'}
               </span>
             </div>
 
