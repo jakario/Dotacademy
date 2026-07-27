@@ -27,7 +27,7 @@ export default async function HomePage() {
             <Link href="/profile" className="text-blue-600 font-semibold hover:underline">
               โปรไฟล์ของฉัน
             </Link>
-            {((session.user as any).role === 'ADMIN' || (session.user as any).role === 'INSTRUCTOR') && (
+            {(["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role) || (session.user as any).role === 'INSTRUCTOR') && (
               <Link href="/admin" className="text-amber-600 font-semibold hover:underline">
                 จัดการระบบ (Admin)
               </Link>

@@ -16,7 +16,7 @@ export default async function CoursesPage() {
     orderBy: { order: 'asc' }
   });
 
-  const isAdminOrInstructor = session && ((session.user as any).role === 'ADMIN' || (session.user as any).role === 'INSTRUCTOR');
+  const isAdminOrInstructor = session && (["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role) || (session.user as any).role === 'INSTRUCTOR');
 
   // Verify if student has passed all quizzes in the platform
   let hasPassedAll = false;

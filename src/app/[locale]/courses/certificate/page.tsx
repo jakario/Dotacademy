@@ -32,7 +32,7 @@ export default async function CertificatePage() {
     hasPassedAll = allQuizzes.every(q => passedQuizIds.has(q.id));
   }
 
-  const isAdminOrInstructor = session && ((session.user as any).role === 'ADMIN' || (session.user as any).role === 'INSTRUCTOR');
+  const isAdminOrInstructor = session && (["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role) || (session.user as any).role === 'INSTRUCTOR');
 
   if (!hasPassedAll && !isAdminOrInstructor) {
     redirect("/th/courses");

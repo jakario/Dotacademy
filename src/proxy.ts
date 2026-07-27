@@ -19,7 +19,7 @@ const authMiddleware = withAuth(
     const pathname = req.nextUrl.pathname;
     
     const isAdminRoute = /^\/(th|en)?\/admin/.test(pathname);
-    if (isAdminRoute && token?.role !== 'ADMIN') {
+    if (isAdminRoute && !["ADMIN", "SUPER_ADMIN"].includes(token?.role)) {
       return NextResponse.redirect(new URL('/', req.url));
     }
     
@@ -65,7 +65,7 @@ export default async function middleware(req: NextRequest) {
     // RBAC for /api/admin routes
     if (pathname.startsWith('/api/admin')) {
       const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET || "supersecretkey" });
-      if (!token || token.role !== 'ADMIN') {
+      if (!token || !["ADMIN", "SUPER_ADMIN"].includes(token.role)) {
         return new NextResponse(JSON.stringify({ error: "Unauthorized" }), { 
           status: 401,
           headers: { 'Content-Type': 'application/json' }
