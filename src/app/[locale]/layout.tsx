@@ -13,7 +13,7 @@ const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], variable: "--font-noto-
 
 export const metadata: Metadata = {
   title: "DOT Academy | ระบบการเรียนรู้ออนไลน์ กรมการท่องเที่ยว",
-  description: "E-Learning Platform",
+  description: "ระบบ e-Learning กรมการท่องเที่ยว สำหรับการเรียนรู้ด้านการท่องเที่ยว มัคคุเทศก์ และมาตรฐานธุรกิจนำเที่ยว",
 };
 
 export default async function RootLayout({
@@ -28,7 +28,26 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <style>{`
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+              scroll-behavior: auto !important;
+            }
+          }
+        `}</style>
+      </head>
       <body className={`${inter.variable} ${notoSansThai.variable} font-sans antialiased bg-gray-50 text-gray-900`}>
+        {/* Skip Navigation Link - WCAG 2.4.1 */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:font-semibold"
+        >
+          ข้ามไปยังเนื้อหาหลัก
+        </a>
         <NextIntlClientProvider messages={messages}>
           {children}
           <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
