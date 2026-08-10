@@ -38,6 +38,9 @@ export default function FloatingChatbot() {
       
       {/* Chat Popup Window */}
       <div 
+        role="dialog"
+        aria-label="หน้าต่างแชทบอท Mr. Wick"
+        aria-modal="true"
         className={`mb-4 bg-white w-[350px] sm:w-[400px] h-[500px] rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden transition-all duration-300 transform origin-bottom-right ${
           isOpen ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-90 opacity-0 pointer-events-none absolute bottom-16'
         }`}
@@ -56,8 +59,9 @@ export default function FloatingChatbot() {
           <button 
             onClick={() => setIsOpen(false)}
             className="text-blue-100 hover:text-white transition-colors p-1"
+            aria-label="ปิดหน้าต่างแชท"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6" aria-hidden="true">
               <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
             </svg>
           </button>
@@ -97,15 +101,17 @@ export default function FloatingChatbot() {
               value={input}
               onChange={handleInputChange}
               placeholder="พิมพ์คำถาม..."
+              aria-label="พิมพ์คำถามเพื่อถาม Mr. Wick"
               className="flex-1 bg-slate-50 border border-slate-300 text-slate-800 text-sm rounded-xl pl-4 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               disabled={isLoading}
             />
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
+              aria-label="ส่งข้อความ"
               className="absolute right-1 top-1 bottom-1 aspect-square bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:hover:bg-blue-600"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
                 <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
               </svg>
             </button>
@@ -132,12 +138,15 @@ export default function FloatingChatbot() {
         className="relative group flex items-center justify-center w-16 h-16 rounded-full bg-blue-600 shadow-xl shadow-blue-900/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 ring-4 ring-white"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        aria-label={isOpen ? 'ปิดหน้าต่างแชทบอท Mr. Wick' : 'เปิดหน้าต่างแชทบอท Mr. Wick'}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
       >
         <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white/20">
-          <Image src="/mr-wick.jpg" alt="Mr. Wick Chatbot" fill className="object-cover" />
+          <Image src="/mr-wick.jpg" alt="" fill className="object-cover" aria-hidden="true" />
         </div>
         {!isOpen && (
-          <span className="absolute top-0 right-0 flex h-4 w-4">
+          <span className="absolute top-0 right-0 flex h-4 w-4" aria-hidden="true">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-4 w-4 bg-green-500 border-2 border-white"></span>
           </span>

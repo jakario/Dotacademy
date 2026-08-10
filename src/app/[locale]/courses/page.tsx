@@ -1,7 +1,13 @@
+import type { Metadata } from 'next';
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import CoursesClient from "./CoursesClient";
+
+export const metadata: Metadata = {
+  title: "หลักสูตรทั้งหมด | DOT Academy",
+  description: "หลักสูตรการเรียนรู้ออนไลน์ กรมการท่องเที่ยว",
+};
 
 export default async function CoursesPage() {
   const session = await getServerSession(authOptions);
