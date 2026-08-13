@@ -49,28 +49,40 @@ export default async function DepartmentsPage() {
             
             <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10">
               <h3 className="text-amber-400 font-bold text-xl mb-6 flex items-center gap-2">
-                <span>🎯</span> ภารกิจหลัก (Core Missions)
+                <span>🎯</span> พันธกิจ (Missions)
               </h3>
               <ul className="space-y-4 text-blue-50">
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 mt-1">1.</span>
-                  <span>พัฒนาแหล่งท่องเที่ยว สินค้า และบริการท่องเที่ยวให้มีคุณภาพ</span>
+                  <span>ส่งเสริม อนุรักษ์ฟื้นฟู พัฒนาแหล่งท่องเที่ยวและคุณภาพสิ่งแวดล้อมเพื่อความสมดุลและยั่งยืน</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 mt-1">2.</span>
-                  <span>กำหนดและรับรองมาตรฐานอุตสาหกรรมท่องเที่ยวตามมาตรฐานสากล</span>
+                  <span>พัฒนายกระดับมาตรฐานสินค้า บริการ และบุคลากรด้านการท่องเที่ยว</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 mt-1">3.</span>
-                  <span>พัฒนาศักยภาพและมาตรฐานบุคลากรด้านการท่องเที่ยว</span>
+                  <span>ส่งเสริมและพัฒนาธุรกิจท่องเที่ยว มัคคุเทศก์ ผู้นําเที่ยว และควบคุม กํากับให้เป็นไปตามกฎหมาย กําหนด</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 mt-1">4.</span>
-                  <span>ควบคุมและกำกับดูแลธุรกิจนำเที่ยวและมัคคุเทศก์</span>
+                  <span>อํานวยความสะดวก ป้องกันและรักษาความปลอดภัยทางการท่องเที่ยว</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 mt-1">5.</span>
-                  <span>ส่งเสริมและสนับสนุนการถ่ายทำภาพยนตร์ต่างประเทศในประเทศไทย</span>
+                  <span>ส่งเสริมการมีส่วนร่วมและเสริมสร้างกิจกรรมการบริหารจัดการด้านการท่องเที่ยวแก่ทุกภาคส่วน เพื่อพัฒนาการท่องเที่ยวอย่างยั่งยืน</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">6.</span>
+                  <span>ส่งเสริมและสนับสนุนกิจการภาพยนตร์ต่างประเทศในราชอาณาจักร</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">7.</span>
+                  <span>พัฒนาระบบข้อมูลสารสนเทศและเผยแพร่ข้อมูลสถิติ และองค์ความรู้เพื่อการวางแผนและการจัดการ</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">8.</span>
+                  <span>พัฒนาความร่วมมือด้านการท่องเที่ยวกับทุกภาคส่วนทั้งในและต่างประเทศ</span>
                 </li>
               </ul>
             </div>
