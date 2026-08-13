@@ -9,12 +9,11 @@ export const metadata = {
   description: 'กระบวนการทำงานและจุดเชื่อมต่อ (Hand-off) ระหว่างฝ่าย',
 };
 
-// Mock data for Hand-off Matrix
 const handoffData = [
-  { from: 'กองพัฒนามาตรฐานบุคลากรฯ', to: 'กองพัฒนาบริการท่องเที่ยว', action: 'ส่งข้อมูลผู้ผ่านการอบรมเพื่อออกใบอนุญาต', sla: '3 วันทำการ' },
   { from: 'กองพัฒนาแหล่งท่องเที่ยว', to: 'กองยุทธศาสตร์และแผนงาน', action: 'ส่งรายงานสรุปการประเมินแหล่งท่องเที่ยวเพื่อจัดทำแผนปีถัดไป', sla: 'ทุกสิ้นไตรมาส' },
+  { from: 'กองกิจการภาพยนตร์ฯ', to: 'กองพัฒนาแหล่งท่องเที่ยว', action: 'ประสานขอใช้พื้นที่อนุรักษ์เพื่อการถ่ายทำภาพยนตร์ต่างประเทศ', sla: '5 วันทำการ' },
+  { from: 'กองพัฒนาบริการท่องเที่ยว', to: 'สำนักงานเลขานุการกรม', action: 'ส่งรายชื่อผู้ผ่านเกณฑ์มาตรฐานโฮมสเตย์เพื่อจัดพิมพ์ใบประกาศ', sla: '7 วันทำการ' },
   { from: 'สำนักงานเลขานุการกรม', to: 'ทุกกอง', action: 'เวียนหนังสือสั่งการและประกาศกรม', sla: 'ภายใน 24 ชั่วโมง' },
-  { from: 'กองกิจการภาพยนตร์ฯ', to: 'สำนักงานเลขานุการกรม', action: 'ส่งเรื่องเบิกจ่ายงบประมาณสนับสนุนกองถ่าย', sla: '5 วันทำการ' },
 ];
 
 export default async function WorkflowsPage() {
@@ -125,20 +124,20 @@ export default async function WorkflowsPage() {
                   <p className="text-sm text-slate-400 mb-4 text-center">ตัวอย่างการแสดงผล (ทดสอบระบบ)</p>
                   <Link 
                     href={`/workflows/demo-1`}
-                    className="block p-6 rounded-2xl border border-amber-200 bg-amber-50 hover:border-amber-400 hover:shadow-md transition-all group"
+                    className="block p-6 rounded-2xl border border-blue-200 bg-blue-50 hover:border-blue-400 hover:shadow-md transition-all group"
                   >
                     <div className="mb-4">
-                      <span className="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-lg border border-amber-200">
-                        กองกิจการภาพยนตร์และวีดิทัศน์ต่างประเทศ
+                      <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-lg border border-blue-200">
+                        กองทะเบียนธุรกิจนำเที่ยวและมัคคุเทศก์
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-amber-700 transition-colors">
-                      กระบวนการขออนุญาตถ่ายทำภาพยนตร์ต่างประเทศ (ตัวอย่าง)
+                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
+                      กระบวนการขอใบอนุญาตประกอบธุรกิจนำเที่ยว (ตัวอย่าง)
                     </h3>
                     <p className="text-slate-600 text-sm">
-                      ขั้นตอนตั้งแต่การยื่นเอกสาร การตรวจสอบสคริปต์ ไปจนถึงการออกใบอนุญาต
+                      ขั้นตอนตั้งแต่ผู้ประกอบการยื่นเอกสาร การชำระค่าธรรมเนียม และการออกใบอนุญาต
                     </p>
-                    <div className="mt-4 flex items-center text-amber-600 font-semibold text-sm gap-1 group-hover:gap-2 transition-all">
+                    <div className="mt-4 flex items-center text-blue-600 font-semibold text-sm gap-1 group-hover:gap-2 transition-all">
                       ดูแผนผังจำลอง (Demo Flow) <span>&rarr;</span>
                     </div>
                   </Link>
