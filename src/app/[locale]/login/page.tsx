@@ -1,14 +1,30 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function LoginPage() {
+function LoginFormComponent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const urlError = searchParams.get("error");
+    if (urlError) {
+      if (urlError === "OAuthCallback") {
+        setError("เกิดข้อผิดพลาดในการเชื่อมต่อกับ Google (OAuthCallback)");
+      } else if (urlError === "AccessDenied") {
+        setError("การเข้าถึงถูกปฏิเสธ (AccessDenied)");
+      } else if (urlError === "OAuthAccountNotLinked") {
+        setError("อีเมลนี้ถูกใช้งานด้วยวิธีอื่นแล้ว โปรดเข้าสู่ระบบด้วยวิธีเดิม");
+      } else {
+        setError(`เกิดข้อผิดพลาด: ${urlError}`);
+      }
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,5 +103,13 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">กำลังโหลด...</div>}>
+      <LoginFormComponent />
+    </Suspense>
   );
 }
