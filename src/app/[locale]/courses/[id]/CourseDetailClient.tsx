@@ -97,6 +97,8 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
   const [completedResources, setCompletedResources] = useState<string[]>([]);
   const [passedQuizIds, setPassedQuizIds] = useState<string[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [wonReward, setWonReward] = useState(false);
+  const [hasReward, setHasReward] = useState(false);
   const searchParams = useSearchParams();
 
   // Load progress from API on client mount
@@ -109,6 +111,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
           if (data.success) {
             if (data.completedIds) setCompletedResources(data.completedIds);
             if (data.passedQuizIds) setPassedQuizIds(data.passedQuizIds);
+            if (data.hasReward) setHasReward(true);
           }
         }
       } catch (e) {
@@ -131,13 +134,19 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
     setCompletedResources(updated);
 
     try {
-      await fetch('/api/progress', {
+      const res = await fetch('/api/progress', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ resourceId }),
       });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.wonReward) {
+          setWonReward(true);
+        }
+      }
     } catch (e) {
       console.error("Failed to update progress to API:", e);
     }
@@ -157,7 +166,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
   const remainingQuizzes = totalQuizzes - passedQuizzes;
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans">
+    <div id="main-content" className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans">
       {/* Premium Header */}
       <header className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -177,6 +186,18 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
         </div>
       </header>
 
+      {/* Persistent Reward Banner */}
+      {loaded && hasReward && !wonReward && (
+        <div className="bg-gradient-to-r from-amber-500 to-orange-600 px-4 py-3 shadow-lg shadow-amber-500/10">
+          <div className="max-w-7xl mx-auto flex items-center justify-center gap-3">
+            <span className="text-2xl animate-bounce">🏆</span>
+            <p className="text-white font-bold text-sm sm:text-base">
+              ยินดีด้วย! คุณคือ 1 ใน 20 คนแรกที่เรียนจบและได้รับสิทธิ์รับของรางวัลจากหลักสูตรนี้!
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Main Container */}
       <div className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col lg:flex-row gap-8">
         
@@ -192,9 +213,16 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                 <div>
                   <div className="flex justify-between text-xs text-slate-400 mb-1.5 font-medium">
                     <span>ดูวิดีโอประกอบบทเรียน</span>
-                    <span className="text-blue-400 font-bold">{completedVideos} / {totalVideos} คลิป</span>
+                    <span className="text-blue-400 font-bold">{completedVideos} / {totalVideos} คลิป ({totalVideos > 0 ? Math.round((completedVideos / totalVideos) * 100) : 0}%)</span>
                   </div>
-                  <div className="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
+                  <div 
+                    role="progressbar" 
+                    aria-valuenow={totalVideos > 0 ? Math.round((completedVideos / totalVideos) * 100) : 0}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-label={`ความคืบหน้าการดูวิดีโอ ${completedVideos} จาก ${totalVideos} คลิป`}
+                    className="w-full h-2 bg-slate-700 rounded-full overflow-hidden"
+                  >
                     <div 
                       className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-500 ease-out"
                       style={{ width: `${totalVideos > 0 ? (completedVideos / totalVideos) * 100 : 0}%` }}
@@ -217,7 +245,14 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                 <div className="flex justify-between text-[10px] text-slate-500 mb-2">
                   <span>เหลือที่ยังไม่ผ่าน: <span className="text-rose-400 font-semibold">{remainingQuizzes}</span></span>
                 </div>
-                <div className="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
+                <div 
+                  role="progressbar"
+                  aria-valuenow={totalQuizzes > 0 ? Math.round((passedQuizzes / totalQuizzes) * 100) : 0}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`ความคืบหน้าการทดสอบ ผ่านแล้ว ${passedQuizzes} จาก ${totalQuizzes} บท`}
+                  className="w-full h-2 bg-slate-700 rounded-full overflow-hidden"
+                >
                   <div 
                     className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500 ease-out"
                     style={{ width: `${totalQuizzes > 0 ? (passedQuizzes / totalQuizzes) * 100 : 0}%` }}
@@ -260,16 +295,16 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                                 <div className="flex items-center gap-2 truncate pr-2">
                                   <span className="flex-shrink-0">
                                     {isVideo ? (
-                                      <svg className="w-3.5 h-3.5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <svg className="w-3.5 h-3.5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                       </svg>
                                     ) : res.type === 'PDF' ? (
-                                      <svg className="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <svg className="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                       </svg>
                                     ) : (
-                                      <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                       </svg>
                                     )}
@@ -383,6 +418,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                           target="_blank"
                           rel="noreferrer"
                           onClick={() => markAsCompleted(res.id)}
+                          aria-label={`ดาวน์โหลดเอกสาร PDF: ${res.title}`}
                           className="w-full sm:w-auto px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg text-xs text-center transition-colors flex items-center justify-center gap-2 shadow-lg shadow-red-600/10"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -460,13 +496,17 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                             // Call api to save progress for each video
                             for (const vid of sectionVideoIds) {
                               try {
-                                await fetch('/api/progress', {
+                                const res = await fetch('/api/progress', {
                                   method: 'POST',
                                   headers: {
                                     'Content-Type': 'application/json',
                                   },
                                   body: JSON.stringify({ resourceId: vid }),
                                 });
+                                if (res.ok) {
+                                  const data = await res.json();
+                                  if (data.wonReward) setWonReward(true);
+                                }
                               } catch (e) {
                                 console.error("Failed to unlock via progress API:", e);
                               }
@@ -489,6 +529,39 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
           )}
         </main>
       </div>
+
+      {/* Reward Winner Modal */}
+      {wonReward && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+          <div className="bg-slate-900 border border-amber-500/40 rounded-3xl shadow-2xl p-8 sm:p-12 text-center max-w-lg w-full relative animate-in zoom-in-95 duration-300">
+            <button 
+              onClick={() => setWonReward(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+              aria-label="ปิดหน้าต่างแสดงความยินดี"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="mb-6 p-5 rounded-2xl bg-gradient-to-r from-amber-900/50 via-yellow-800/30 to-amber-900/50 border border-amber-500/40 animate-pulse">
+              <div className="text-5xl mb-2">🎉</div>
+              <h2 className="text-xl font-black text-amber-300">
+                ยินดีด้วย! คุณคือ 1 ใน 20 คนแรกที่เรียนจบ!
+              </h2>
+              <p className="text-sm text-amber-200/80 mt-2">
+                คุณได้รับสิทธิ์รับของรางวัลพิเศษจากกรมการท่องเที่ยว<br/>
+                ทีมงานจะติดต่อกลับผ่านอีเมลที่ลงทะเบียนไว้ค่ะ
+              </p>
+            </div>
+            <button
+              onClick={() => setWonReward(false)}
+              className="px-8 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-amber-500/20"
+            >
+              รับทราบ
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

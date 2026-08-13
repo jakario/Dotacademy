@@ -32,14 +32,14 @@ export default function CoursesClient({
 }: CoursesClientProps) {
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans py-12 px-4 sm:px-6 lg:px-8">
+    <div id="main-content" className="min-h-screen bg-slate-900 text-slate-100 font-sans py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
-            <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 tracking-tight">
-              หลักสูตรทั้งหมด
+            <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300 tracking-tight flex items-center gap-3">
+              <span className="text-blue-500">🎓</span> Course Academy
             </h1>
-            <p className="text-slate-400 mt-2 text-sm">ค้นหาและกรองบทเรียนพัฒนาศักยภาพผู้เรียน</p>
+            <p className="text-slate-400 mt-2 text-sm">หลักสูตรการเรียนรู้ออนไลน์และทดสอบสมรรถนะบุคลากร</p>
           </div>
           <div className="flex items-center gap-3 flex-wrap justify-end">
             {isAdminOrInstructor && (
@@ -67,7 +67,7 @@ export default function CoursesClient({
         {(hasPassedAll || isAdminOrInstructor) && (
           <div className="mb-8 p-6 bg-gradient-to-r from-amber-500/10 via-yellow-500/10 to-orange-500/10 border border-amber-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg shadow-amber-500/5">
             <div className="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
-              <span className="text-4xl animate-bounce">🏆</span>
+              <span className="text-4xl" aria-hidden="true">🏆</span>
               <div>
                 <h3 className="text-base font-bold text-amber-400">
                   {hasPassedAll ? "คุณผ่านการอบรมหลักสูตรเรียบร้อยแล้ว!" : "ตัวอย่างใบรับรอง (สิทธิ์ผู้ดูแลระบบ/ผู้สอน)"}

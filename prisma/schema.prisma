@@ -31,6 +31,7 @@ model User {
   sessions       Session[]
   progress       UserProgress[]
   rewardClaims   RewardClaim[]
+  auditLogs      AuditLog[]
 }
 
 model Course {
@@ -212,4 +213,69 @@ model RewardClaim {
   claimedAt DateTime @default(now())
 
   @@unique([userId, courseId])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String   // e.g. "RESET_REWARDS", "DELETE_REWARD_CLAIM"
+  userId    String?  // Optional: User who performed the action
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  entity    String?  // The entity affected (e.g. "RewardClaim", "Course")
+  entityId  String?  // The ID of the affected entity
+  details   String?  @db.Text // JSON string of details
+  ipAddress String?  
+  createdAt DateTime @default(now())
+}
+
+model Department {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  description String?
+  icon        String?
+
+  workflows   Workflow[]
+  faqs        FAQ[]
+  documents   Document[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Workflow {
+  id          String  @id @default(cuid())
+  title       String
+  description String?
+  data        String  @db.Text
+  
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FAQ {
+  id          String  @id @default(cuid())
+  question    String
+  answer      String  @db.Text
+  
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Document {
+  id          String  @id @default(cuid())
+  title       String
+  type        String
+  url         String
+  category    String
+  
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

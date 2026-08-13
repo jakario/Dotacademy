@@ -18,7 +18,7 @@ export default async function AdminCourseEditPage({
   }
 
   const role = (session.user as any).role;
-  if (role !== "ADMIN" && role !== "INSTRUCTOR") {
+  if (!["ADMIN", "SUPER_ADMIN", "INSTRUCTOR"].includes(role)) {
     redirect("/th/courses");
   }
 

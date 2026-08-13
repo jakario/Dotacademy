@@ -84,12 +84,35 @@ export function RewardsClient() {
               จัดการรายชื่อและสถานะการจัดส่งรางวัล
             </p>
           </div>
-          <Link
-            href="/admin"
-            className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
-          >
-            &larr; กลับหน้า Admin
-          </Link>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={async () => {
+                if (confirm('คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตประวัติผู้ได้รับรางวัลทั้งหมด? (การกระทำนี้ไม่สามารถย้อนกลับได้)')) {
+                  try {
+                    const res = await fetch('/api/admin/rewards/reset', { method: 'DELETE' });
+                    const data = await res.json();
+                    if (data.success) {
+                      toast.success(`รีเซ็ตสำเร็จ! ลบข้อมูลไปแล้ว ${data.count} รายการ`);
+                      fetchClaims();
+                    } else {
+                      toast.error('ไม่สามารถรีเซ็ตได้: ' + data.error);
+                    }
+                  } catch {
+                    toast.error('Error connecting to server');
+                  }
+                }
+              }}
+              className="text-sm font-bold text-rose-500 hover:text-white bg-rose-500/10 hover:bg-rose-500 border border-rose-500/20 hover:border-rose-500 px-4 py-2 rounded-lg transition-all shadow-sm"
+            >
+              ⚠️ รีเซ็ตรางวัลทั้งหมด
+            </button>
+            <Link
+              href="/admin"
+              className="text-sm font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-lg transition-all"
+            >
+              &larr; กลับหน้า Admin
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -183,14 +206,38 @@ export function RewardsClient() {
                           )}
                         </td>
                         <td className="px-4 py-3 text-right">
-                          {claim.status !== 'DELIVERED' && (
+                          <div className="flex items-center justify-end gap-2">
+                            {claim.status !== 'DELIVERED' && (
+                              <button
+                                onClick={() => handleMarkDelivered(claim.id)}
+                                className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/50 bg-emerald-500/5 hover:bg-emerald-500/10 rounded px-2 py-1 transition-all"
+                              >
+                                ✓ ส่งแล้ว
+                              </button>
+                            )}
                             <button
-                              onClick={() => handleMarkDelivered(claim.id)}
-                              className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 border border-emerald-500/20 rounded px-2 py-1 transition-colors"
+                              onClick={async () => {
+                                if (confirm('ต้องการลบประวัติการรับรางวัลนี้ใช่หรือไม่?')) {
+                                  try {
+                                    const res = await fetch(`/api/admin/rewards/${claim.id}`, { method: 'DELETE' });
+                                    const data = await res.json();
+                                    if (data.success) {
+                                      toast.success('ลบประวัติเรียบร้อย');
+                                      setClaims(prev => prev.filter(c => c.id !== claim.id));
+                                    } else {
+                                      toast.error('ลบไม่สำเร็จ: ' + data.error);
+                                    }
+                                  } catch {
+                                    toast.error('Error connecting to server');
+                                  }
+                                }
+                              }}
+                              className="text-xs font-semibold text-rose-400 hover:text-rose-300 border border-rose-500/20 hover:border-rose-500/50 bg-rose-500/5 hover:bg-rose-500/10 rounded px-2 py-1 transition-all"
+                              title="ลบข้อมูลเพื่อรีเซ็ตสิทธิ์ให้คนนี้"
                             >
-                              ✓ ทำเครื่องหมายว่าส่งแล้ว
+                              ✕ ลบ
                             </button>
-                          )}
+                          </div>
                         </td>
                       </tr>
                     ))

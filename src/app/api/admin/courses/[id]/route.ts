@@ -20,7 +20,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     }
 
     const role = (session.user as any).role;
-    if (role !== "ADMIN" && role !== "INSTRUCTOR") {
+    if (!["ADMIN", "SUPER_ADMIN", "INSTRUCTOR"].includes(role)) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
@@ -65,7 +65,7 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
     }
 
     const role = (session.user as any).role;
-    if (role !== "ADMIN" && role !== "INSTRUCTOR") {
+    if (!["ADMIN", "SUPER_ADMIN", "INSTRUCTOR"].includes(role)) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 

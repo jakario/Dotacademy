@@ -1,7 +1,13 @@
+import type { Metadata } from 'next';
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import CoursesClient from "./CoursesClient";
+
+export const metadata: Metadata = {
+  title: "หลักสูตรทั้งหมด | DOT Academy",
+  description: "หลักสูตรการเรียนรู้ออนไลน์ กรมการท่องเที่ยว",
+};
 
 export default async function CoursesPage() {
   const session = await getServerSession(authOptions);
@@ -16,7 +22,7 @@ export default async function CoursesPage() {
     orderBy: { order: 'asc' }
   });
 
-  const isAdminOrInstructor = session && ((session.user as any).role === 'ADMIN' || (session.user as any).role === 'INSTRUCTOR');
+  const isAdminOrInstructor = session && (["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role) || (session.user as any).role === 'INSTRUCTOR');
 
   // Verify if student has passed all quizzes in the platform
   let hasPassedAll = false;

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { logAudit } from "@/lib/audit";
 
 // PUT: update status (e.g. PENDING -> DELIVERED)
 export async function PUT(
@@ -10,7 +11,7 @@ export async function PUT(
 ) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || (session.user as any).role !== "ADMIN") {
+    if (!session || !["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -22,7 +23,45 @@ export async function PUT(
       data: { status },
     });
 
+    await logAudit({
+      action: "UPDATE_REWARD_STATUS",
+      userId: (session.user as any).id,
+      entity: "RewardClaim",
+      entityId: id,
+      details: { newStatus: status }
+    });
+
     return NextResponse.json({ success: true, claim: updated });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+// DELETE: reset a specific reward claim
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session || !["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { id } = await params;
+
+    await (prisma as any).rewardClaim.delete({
+      where: { id },
+    });
+
+    await logAudit({
+      action: "DELETE_REWARD_CLAIM",
+      userId: (session.user as any).id,
+      entity: "RewardClaim",
+      entityId: id,
+    });
+
+    return NextResponse.json({ success: true });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
