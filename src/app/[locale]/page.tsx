@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: "ยินดีต้อนรับสู่บ้านหลังใหม่ กรมการท่องเที่ยว แหล่งเรียนรู้ออนไลน์ด้านการท่องเที่ยวและมาตรฐานธุรกิจนำเที่ยว",
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const t = await getTranslations('Index');
   const session = await getServerSession(authOptions);
