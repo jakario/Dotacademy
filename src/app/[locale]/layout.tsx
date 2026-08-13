@@ -28,18 +28,6 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <head>
-        <style>{`
-          @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-              animation-duration: 0.01ms !important;
-              animation-iteration-count: 1 !important;
-              transition-duration: 0.01ms !important;
-              scroll-behavior: auto !important;
-            }
-          }
-        `}</style>
-      </head>
       <body className={`${inter.variable} ${notoSansThai.variable} font-sans antialiased bg-gray-50 text-gray-900`}>
         {/* Skip Navigation Link - WCAG 2.4.1 */}
         <a
