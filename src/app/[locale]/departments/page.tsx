@@ -40,8 +40,11 @@ export default async function DepartmentsPage() {
                   <h3 className="text-amber-400 font-bold text-lg mb-2 flex items-center gap-2">
                     <span>👁️</span> วิสัยทัศน์ (Vision)
                   </h3>
-                  <p className="text-white leading-relaxed">
-                    "เป็นองค์กรหลักในการยกระดับขีดความสามารถในการแข่งขันด้านสินค้าและบริการท่องเที่ยวของประเทศ"
+                  <p className="text-white leading-relaxed font-medium">
+                    "ภายในปี พ.ศ. 2570 การท่องเที่ยวของประเทศไทยเป็นอุตสาหกรรมที่เน้นคุณค่า มีความสามารถในการปรับตัว เติบโตอย่างยั่งยืนและมีส่วนร่วม"
+                  </p>
+                  <p className="text-blue-200 text-sm mt-2">
+                    (Rebuilding High Value Tourism Industry with Resilience, Sustainability and Inclusive Growth)
                   </p>
                 </div>
               </div>
