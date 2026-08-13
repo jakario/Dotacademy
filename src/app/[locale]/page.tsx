@@ -79,16 +79,22 @@ export default async function HomePage() {
           <div className="pt-8 w-full">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">ศูนย์กลางการเรียนรู้และคู่มือการปฏิบัติงาน (Portal)</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Link href="/courses" className="p-6 bg-blue-50 rounded-2xl shadow-sm border border-blue-200 hover:border-blue-500 hover:shadow-md transition-all text-left group lg:col-span-3">
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎓</div>
+                <h3 className="text-xl font-bold text-blue-900 mb-2">Course Academy</h3>
+                <p className="text-blue-800 text-sm">เข้าสู่ระบบ E-Learning และบทเรียนทางการเดิม</p>
+              </Link>
+
               <Link href="/departments" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🏢</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Department 101</h3>
                 <p className="text-gray-700 text-sm">รู้จักงานแต่ละฝ่ายใน 2 นาที โครงสร้างและภารกิจ</p>
               </Link>
               
-              <Link href="/workflows" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🔄</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Workflow & Matrix</h3>
-                <p className="text-gray-700 text-sm">กระบวนการทำงานและจุดเชื่อมต่อ (Hand-off) ระหว่างฝ่าย</p>
+              <Link href="/library" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📚</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">KM Library</h3>
+                <p className="text-gray-700 text-sm">คลังแบบฟอร์ม เอกสารอ้างอิง และคัมภีร์งาน</p>
               </Link>
 
               <Link href="/qa" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
@@ -97,16 +103,10 @@ export default async function HomePage() {
                 <p className="text-gray-700 text-sm">ถาม-ตอบปัญหาข้ามสายงาน ตรงถึงเจ้าของงาน</p>
               </Link>
 
-              <Link href="/library" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📚</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">KM Library</h3>
-                <p className="text-gray-700 text-sm">คลังแบบฟอร์ม เอกสารอ้างอิง และคัมภีร์งาน</p>
-              </Link>
-
-              <Link href="/courses" className="p-6 bg-blue-50 rounded-2xl shadow-sm border border-blue-200 hover:border-blue-500 hover:shadow-md transition-all text-left group lg:col-span-2">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎓</div>
-                <h3 className="text-xl font-bold text-blue-900 mb-2">Course Academy</h3>
-                <p className="text-blue-800 text-sm">เข้าสู่ระบบ E-Learning และบทเรียนทางการเดิม</p>
+              <Link href="/workflows" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🔄</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Workflow & Matrix</h3>
+                <p className="text-gray-700 text-sm">กระบวนการทำงานและจุดเชื่อมต่อ (Hand-off) ระหว่างฝ่าย</p>
               </Link>
             </div>
           </div>
