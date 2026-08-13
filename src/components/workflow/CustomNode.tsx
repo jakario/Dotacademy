@@ -2,12 +2,10 @@ import React from 'react';
 import { Handle, Position } from '@xyflow/react';
 
 export default function CustomNode({ data }: { data: any }) {
-  // Extract data with defaults
   const { 
     label, 
     icon = '📄', 
     department = 'ทั่วไป', 
-    sla, 
     isHandoff = false,
     color = 'blue'
   } = data;
@@ -52,12 +50,6 @@ export default function CustomNode({ data }: { data: any }) {
             {label}
           </div>
         </div>
-
-        {sla && (
-          <div className="mt-2 pt-2 border-t border-slate-100 text-[11px] text-slate-500 flex items-center gap-1">
-            ⏱️ <span className="font-medium">SLA:</span> {sla}
-          </div>
-        )}
       </div>
 
       <Handle type="source" position={Position.Bottom} className="w-3 h-3 !bg-slate-400" />
