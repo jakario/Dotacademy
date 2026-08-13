@@ -10,10 +10,9 @@ export const metadata = {
 };
 
 const handoffData = [
-  { from: 'กองพัฒนาแหล่งท่องเที่ยว', to: 'กองยุทธศาสตร์และแผนงาน', action: 'ส่งรายงานสรุปการประเมินแหล่งท่องเที่ยวเพื่อจัดทำแผนปีถัดไป', sla: 'ทุกสิ้นไตรมาส' },
-  { from: 'กองกิจการภาพยนตร์ฯ', to: 'กองพัฒนาแหล่งท่องเที่ยว', action: 'ประสานขอใช้พื้นที่อนุรักษ์เพื่อการถ่ายทำภาพยนตร์ต่างประเทศ', sla: '5 วันทำการ' },
-  { from: 'กองพัฒนาบริการท่องเที่ยว', to: 'สำนักงานเลขานุการกรม', action: 'ส่งรายชื่อผู้ผ่านเกณฑ์มาตรฐานโฮมสเตย์เพื่อจัดพิมพ์ใบประกาศ', sla: '7 วันทำการ' },
-  { from: 'สำนักงานเลขานุการกรม', to: 'ทุกกอง', action: 'เวียนหนังสือสั่งการและประกาศกรม', sla: 'ภายใน 24 ชั่วโมง' },
+  { from: 'กองกิจการภาพยนตร์และวีดิทัศน์ต่างประเทศ', to: 'กองพัฒนาแหล่งท่องเที่ยว', action: 'ประสานขอใช้พื้นที่อนุรักษ์เพื่อการถ่ายทำภาพยนตร์ต่างประเทศ' },
+  { from: 'กองพัฒนาบริการท่องเที่ยว', to: 'สำนักงานเลขานุการกรม', action: 'ส่งรายชื่อผู้ผ่านเกณฑ์มาตรฐานโฮมสเตย์เพื่อจัดพิมพ์ใบประกาศ' },
+  { from: 'สำนักงานเลขานุการกรม', to: 'ทุกกอง', action: 'เวียนหนังสือสั่งการและประกาศกรม' },
 ];
 
 export default async function WorkflowsPage() {
@@ -50,7 +49,7 @@ export default async function WorkflowsPage() {
         <section className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-slate-900 mb-2">Cross-Department Hand-off Matrix</h2>
-            <p className="text-slate-600">จุดเชื่อมต่อกระบวนการทำงานระหว่างกอง (SLA และผู้รับผิดชอบ)</p>
+            <p className="text-slate-600">จุดเชื่อมต่อกระบวนการทำงานระหว่างกอง</p>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
@@ -58,8 +57,7 @@ export default async function WorkflowsPage() {
                 <tr className="bg-slate-50 text-slate-700 text-sm border-b border-slate-200">
                   <th className="p-4 font-bold rounded-tl-xl">หน่วยงานต้นทาง (From)</th>
                   <th className="p-4 font-bold">หน่วยงานปลายทาง (To)</th>
-                  <th className="p-4 font-bold">สิ่งที่ส่งมอบ (Action/Deliverable)</th>
-                  <th className="p-4 font-bold rounded-tr-xl">ระยะเวลามาตรฐาน (SLA)</th>
+                  <th className="p-4 font-bold rounded-tr-xl">สิ่งที่ส่งมอบ (Action/Deliverable)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -68,11 +66,6 @@ export default async function WorkflowsPage() {
                     <td className="p-4 text-slate-800 font-medium">{row.from}</td>
                     <td className="p-4 text-slate-800 font-medium">{row.to}</td>
                     <td className="p-4 text-slate-600">{row.action}</td>
-                    <td className="p-4">
-                      <span className="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">
-                        {row.sla}
-                      </span>
-                    </td>
                   </tr>
                 ))}
               </tbody>
