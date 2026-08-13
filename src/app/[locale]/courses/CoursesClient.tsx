@@ -36,10 +36,10 @@ export default function CoursesClient({
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
-            <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 tracking-tight">
-              หลักสูตรทั้งหมด
+            <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300 tracking-tight flex items-center gap-3">
+              <span className="text-blue-500">🎓</span> Course Academy
             </h1>
-            <p className="text-slate-400 mt-2 text-sm">ค้นหาและกรองบทเรียนพัฒนาศักยภาพผู้เรียน</p>
+            <p className="text-slate-400 mt-2 text-sm">หลักสูตรการเรียนรู้ออนไลน์และทดสอบสมรรถนะบุคลากร</p>
           </div>
           <div className="flex items-center gap-3 flex-wrap justify-end">
             {isAdminOrInstructor && (
