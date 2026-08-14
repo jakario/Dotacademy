@@ -20,9 +20,12 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
-  role          String    @default("STUDENT") // STUDENT, INSTRUCTOR, ADMIN
+  role          String    @default("STUDENT") // STUDENT, INSTRUCTOR, ADMIN, SUPER_ADMIN
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
+  departmentId  String?
+  department    Department? @relation("DepartmentStaff", fields: [departmentId], references: [id], onDelete: SetNull)
 
   courses        CourseEnrollment[]
   createdCourses Course[]           @relation("InstructorCourses")
@@ -240,6 +243,7 @@ model Department {
   faqs        FAQ[]
   documents   Document[]
   qaTickets   QATicket[]
+  staff       User[]      @relation("DepartmentStaff")
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
