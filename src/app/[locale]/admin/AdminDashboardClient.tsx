@@ -127,22 +127,24 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
               <p className="text-xs text-slate-400">สำหรับผู้ดูแลระบบและวิทยากรฝึกอบรม</p>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <Link href="/admin/users" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              ผู้ใช้ & สิทธิ์
+              👤 ผู้ใช้ & สิทธิ์
             </Link>
-            <span className="hidden sm:inline text-slate-700">|</span>
+            <span className="text-slate-700">|</span>
             <Link href="/admin/departments" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              จัดการกอง
+              🏢 กอง
             </Link>
-            <span className="hidden sm:inline text-slate-700">|</span>
+            <span className="text-slate-700">|</span>
+            <Link href="/admin/library" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              📚 KM Library
+            </Link>
+            <span className="text-slate-700">|</span>
             <Link href="/admin/workflows" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              จัดการ Workflow
+              🔄 Workflow
             </Link>
-            <span className="hidden sm:inline text-slate-700">|</span>
+            <span className="text-slate-700">|</span>
             <Link href="/admin/qa" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              จัดการ Q&A
-            </Link>
             <span className="hidden sm:inline text-slate-700">|</span>
             <Link href="/courses" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
               หน้าเว็บหลัก &rarr;
