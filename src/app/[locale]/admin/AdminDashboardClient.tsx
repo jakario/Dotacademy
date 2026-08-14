@@ -129,19 +129,23 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
           </div>
           <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3">
             <Link href="/admin/users" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              จัดการผู้ใช้
+              ผู้ใช้ & สิทธิ์
             </Link>
             <span className="hidden sm:inline text-slate-700">|</span>
-            <Link href="/admin/enrollments" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              จัดการการลงทะเบียน
+            <Link href="/admin/departments" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              จัดการกอง
             </Link>
             <span className="hidden sm:inline text-slate-700">|</span>
-            <Link href="/admin/rewards" className="text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors">
-              🏆 รางวัล 20 คนแรก
+            <Link href="/admin/workflows" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              จัดการ Workflow
+            </Link>
+            <span className="hidden sm:inline text-slate-700">|</span>
+            <Link href="/admin/qa" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              จัดการ Q&A
             </Link>
             <span className="hidden sm:inline text-slate-700">|</span>
             <Link href="/courses" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-              ดูหน้าเว็บหลักสูตร &rarr;
+              หน้าเว็บหลัก &rarr;
             </Link>
           </div>
         </div>
