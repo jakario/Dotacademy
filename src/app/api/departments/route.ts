@@ -12,3 +12,27 @@ export async function GET() {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+    const { name, description, icon } = body;
+
+    if (!name) {
+      return NextResponse.json({ error: "Name is required" }, { status: 400 });
+    }
+
+    const department = await prisma.department.create({
+      data: {
+        name,
+        description,
+        icon,
+      }
+    });
+
+    return NextResponse.json({ department });
+  } catch (error: any) {
+    console.error("POST /api/departments error:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
