@@ -55,8 +55,8 @@ export default async function WorkflowDetailPage({ params }: { params: Promise<{
   if (id === 'demo-1') {
     nodes = demoNodes;
     edges = demoEdges;
-    title = 'กระบวนการขออนุญาตถ่ายทำภาพยนตร์ต่างประเทศ (Demo)';
-    description = 'นี่คือตัวอย่างกระบวนการทำงานที่สร้างจาก React Flow สำหรับแสดงผลในระบบ Knowledge Hub';
+    title = 'กระบวนการขอใบอนุญาตประกอบธุรกิจนำเที่ยว';
+    description = 'ขั้นตอนตั้งแต่ผู้ประกอบการยื่นเอกสาร การชำระค่าธรรมเนียม และการออกใบอนุญาต (สาธิตระบบ Flowchart)';
   } else {
     const wf = await prisma.workflow.findUnique({
       where: { id },
