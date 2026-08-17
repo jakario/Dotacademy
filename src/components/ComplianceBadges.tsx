@@ -33,7 +33,7 @@ const BADGES: BadgeProps[] = [
     level: 'ออกแบบตามมาตรฐาน พ.ศ. 2568',
     score: 'Cybersecurity',
     color: 'amber',
-    description: 'มาตรฐานการรักษาความมั่นคงปลอดภัย\nสำหรับเว็บไซต์ภาครัฐ (NCSA Thailand)',
+    description: 'มาตรฐานการรักษาความมั่นคงปลอดภัย\nสำหรับเว็บไซต์ภาครัฐ (NCSA Thailand)\nมีผลบังคับใช้ 16 กันยายน 2569',
   },
 ];
 
@@ -92,7 +92,7 @@ export function ComplianceBadges() {
         })}
       </div>
       <p className="text-center text-[10px] text-gray-400 mt-4">
-        ออกแบบและพัฒนาตามมาตรฐานสากล — ประเมินเบื้องต้นโดยทีมพัฒนา สิงหาคม 2568
+        ออกแบบและพัฒนาตามมาตรฐานสากล — ประเมินเบื้องต้นโดยทีมพัฒนา สิงหาคม 2569
       </p>
     </section>
   );
