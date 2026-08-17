@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from '@/i18n/routing';
-import { FiEdit2, FiX, FiCheck, FiUser } from "react-icons/fi";
+import { Edit2, X, Check, User } from "lucide-react";
 
 type Department = {
   id: string;
@@ -124,7 +124,7 @@ export function UsersClient() {
                       <td className="p-4">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">
-                            {user.name ? user.name.charAt(0).toUpperCase() : <FiUser />}
+                            {user.name ? user.name.charAt(0).toUpperCase() : <User />}
                           </div>
                           <div>
                             <p className="font-medium text-slate-800">{user.name || "Unknown User"}</p>
@@ -154,7 +154,7 @@ export function UsersClient() {
                           className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
                           title="Edit User"
                         >
-                          <FiEdit2 className="w-4 h-4" />
+                          <Edit2 className="w-4 h-4" />
                         </button>
                       </td>
                     </tr>
@@ -176,7 +176,7 @@ export function UsersClient() {
                 onClick={() => setEditingUser(null)}
                 className="text-slate-400 hover:text-slate-600 transition-colors"
               >
-                <FiX className="w-5 h-5" />
+                <X className="w-5 h-5" />
               </button>
             </div>
             
@@ -246,7 +246,7 @@ export function UsersClient() {
               >
                 {isSaving ? "Saving..." : (
                   <>
-                    <FiCheck className="w-4 h-4" />
+                    <Check className="w-4 h-4" />
                     Save Changes
                   </>
                 )}
