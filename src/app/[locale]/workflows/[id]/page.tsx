@@ -14,22 +14,29 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return { title: `${wf.title} | DOT Knowledge Hub` };
 }
 
-// Dummy data for our mockup
 const demoNodes = [
-  { id: '1', type: 'input', position: { x: 250, y: 50 }, data: { label: 'รับเรื่องขออนุญาตถ่ายทำ' }, className: 'bg-amber-100 border-2 border-amber-500 rounded-lg p-2 font-bold' },
-  { id: '2', position: { x: 250, y: 150 }, data: { label: 'ตรวจสอบเอกสารเบื้องต้น (1 วัน)' }, className: 'bg-white border-2 border-slate-300 rounded-lg p-2' },
-  { id: '3', position: { x: 100, y: 250 }, data: { label: 'เอกสารไม่ครบ: แจ้งกลับผู้ขอ' }, className: 'bg-red-50 border-2 border-red-400 rounded-lg p-2' },
-  { id: '4', position: { x: 400, y: 250 }, data: { label: 'เอกสารครบ: ส่งต่อกองยุทธศาสตร์ฯ' }, className: 'bg-blue-50 border-2 border-blue-400 rounded-lg p-2' },
-  { id: '5', position: { x: 400, y: 350 }, data: { label: 'คณะกรรมการพิจารณาอนุมัติ (3 วัน)' }, className: 'bg-white border-2 border-slate-300 rounded-lg p-2' },
-  { id: '6', type: 'output', position: { x: 400, y: 450 }, data: { label: 'ออกใบอนุญาตถ่ายทำ' }, className: 'bg-green-100 border-2 border-green-500 rounded-lg p-2 font-bold' },
+  { 
+    id: '1', type: 'custom', position: { x: 250, y: 50 }, 
+    data: { label: 'ยื่นคำขอและเอกสาร', icon: '📝', department: 'ผู้ประกอบการ', color: 'green' } 
+  },
+  { 
+    id: '2', type: 'custom', position: { x: 250, y: 200 }, 
+    data: { label: 'ตรวจสอบความถูกต้องของเอกสาร', icon: '🔎', department: 'กองทะเบียนธุรกิจนำเที่ยวและมัคคุเทศก์', color: 'blue' } 
+  },
+  { 
+    id: '3', type: 'custom', position: { x: 250, y: 350 }, 
+    data: { label: 'รับชำระค่าธรรมเนียมและรับวางหลักประกัน', icon: '💰', department: 'กองทะเบียนธุรกิจนำเที่ยวและมัคคุเทศก์', color: 'blue' } 
+  },
+  { 
+    id: '4', type: 'custom', position: { x: 250, y: 500 }, 
+    data: { label: 'พิจารณาอนุมัติและออกใบอนุญาต', icon: '✅', department: 'กองทะเบียนธุรกิจนำเที่ยวและมัคคุเทศก์ (นายทะเบียน)', color: 'blue' } 
+  }
 ];
 
 const demoEdges = [
   { id: 'e1-2', source: '1', target: '2', animated: true },
-  { id: 'e2-3', source: '2', target: '3', label: 'ไม่ผ่าน', style: { stroke: '#ef4444' } },
-  { id: 'e2-4', source: '2', target: '4', label: 'ผ่าน', style: { stroke: '#3b82f6' } },
-  { id: 'e4-5', source: '4', target: '5', animated: true },
-  { id: 'e5-6', source: '5', target: '6', animated: true, style: { stroke: '#22c55e' } },
+  { id: 'e2-3', source: '2', target: '3', animated: true },
+  { id: 'e3-4', source: '3', target: '4', animated: true, style: { stroke: '#22c55e', strokeWidth: 2 } },
 ];
 
 export default async function WorkflowDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -48,8 +55,8 @@ export default async function WorkflowDetailPage({ params }: { params: Promise<{
   if (id === 'demo-1') {
     nodes = demoNodes;
     edges = demoEdges;
-    title = 'กระบวนการขออนุญาตถ่ายทำภาพยนตร์ต่างประเทศ (Demo)';
-    description = 'นี่คือตัวอย่างกระบวนการทำงานที่สร้างจาก React Flow สำหรับแสดงผลในระบบ Knowledge Hub';
+    title = 'กระบวนการขอใบอนุญาตประกอบธุรกิจนำเที่ยว';
+    description = 'ขั้นตอนตั้งแต่ผู้ประกอบการยื่นเอกสาร การชำระค่าธรรมเนียม และการออกใบอนุญาต (สาธิตระบบ Flowchart)';
   } else {
     const wf = await prisma.workflow.findUnique({
       where: { id },

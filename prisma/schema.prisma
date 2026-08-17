@@ -20,9 +20,12 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
-  role          String    @default("STUDENT") // STUDENT, INSTRUCTOR, ADMIN
+  role          String    @default("STUDENT") // STUDENT, INSTRUCTOR, ADMIN, SUPER_ADMIN
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
+  departmentId  String?
+  department    Department? @relation("DepartmentStaff", fields: [departmentId], references: [id], onDelete: SetNull)
 
   courses        CourseEnrollment[]
   createdCourses Course[]           @relation("InstructorCourses")
@@ -32,6 +35,9 @@ model User {
   progress       UserProgress[]
   rewardClaims   RewardClaim[]
   auditLogs      AuditLog[]
+  notifications  Notification[]
+  askedQuestions QATicket[]         @relation("AskedQuestions")
+  answeredQuestions QATicket[]      @relation("AnsweredQuestions")
 }
 
 model Course {
@@ -236,6 +242,8 @@ model Department {
   workflows   Workflow[]
   faqs        FAQ[]
   documents   Document[]
+  qaTickets   QATicket[]
+  staff       User[]      @relation("DepartmentStaff")
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -278,4 +286,44 @@ model Document {
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model QATicket {
+  id           String      @id @default(cuid())
+  question     String      @db.Text
+  answer       String?     @db.Text
+  status       String      @default("PENDING") // PENDING, ANSWERED
+  isAnonymous  Boolean     @default(false)
+  
+  askerId      String?
+  asker        User?       @relation("AskedQuestions", fields: [askerId], references: [id], onDelete: SetNull)
+  
+  answererId   String?
+  answerer     User?       @relation("AnsweredQuestions", fields: [answererId], references: [id], onDelete: SetNull)
+  
+  departmentId String
+  department   Department  @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // e.g. "QA_ANSWERED"
+  title     String
+  message   String   @db.Text
+  linkUrl   String?
+  isRead    Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+}
+
+model SiteSettings {
+  id        String   @id @default(cuid())
+  key       String   @unique  // e.g. "course_academy_title"
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
 }

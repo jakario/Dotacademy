@@ -14,6 +14,12 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
+import CustomNode from '@/components/workflow/CustomNode';
+
+const nodeTypes = {
+  custom: CustomNode,
+};
+
 interface WorkflowClientProps {
   initialNodes: Node[];
   initialEdges: Edge[];
@@ -37,15 +43,16 @@ export default function WorkflowClient({ initialNodes, initialEdges, title }: Wo
         </div>
       </div>
       <div className="flex-grow w-full h-full relative">
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          fitView
-          attributionPosition="bottom-right"
-        >
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            nodeTypes={nodeTypes}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            fitView
+            attributionPosition="bottom-right"
+          >
           <Controls />
           <MiniMap zoomable pannable nodeClassName={(node) => (node.type === 'input' ? 'bg-amber-500' : 'bg-slate-500')} />
           <Background color="#ccc" gap={16} />

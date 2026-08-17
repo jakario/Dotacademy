@@ -20,18 +20,81 @@ export default async function DepartmentsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-12 flex items-center justify-between">
-          <div>
-            <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3">
-              <span className="text-blue-600">🏢</span> Department 101
-            </h1>
-            <p className="mt-2 text-slate-600">รู้จักงานแต่ละฝ่ายใน 2 นาที โครงสร้างและภารกิจของกรมการท่องเที่ยว</p>
-          </div>
-          <Link href="/" className="px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg shadow-sm hover:bg-slate-100 transition-colors font-medium">
+    <div className="min-h-screen bg-slate-50 font-sans">
+      {/* Hero Section: DOT Profile */}
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <Link href="/" className="inline-flex items-center text-blue-200 hover:text-white font-medium mb-8 transition-colors">
             &larr; กลับหน้าหลัก
           </Link>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 text-white">
+                กรมการท่องเที่ยว
+              </h1>
+              <p className="text-xl text-blue-200 mb-8">Department of Tourism (DOT)</p>
+              
+              <div className="space-y-6">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                  <h3 className="text-amber-400 font-bold text-lg mb-2 flex items-center gap-2">
+                    <span>👁️</span> วิสัยทัศน์ (Vision)
+                  </h3>
+                  <p className="text-white leading-relaxed font-medium">
+                    "เป็นศูนย์กลางการบริการและข้อมูลแบบดิจิทัล เพื่อสนับสนุนการเติบโตของอุตสาหกรรมการท่องเที่ยวและภาพยนตร์ รวมถึงพัฒนาคุณภาพการท่องเที่ยวอย่างยั่งยืนให้เป็นที่ยอมรับในระดับสากล"
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10">
+              <h3 className="text-amber-400 font-bold text-xl mb-6 flex items-center gap-2">
+                <span>🎯</span> พันธกิจ (Missions)
+              </h3>
+              <ul className="space-y-4 text-blue-50">
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">1.</span>
+                  <span>ส่งเสริม อนุรักษ์ฟื้นฟู พัฒนาแหล่งท่องเที่ยวและคุณภาพสิ่งแวดล้อมเพื่อความสมดุลและยั่งยืน</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">2.</span>
+                  <span>พัฒนายกระดับมาตรฐานสินค้า บริการ และบุคลากรด้านการท่องเที่ยว</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">3.</span>
+                  <span>ส่งเสริมและพัฒนาธุรกิจท่องเที่ยว มัคคุเทศก์ ผู้นําเที่ยว และควบคุม กํากับให้เป็นไปตามกฎหมาย กําหนด</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">4.</span>
+                  <span>อํานวยความสะดวก ป้องกันและรักษาความปลอดภัยทางการท่องเที่ยว</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">5.</span>
+                  <span>ส่งเสริมการมีส่วนร่วมและเสริมสร้างกิจกรรมการบริหารจัดการด้านการท่องเที่ยวแก่ทุกภาคส่วน เพื่อพัฒนาการท่องเที่ยวอย่างยั่งยืน</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">6.</span>
+                  <span>ส่งเสริมและสนับสนุนกิจการภาพยนตร์ต่างประเทศในราชอาณาจักร</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">7.</span>
+                  <span>พัฒนาระบบข้อมูลสารสนเทศและเผยแพร่ข้อมูลสถิติ และองค์ความรู้เพื่อการวางแผนและการจัดการ</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-500 mt-1">8.</span>
+                  <span>พัฒนาความร่วมมือด้านการท่องเที่ยวกับทุกภาคส่วนทั้งในและต่างประเทศ</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Departments Grid */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl font-bold text-slate-900 mb-3">โครงสร้างองค์กร (Organization Structure)</h2>
+          <p className="text-slate-600">6 กองหลักภายใต้การกำกับดูแลของกรมการท่องเที่ยว</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -39,7 +102,7 @@ export default async function DepartmentsPage() {
             <Link 
               key={dept.id} 
               href={`/departments/${dept.id}`}
-              className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 hover:shadow-md hover:border-blue-500 transition-all group flex flex-col h-full"
+              className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 hover:shadow-lg hover:border-blue-500 hover:-translate-y-1 transition-all group flex flex-col h-full"
             >
               <div className="text-5xl mb-6 group-hover:scale-110 transition-transform origin-left">
                 {dept.icon || '🏢'}
@@ -51,12 +114,12 @@ export default async function DepartmentsPage() {
                 {dept.description}
               </p>
               <div className="mt-6 text-blue-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                ดูรายละเอียด <span>&rarr;</span>
+                ดูรายละเอียดภารกิจ <span>&rarr;</span>
               </div>
             </Link>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

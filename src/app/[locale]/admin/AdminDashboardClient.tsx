@@ -127,21 +127,37 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
               <p className="text-xs text-slate-400">สำหรับผู้ดูแลระบบและวิทยากรฝึกอบรม</p>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <Link href="/admin/users" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              จัดการผู้ใช้
+              👤 ผู้ใช้ & สิทธิ์
             </Link>
-            <span className="hidden sm:inline text-slate-700">|</span>
+            <span className="text-slate-700">|</span>
+            <Link href="/admin/departments" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              🏢 กอง
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link href="/admin/library" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              📚 KM Library
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link href="/admin/workflows" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              🔄 Workflow
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link href="/admin/qa" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+              💬 Q&A
+            </Link>
+            <span className="text-slate-700">|</span>
             <Link href="/admin/enrollments" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-              จัดการการลงทะเบียน
+              📋 Enrollment
             </Link>
-            <span className="hidden sm:inline text-slate-700">|</span>
-            <Link href="/admin/rewards" className="text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors">
-              🏆 รางวัล 20 คนแรก
+            <span className="text-slate-700">|</span>
+            <Link href="/admin/settings" className="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+              ⚙️ ตั้งค่าระบบ
             </Link>
-            <span className="hidden sm:inline text-slate-700">|</span>
-            <Link href="/courses" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-              ดูหน้าเว็บหลักสูตร &rarr;
+            <span className="text-slate-700">|</span>
+            <Link href="/" className="text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              หน้าหลัก &rarr;
             </Link>
           </div>
         </div>
