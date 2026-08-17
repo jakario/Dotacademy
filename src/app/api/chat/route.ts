@@ -108,7 +108,7 @@ ${contextText || 'ไม่มีข้อมูลอ้างอิงใน�
 
     // 5. Generate and stream the response using Groq (Llama 3.3 70B)
     const result = await streamText({
-      model: groq('llama-3.3-70b-versatile'),
+      model: groq('llama-3.3-70b-specdec'),
       system: systemPrompt,
       messages: messages,
     });
