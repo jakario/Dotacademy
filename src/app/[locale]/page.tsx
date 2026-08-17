@@ -13,9 +13,40 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic';
 
+const DEFAULTS: Record<string, string> = {
+  portal_title: 'ศูนย์การเรียนรู้และแบ่งปันประสบการณ์',
+  course_academy_title: 'Course Academy',
+  course_academy_subtitle: 'เข้าสู่ระบบการเรียนรู้ออนไลน์และทดสอบสมรรถนะบุคลากร',
+  course_academy_icon: '🎓',
+  dept101_title: 'Department 101',
+  dept101_subtitle: 'โครงสร้าง ภารกิจของแต่ละกอง',
+  dept101_icon: '🏢',
+  km_title: 'KM Library',
+  km_subtitle: 'คลังแบบฟอร์ม เอกสารอ้างอิง และคัมภีร์งาน',
+  km_icon: '📚',
+  qa_title: 'Cross-Dept Q&A',
+  qa_subtitle: 'ถาม-ตอบปัญหาข้ามสายงาน ตรงถึงเจ้าของงาน',
+  qa_icon: '💬',
+  workflow_title: 'Workflow',
+  workflow_subtitle: 'แผนผังกระบวนการทำงานมาตรฐาน (SOPs) ของแต่ละกอง',
+  workflow_icon: '🔄',
+};
+
+async function getSiteSettings(): Promise<Record<string, string>> {
+  try {
+    const rows = await prisma.siteSettings.findMany();
+    const s = { ...DEFAULTS };
+    for (const row of rows) { s[row.key] = row.value; }
+    return s;
+  } catch {
+    return DEFAULTS;
+  }
+}
+
 export default async function HomePage() {
   const t = await getTranslations('Index');
   const session = await getServerSession(authOptions);
+  const s = await getSiteSettings();
 
   let userName = session?.user?.name;
   if (session && (session.user as any).id) {
@@ -31,19 +62,15 @@ export default async function HomePage() {
       <nav aria-label="การนำทางหลัก" className="absolute top-4 right-8">
         {session ? (
           <div className="flex items-center gap-4">
-            {/* text-gray-900 on white = 19:1 ✓ AAA */}
             <span className="text-gray-900 font-medium">สวัสดี, {userName}</span>
-            {/* text-blue-800 on white = 7.7:1 ✓ AAA */}
             <Link href="/profile" className="text-blue-800 font-semibold hover:underline hover:text-blue-900">
               โปรไฟล์ของฉัน
             </Link>
             {(["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role) || (session.user as any).role === 'INSTRUCTOR') && (
-              // text-amber-900 on white = 11.6:1 ✓ AAA
               <Link href="/admin" className="text-amber-900 font-semibold hover:underline">
                 จัดการระบบ (Admin)
               </Link>
             )}
-            {/* text-red-700 on white = 7.1:1 ✓ AAA */}
             <a href="/api/auth/signout?callbackUrl=/" className="text-red-700 font-medium hover:underline hover:text-red-900">
               ออกจากระบบ
             </a>
@@ -53,12 +80,9 @@ export default async function HomePage() {
 
       <div className="max-w-4xl mx-auto space-y-8">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl text-gray-900 drop-shadow-sm flex flex-col gap-2">
-          {/* text-blue-800 on white/blue-50 = 7.7:1 ✓ AAA */}
           <span className="text-4xl sm:text-5xl text-blue-800">{t('title_prefix')}</span>
-          {/* text-gray-900 on white = 19:1 ✓ AAA */}
           <span>{t('title_main')}</span>
         </h1>
-        {/* text-gray-800 on white = 12.6:1 ✓ AAA */}
         <p className="text-xl sm:text-2xl text-gray-800 max-w-2xl mx-auto leading-relaxed">
           {t('subtitle')}
         </p>
@@ -66,52 +90,51 @@ export default async function HomePage() {
         {!session ? (
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8" role="group" aria-label="ตัวเลือกการเข้าสู่ระบบ">
             <GoogleLoginButton />
-            {/* white on blue-800 = 7.6:1 ✓ AAA */}
             <Link href="/login" className="px-8 py-4 bg-blue-800 text-white font-semibold rounded-xl shadow-md hover:bg-blue-900 hover:-translate-y-1 transition-all duration-200 block">
               เข้าสู่ระบบ (ทั่วไป)
             </Link>
-            {/* text-gray-900 on white = 19:1 ✓ AAA */}
             <Link href="/register" className="px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl shadow-sm border border-gray-300 hover:border-blue-800 hover:text-blue-800 hover:-translate-y-1 transition-all duration-200 block">
               {t('register')}
             </Link>
           </div>
         ) : (
           <div className="pt-8 w-full">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">ศูนย์การเรียนรู้และแบ่งปันประสบการณ์</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">{s.portal_title}</h2>
             
+            {/* Course Academy — Hero Card */}
             <Link href="/courses" className="mb-6 block p-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl shadow-lg border border-blue-400 hover:shadow-xl hover:-translate-y-1 transition-all text-left group w-full">
               <div className="flex items-center gap-6">
-                <div className="text-6xl group-hover:scale-110 transition-transform bg-white/20 p-4 rounded-xl">🎓</div>
+                <div className="text-6xl group-hover:scale-110 transition-transform bg-white/20 p-4 rounded-xl">{s.course_academy_icon}</div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Course Academy</h3>
-                  <p className="text-blue-100 text-lg">เข้าสู่ระบบ E-Learning และบทเรียนทางการเดิม</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">{s.course_academy_title}</h3>
+                  <p className="text-blue-100 text-lg">{s.course_academy_subtitle}</p>
                 </div>
               </div>
             </Link>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link href="/departments" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🏢</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Department 101</h3>
-                <p className="text-gray-700 text-sm">โครงสร้าง ภารกิจของแต่ละกอง</p>
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{s.dept101_icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{s.dept101_title}</h3>
+                <p className="text-gray-700 text-sm">{s.dept101_subtitle}</p>
               </Link>
               
               <Link href="/library" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📚</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">KM Library</h3>
-                <p className="text-gray-700 text-sm">คลังแบบฟอร์ม เอกสารอ้างอิง และคัมภีร์งาน</p>
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{s.km_icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{s.km_title}</h3>
+                <p className="text-gray-700 text-sm">{s.km_subtitle}</p>
               </Link>
 
               <Link href="/qa" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">💬</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Cross-Dept Q&A</h3>
-                <p className="text-gray-700 text-sm">ถาม-ตอบปัญหาข้ามสายงาน ตรงถึงเจ้าของงาน</p>
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{s.qa_icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{s.qa_title}</h3>
+                <p className="text-gray-700 text-sm">{s.qa_subtitle}</p>
               </Link>
 
               <Link href="/workflows" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🔄</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Workflow & Matrix</h3>
-                <p className="text-gray-700 text-sm">กระบวนการทำงานและจุดเชื่อมต่อ (Hand-off) ระหว่างฝ่าย</p>
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{s.workflow_icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{s.workflow_title}</h3>
+                <p className="text-gray-700 text-sm">{s.workflow_subtitle}</p>
               </Link>
             </div>
           </div>

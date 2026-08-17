@@ -320,3 +320,10 @@ model Notification {
 
   createdAt DateTime @default(now())
 }
+
+model SiteSettings {
+  id        String   @id @default(cuid())
+  key       String   @unique  // e.g. "course_academy_title"
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
