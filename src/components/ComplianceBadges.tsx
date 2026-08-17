@@ -14,26 +14,26 @@ const BADGES: BadgeProps[] = [
   {
     logo: '♿',
     title: 'WCAG 2.1',
-    level: 'Level AA',
-    score: '82/100',
+    level: 'ออกแบบตามมาตรฐาน Level AA',
+    score: 'Accessibility',
     color: 'blue',
-    description: 'Web Content Accessibility\nGuidelines — การเข้าถึงสำหรับทุกคน',
+    description: 'Web Content Accessibility Guidelines\nการเข้าถึงเว็บไซต์สำหรับทุกคน',
   },
   {
     logo: '🛡️',
-    title: 'OWASP',
-    level: 'Top 10 Compliant',
-    score: '9/10',
+    title: 'OWASP Top 10',
+    level: 'ออกแบบตามมาตรฐาน 2021',
+    score: 'Web Security',
     color: 'emerald',
-    description: 'Open Web Application\nSecurity Project — ความปลอดภัยเว็บ',
+    description: 'Open Web Application Security Project\nความปลอดภัยของเว็บแอปพลิเคชัน',
   },
   {
     logo: '🇹🇭',
     title: 'สกมช.',
-    level: 'พ.ศ. 2568',
-    score: '80/100',
+    level: 'ออกแบบตามมาตรฐาน พ.ศ. 2568',
+    score: 'Cybersecurity',
     color: 'amber',
-    description: 'มาตรฐานการรักษาความมั่นคง\nปลอดภัยสำหรับเว็บไซต์ภาครัฐ',
+    description: 'มาตรฐานการรักษาความมั่นคงปลอดภัย\nสำหรับเว็บไซต์ภาครัฐ (NCSA Thailand)',
   },
 ];
 
@@ -92,7 +92,7 @@ export function ComplianceBadges() {
         })}
       </div>
       <p className="text-center text-[10px] text-gray-400 mt-4">
-        ตรวจสอบ ณ สิงหาคม 2568 — Code Audit โดย AI • ควรตรวจสอบซ้ำโดยผู้เชี่ยวชาญ
+        ออกแบบและพัฒนาตามมาตรฐานสากล — ประเมินเบื้องต้นโดยทีมพัฒนา สิงหาคม 2568
       </p>
     </section>
   );
