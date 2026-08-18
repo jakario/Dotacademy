@@ -61,21 +61,21 @@ export async function POST(req: Request) {
     const availableCourses = await prisma.course.findMany({
       where: { isPublished: true },
       select: { title: true, description: true },
-      take: 10
+      take: 50
     });
     const coursesText = availableCourses.map(c => `- ${c.title}: ${c.description || 'ไม่มีคำอธิบาย'}`).join('\n');
 
     // Fetch Quizzes to provide exam information
     const availableQuizzes = await prisma.quiz.findMany({
       select: { title: true, passScore: true, section: { select: { course: { select: { title: true } } } } },
-      take: 10
+      take: 50
     });
     const quizzesText = availableQuizzes.map(q => `- บททดสอบ: "${q.title}" (ในหลักสูตร: ${q.section?.course?.title}) ต้องผ่านที่คะแนน ${q.passScore}%`).join('\n');
 
     // Fetch FAQs for Knowledge Hub Integration
     const availableFaqs = await prisma.fAQ.findMany({
       include: { department: { select: { name: true } } },
-      take: 10
+      take: 50
     });
     const faqsText = availableFaqs.map(f => `- Q: ${f.question} (ตอบโดย ${f.department?.name || 'ทั่วไป'})\n  A: ${f.answer}`).join('\n\n');
 
