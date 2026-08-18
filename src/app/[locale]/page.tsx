@@ -100,19 +100,18 @@ export default async function HomePage() {
           </div>
         ) : (
           <div className="pt-8 w-full">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">{s.portal_title}</h2>
-            
             {/* Course Academy — Hero Card */}
-            <Link href="/courses" className="mb-6 block p-6 bg-blue-50 rounded-2xl shadow-sm border border-blue-200 hover:border-blue-500 hover:shadow-md transition-all text-left group w-full">
+            <Link href="/courses" className="mb-8 block p-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl shadow-lg border border-blue-400 hover:shadow-xl hover:-translate-y-1 transition-all text-left group w-full">
               <div className="flex items-center gap-6">
-                <div className="text-6xl group-hover:scale-110 transition-transform bg-blue-100/80 p-4 rounded-xl">{s.course_academy_icon}</div>
+                <div className="text-6xl group-hover:scale-110 transition-transform bg-white/20 p-4 rounded-xl">{s.course_academy_icon}</div>
                 <div>
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">{s.course_academy_title}</h3>
-                  <p className="text-blue-800 text-lg">{s.course_academy_subtitle}</p>
+                  <h3 className="text-3xl font-bold text-white mb-2">{s.course_academy_title}</h3>
+                  <p className="text-blue-100 text-lg">{s.course_academy_subtitle}</p>
                 </div>
               </div>
             </Link>
 
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">{s.portal_title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link href="/departments" className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all text-left group">
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{s.dept101_icon}</div>
