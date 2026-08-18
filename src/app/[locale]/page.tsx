@@ -5,7 +5,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import GoogleLoginButton from '@/components/GoogleLoginButton';
-import { ComplianceBadges } from '@/components/ComplianceBadges';
 
 export const metadata: Metadata = {
   title: "หน้าแรก | DOT Academy ระบบการเรียนรู้ออนไลน์ กรมการท่องเที่ยว",
@@ -137,9 +136,6 @@ export default async function HomePage() {
                 <p className="text-gray-700 text-sm">{s.workflow_subtitle}</p>
               </Link>
             </div>
-
-            {/* Compliance Badges */}
-            <ComplianceBadges />
           </div>
         )}
       </div>
