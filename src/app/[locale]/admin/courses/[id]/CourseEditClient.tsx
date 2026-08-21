@@ -55,6 +55,11 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
   const [course, setCourse] = useState<CourseData>(initialCourse);
   const [savingCourse, setSavingCourse] = useState(false);
 
+  // --- Add Section inline form ---
+  const [showAddSection, setShowAddSection] = useState(false);
+  const [newSectionTitle, setNewSectionTitle] = useState('');
+  const [addingSection, setAddingSection] = useState(false);
+
   // --- Confirm Dialog States ---
   const [deleteSectionDialogOpen, setDeleteSectionDialogOpen] = useState(false);
   const [sectionToDelete, setSectionToDelete] = useState<{id: string, title: string} | null>(null);
@@ -92,26 +97,34 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
 
   // --- Section Handlers ---
   const handleAddSection = async () => {
-    const title = prompt('ระบุชื่อหมวดหมู่ย่อย (Section Title):');
-    if (!title) return;
-
+    if (!newSectionTitle.trim()) {
+      toast.error('กรุณากรอกชื่อบทเรียน');
+      return;
+    }
+    setAddingSection(true);
     try {
       const res = await fetch('/api/admin/sections', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ courseId: course.id, title })
+        body: JSON.stringify({ courseId: course.id, title: newSectionTitle.trim() })
       });
       const data = await res.json();
       if (data.success && data.section) {
-        toast.success('เพิ่มหมวดหมู่ย่อยเรียบร้อยแล้ว');
+        toast.success('เพิ่มบทเรียนเรียบร้อยแล้ว');
         setCourse({
           ...course,
           sections: [...course.sections, { ...data.section, resources: [], quiz: null }]
         });
+        setNewSectionTitle('');
+        setShowAddSection(false);
+      } else {
+        toast.error('เพิ่มไม่สำเร็จ: ' + (data.error || 'ไม่ทราบสาเหตุ'));
       }
     } catch (e) {
       console.error(e);
       toast.error('เกิดข้อผิดพลาด');
+    } finally {
+      setAddingSection(false);
     }
   };
 
