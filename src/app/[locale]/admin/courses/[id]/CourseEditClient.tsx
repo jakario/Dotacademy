@@ -477,19 +477,45 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="text-lg font-bold text-slate-200">บทเรียนย่อย (Sections & Lessons)</h3>
               <button
-                onClick={handleAddSection}
+                onClick={() => setShowAddSection(true)}
                 className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-bold border border-slate-700 transition-colors"
               >
                 + เพิ่มบทเรียนย่อย (Section)
               </button>
             </div>
 
+            {/* Inline Add Section Form */}
+            {showAddSection && (
+              <div className="bg-slate-800/50 rounded-xl border border-blue-500/40 p-4 flex gap-3 items-center">
+                <input
+                  type="text"
+                  autoFocus
+                  placeholder="ชื่อบทเรียนใหม่ เช่น กลุ่มพัฒนาระบบบริหาร"
+                  value={newSectionTitle}
+                  onChange={e => setNewSectionTitle(e.target.value)}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter') handleAddSection();
+                    if (e.key === 'Escape') { setShowAddSection(false); setNewSectionTitle(''); }
+                  }}
+                  className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                />
+                <button onClick={handleAddSection} disabled={addingSection}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white text-xs font-bold rounded-lg">
+                  {addingSection ? 'กำลังเพิ่ม...' : 'ยืนยัน'}
+                </button>
+                <button onClick={() => { setShowAddSection(false); setNewSectionTitle(''); }}
+                  className="px-3 py-2 text-slate-400 hover:text-white text-xs rounded-lg">
+                  ยกเลิก
+                </button>
+              </div>
+            )}
+
             {course.sections.length === 0 ? (
               <div className="text-center py-12 bg-slate-800/20 rounded-2xl border border-dashed border-slate-700">
                 <p className="text-slate-400 text-sm">ยังไม่มีหมวดหมู่บทเรียนย่อย</p>
                 <button
-                  onClick={handleAddSection}
-                  className="mt-3 px-3 py-1.5 bg-blue-600 hover:bg-blue-50 text-xs font-bold text-white transition-colors rounded-lg"
+                  onClick={() => setShowAddSection(true)}
+                  className="mt-3 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition-colors rounded-lg"
                 >
                   สร้างหมวดหมู่แรก
                 </button>
