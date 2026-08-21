@@ -681,6 +681,8 @@ export default function CourseEditClient({ initialCourse }: CourseEditClientProp
                       <button
                         onClick={() => {
                           setActiveSectionForNewResource(section.id);
+                          setNewResourceTitle('');
+                          setNewResourceContent('');
                           setNewResourceType('TEXT');
                         }}
                         className="w-full py-2 bg-slate-900/30 hover:bg-slate-900/50 rounded-xl text-xs text-slate-400 font-bold border border-dashed border-slate-800 hover:text-slate-200 transition-colors"
