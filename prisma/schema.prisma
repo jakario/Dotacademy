@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["postgresqlExtensions"]
 }
 
@@ -24,20 +24,21 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  departmentId  String?
-  department    Department? @relation("DepartmentStaff", fields: [departmentId], references: [id], onDelete: SetNull)
+  departmentId String?
+  department   Department? @relation("DepartmentStaff", fields: [departmentId], references: [id], onDelete: SetNull)
 
-  courses        CourseEnrollment[]
-  createdCourses Course[]           @relation("InstructorCourses")
-  quizAttempts   QuizAttempt[]
-  accounts       Account[]
-  sessions       Session[]
-  progress       UserProgress[]
-  rewardClaims   RewardClaim[]
-  auditLogs      AuditLog[]
-  notifications  Notification[]
-  askedQuestions QATicket[]         @relation("AskedQuestions")
-  answeredQuestions QATicket[]      @relation("AnsweredQuestions")
+  courses           CourseEnrollment[]
+  createdCourses    Course[]           @relation("InstructorCourses")
+  quizAttempts      QuizAttempt[]
+  accounts          Account[]
+  sessions          Session[]
+  progress          UserProgress[]
+  rewardClaims      RewardClaim[]
+  auditLogs         AuditLog[]
+  notifications     Notification[]
+  askedQuestions    QATicket[]         @relation("AskedQuestions")
+  answeredQuestions QATicket[]         @relation("AnsweredQuestions")
+  certificates      Certificate[]
 }
 
 model Course {
@@ -58,6 +59,7 @@ model Course {
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   rewardClaims RewardClaim[]
+  certificates Certificate[]
 }
 
 model Section {
@@ -82,20 +84,20 @@ model Resource {
   section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   order     Int     @default(0)
 
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
   progress  UserProgress[]
   embedding ResourceEmbedding?
 }
 
 model ResourceEmbedding {
-  id         String   @id @default(cuid())
-  resourceId String   @unique
-  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
-  content    String   @db.Text
+  id         String                     @id @default(cuid())
+  resourceId String                     @unique
+  resource   Resource                   @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  content    String                     @db.Text
   embedding  Unsupported("vector(768)")
 
-  createdAt  DateTime @default(now())
+  createdAt DateTime @default(now())
 }
 
 model CourseEnrollment {
@@ -223,13 +225,13 @@ model RewardClaim {
 
 model AuditLog {
   id        String   @id @default(cuid())
-  action    String   // e.g. "RESET_REWARDS", "DELETE_REWARD_CLAIM"
-  userId    String?  // Optional: User who performed the action
+  action    String // e.g. "RESET_REWARDS", "DELETE_REWARD_CLAIM"
+  userId    String? // Optional: User who performed the action
   user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
-  entity    String?  // The entity affected (e.g. "RewardClaim", "Course")
-  entityId  String?  // The ID of the affected entity
+  entity    String? // The entity affected (e.g. "RewardClaim", "Course")
+  entityId  String? // The ID of the affected entity
   details   String?  @db.Text // JSON string of details
-  ipAddress String?  
+  ipAddress String?
   createdAt DateTime @default(now())
 }
 
@@ -239,14 +241,14 @@ model Department {
   description String?
   icon        String?
 
-  workflows   Workflow[]
-  faqs        FAQ[]
-  documents   Document[]
-  qaTickets   QATicket[]
-  staff       User[]      @relation("DepartmentStaff")
+  workflows Workflow[]
+  faqs      FAQ[]
+  documents Document[]
+  qaTickets QATicket[]
+  staff     User[]     @relation("DepartmentStaff")
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Workflow {
@@ -254,76 +256,88 @@ model Workflow {
   title       String
   description String?
   data        String  @db.Text
-  
+
   departmentId String?
   department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model FAQ {
-  id          String  @id @default(cuid())
-  question    String
-  answer      String  @db.Text
-  
+  id       String @id @default(cuid())
+  question String
+  answer   String @db.Text
+
   departmentId String?
   department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Document {
-  id          String  @id @default(cuid())
-  title       String
-  type        String
-  url         String
-  category    String
-  
+  id       String @id @default(cuid())
+  title    String
+  type     String
+  url      String
+  category String
+
   departmentId String?
   department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model QATicket {
-  id           String      @id @default(cuid())
-  question     String      @db.Text
-  answer       String?     @db.Text
-  status       String      @default("PENDING") // PENDING, ANSWERED
-  isAnonymous  Boolean     @default(false)
-  
-  askerId      String?
-  asker        User?       @relation("AskedQuestions", fields: [askerId], references: [id], onDelete: SetNull)
-  
-  answererId   String?
-  answerer     User?       @relation("AnsweredQuestions", fields: [answererId], references: [id], onDelete: SetNull)
-  
-  departmentId String
-  department   Department  @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  id          String  @id @default(cuid())
+  question    String  @db.Text
+  answer      String? @db.Text
+  status      String  @default("PENDING") // PENDING, ANSWERED
+  isAnonymous Boolean @default(false)
 
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  askerId String?
+  asker   User?   @relation("AskedQuestions", fields: [askerId], references: [id], onDelete: SetNull)
+
+  answererId String?
+  answerer   User?   @relation("AnsweredQuestions", fields: [answererId], references: [id], onDelete: SetNull)
+
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Notification {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  type      String   // e.g. "QA_ANSWERED"
-  title     String
-  message   String   @db.Text
-  linkUrl   String?
-  isRead    Boolean  @default(false)
+  id      String  @id @default(cuid())
+  userId  String
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type    String // e.g. "QA_ANSWERED"
+  title   String
+  message String  @db.Text
+  linkUrl String?
+  isRead  Boolean @default(false)
 
   createdAt DateTime @default(now())
 }
 
 model SiteSettings {
   id        String   @id @default(cuid())
-  key       String   @unique  // e.g. "course_academy_title"
+  key       String   @unique // e.g. "course_academy_title"
   value     String   @db.Text
   updatedAt DateTime @updatedAt
+}
+
+model Certificate {
+  id       String   @id @default(cuid())
+  certNo   String   @unique
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  issuedAt DateTime @default(now())
+
+  @@unique([userId, courseId])
 }
