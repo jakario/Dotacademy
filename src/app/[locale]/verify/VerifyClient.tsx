@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -43,7 +43,7 @@ export default function VerifyClient() {
     setLoading(true);
     setResult(null);
     try {
-      const res = await fetch(\/api/certificates/verify/\\);
+      const res = await fetch(`/api/certificates/verify/${encodeURIComponent(code)}`);
       const data = await res.json();
       
       if (res.ok && data.success) {
@@ -101,7 +101,7 @@ export default function VerifyClient() {
             </form>
 
             {result && (
-              <div className={\ounded-xl border \ p-6 transition-all animate-in fade-in slide-in-from-bottom-4\}>
+              <div className={`rounded-xl border ${result.success ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'} p-6 transition-all animate-in fade-in slide-in-from-bottom-4`}>
                 {result.success && result.data ? (
                   <div className="text-center">
                     <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
