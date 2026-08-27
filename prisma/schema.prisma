@@ -240,6 +240,7 @@ model Department {
   name        String  @unique
   description String?
   icon        String?
+  duties      String? @db.Text
 
   workflows Workflow[]
   faqs      FAQ[]
