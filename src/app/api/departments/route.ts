@@ -16,7 +16,7 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, description, icon } = body;
+    const { name, description, icon, duties } = body;
 
     if (!name) {
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
         name,
         description,
         icon,
+        duties,
       }
     });
 
