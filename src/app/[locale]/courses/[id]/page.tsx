@@ -14,8 +14,9 @@ export default async function CourseDetailPage({
     include: {
       instructor: true,
       sections: {
+        orderBy: { order: 'asc' },
         include: {
-          resources: true,
+          resources: { orderBy: { order: 'asc' } },
           quiz: true
         }
       }
