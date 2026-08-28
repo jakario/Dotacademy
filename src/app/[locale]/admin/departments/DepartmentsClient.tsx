@@ -9,6 +9,7 @@ type Department = {
   id: string;
   name: string;
   description: string | null;
+  duties: string | null;
   icon: string | null;
   createdAt: string;
 };
@@ -18,7 +19,7 @@ export default function DepartmentsClient() {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: "", description: "", icon: "" });
+  const [form, setForm] = useState({ name: "", description: "", icon: "", duties: "" });
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function DepartmentsClient() {
         toast.success(editingId ? "แก้ไขเรียบร้อย" : "เพิ่มกลุ่มงานเรียบร้อย");
         setShowForm(false);
         setEditingId(null);
-        setForm({ name: "", description: "", icon: "" });
+        setForm({ name: "", description: "", icon: "", duties: "" });
         fetchDepartments();
       } else {
         toast.error("เกิดข้อผิดพลาด");
@@ -70,7 +71,7 @@ export default function DepartmentsClient() {
 
   const handleEdit = (dept: Department) => {
     setEditingId(dept.id);
-    setForm({ name: dept.name, description: dept.description || "", icon: dept.icon || "" });
+    setForm({ name: dept.name, description: dept.description || "", icon: dept.icon || "", duties: dept.duties || "" });
     setShowForm(true);
   };
 
@@ -92,7 +93,7 @@ export default function DepartmentsClient() {
   const handleCancel = () => {
     setShowForm(false);
     setEditingId(null);
-    setForm({ name: "", description: "", icon: "" });
+    setForm({ name: "", description: "", icon: "", duties: "" });
   };
 
   return (
@@ -111,7 +112,7 @@ export default function DepartmentsClient() {
             </h1>
           </div>
           <button
-            onClick={() => { setShowForm(true); setEditingId(null); setForm({ name: "", description: "", icon: "" }); }}
+            onClick={() => { setShowForm(true); setEditingId(null); setForm({ name: "", description: "", icon: "", duties: "" }); }}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
           >
             <Plus className="w-4 h-4" /> เพิ่มกลุ่มงาน
@@ -157,7 +158,7 @@ export default function DepartmentsClient() {
                   placeholder="คำอธิบายสั้นๆ ของกลุ่มงาน"
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-              </div>
+              </div><div className="mt-4"><label className="block text-sm font-medium text-gray-700 mb-1">อำนาจหน้าที่ (ขึ้นบรรทัดใหม่เป็นข้อๆ)</label><textarea value={form.duties} onChange={e => setForm({ ...form, duties: e.target.value })} placeholder="1. กำกับดูแล...&#10;2. ตรวจสอบ..." className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" rows={4} /></div>
             </div>
             <div className="flex gap-3 mt-4">
               <button
