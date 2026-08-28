@@ -79,21 +79,30 @@ export async function POST(req: Request) {
     });
     const faqsText = availableFaqs.map(f => `- Q: ${f.question} (ตอบโดย ${f.department?.name || 'ทั่วไป'})\n  A: ${f.answer}`).join('\n\n');
 
+    // Fetch Departments for Knowledge Hub Integration
+    const availableDepartments = await prisma.department.findMany({
+      select: { name: true, description: true, duties: true },
+      take: 50
+    });
+    const deptsText = availableDepartments.map(d => `- หน่วยงาน: ${d.name}\n  ภารกิจ: ${d.description || 'ไม่มี'}\n  อำนาจหน้าที่:\n${d.duties || 'ไม่มีข้อมูลระบุ'}`).join('\n\n');
+
     // 3. Prepare the context from similar resources
     const contextText = similarResources.map(r => `Title: ${r.title}\nContent: ${r.content?.substring(0, 1000)}`).join('\n\n');
 
     // 4. Create the system prompt
     const systemPrompt = `คุณคือผู้ช่วย AI ชื่อ Mr. Wick สำหรับ DOT Knowledge & Learning Hub ของกรมการท่องเที่ยว
-หน้าที่ของคุณคือแนะนำหลักสูตร ตอบคำถามการปฏิบัติงาน และข้อมูลทั่วไปของกรม
-ให้ตอบคำถามอย่างเป็นมิตร สุภาพ และกระตือรือร้น
+คุณมีหน้าที่ตอบคำถามอย่างสุภาพ ชัดเจน และอิงจากข้อมูลที่มีอยู่ในระบบเท่านั้น หากไม่รู้หรือไม่แน่ใจให้ตอบว่าไม่ทราบ
 
-ข้อมูลหลักสูตรที่มีในระบบ:
+ข้อมูลหลักสูตรทั้งหมดที่มีในระบบ:
 ${coursesText}
 
-ข้อมูลแบบทดสอบ/ข้อสอบที่มีในระบบ:
+ข้อมูลหน่วยงานและอำนาจหน้าที่ในกรมการท่องเที่ยว:
+${deptsText}
+
+ข้อมูลแบบทดสอบทั้งหมดที่มีในระบบ:
 ${quizzesText}
 
-คลังคำถาม-ตอบเกี่ยวกับการปฏิบัติงาน (FAQ):
+ข้อมูลคำถามที่พบบ่อย (FAQ):
 ${faqsText || 'ยังไม่มีคำถาม-ตอบในระบบ'}
 
 ข้อมูลอ้างอิงเพิ่มเติมจากเอกสาร/บทเรียน (RAG Context):
