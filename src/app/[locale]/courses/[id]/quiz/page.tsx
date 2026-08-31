@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import QuizClient from "./QuizClient";
+import { getOptionalSession } from "@/lib/authOptional";
 
 export default async function QuizPage({
   params,
@@ -29,6 +30,9 @@ export default async function QuizPage({
     }
   });
 
+  const session = await getOptionalSession();
+  const isGuest = !(session && session.user);
+
   if (!quiz || quiz.questions.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -38,8 +42,16 @@ export default async function QuizPage({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <QuizClient quiz={quiz as any} courseId={id} />
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
+      <div>
+        {isGuest && (
+          <div className="bg-amber-100 border border-amber-300 text-amber-800 p-3 text-center mb-4 rounded max-w-3xl mx-auto mt-4">
+            คุณกำลังใช้โหมดผู้เยี่ยมชม (Guest) – กรุณาเข้าสู่ระบบเพื่อทำและส่งแบบทดสอบนี้
+            <a href="/login" className="ml-2 underline font-medium">เข้าสู่ระบบ</a>
+          </div>
+        )}
+        <QuizClient quiz={quiz as any} courseId={id} isGuest={isGuest} />
+      </div>
     </div>
   );
 }
