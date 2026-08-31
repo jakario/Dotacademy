@@ -39,6 +39,7 @@ interface Course {
 
 interface CourseDetailClientProps {
   course: Course;
+  isGuest?: boolean;
 }
 
 // Helper to extract YouTube Video ID

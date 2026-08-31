@@ -8,7 +8,7 @@ type Option = { id: string; text: string };
 type Question = { id: string; text: string; options: Option[] };
 type Quiz = { id: string; title: string; questions: Question[] };
 
-export default function QuizClient({ quiz, courseId }: { quiz: Quiz, courseId: string }) {
+export default function QuizClient({ quiz, courseId, isGuest }: { quiz: Quiz, courseId: string, isGuest?: boolean }) {
   const router = useRouter();
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -132,13 +132,22 @@ export default function QuizClient({ quiz, courseId }: { quiz: Quiz, courseId: s
         ))}
       </div>
       <div className="mt-8 flex justify-end">
-        <button
-          onClick={handleSubmit}
-          disabled={isSubmitting}
-          className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl shadow-md hover:bg-blue-700 disabled:opacity-50 transition-all"
-        >
-          {isSubmitting ? "กำลังส่งคำตอบ..." : "ส่งคำตอบ"}
-        </button>
+        {isGuest ? (
+          <Link
+            href="/login"
+            className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl shadow-md transition-all text-center"
+          >
+            เข้าสู่ระบบเพื่อส่งคำตอบ
+          </Link>
+        ) : (
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl shadow-md hover:bg-blue-700 disabled:opacity-50 transition-all"
+          >
+            {isSubmitting ? "กำลังส่งคำตอบ..." : "ส่งคำตอบ"}
+          </button>
+        )}
       </div>
     </div>
   );
