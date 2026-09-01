@@ -100,7 +100,7 @@ export default async function HomePage() {
         ) : (
           <div className="pt-8 w-full">
             {/* Course Academy — Hero Card */}
-            <Link href="/courses" className="mb-8 block p-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl shadow-lg border border-blue-400 hover:shadow-xl hover:-translate-y-1 transition-all text-left group w-full">
+            <Link href="/courses" className="mb-8 block p-8 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl shadow-lg border border-blue-300 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-left group w-full">
               <div className="flex items-center gap-6">
                 <div className="text-6xl group-hover:scale-110 transition-transform bg-white/20 p-4 rounded-xl">{s.course_academy_icon}</div>
                 <div>
