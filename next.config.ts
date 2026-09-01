@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://academy.dot.go.th", // Restrict from wildcard to specific domain
+            value: "https://knowledge.dot.go.th", // Restrict from wildcard to specific domain
           },
           {
             key: "Referrer-Policy",
