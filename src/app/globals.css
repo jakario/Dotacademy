@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffdf7;
+  --foreground: #111827;
 }
 
 @theme inline {
@@ -22,6 +22,13 @@
   --color-blue-700: #0369a1;
   --color-blue-800: #075985;
   --color-blue-900: #0c4a6e;
+
+  /* ilovecreatives vibe: Solid sharp shadows (Neo-brutalism) */
+  --shadow-sm: 2px 2px 0px rgba(17, 24, 39, 1);
+  --shadow: 4px 4px 0px rgba(17, 24, 39, 1);
+  --shadow-md: 6px 6px 0px rgba(17, 24, 39, 1);
+  --shadow-lg: 8px 8px 0px rgba(17, 24, 39, 1);
+  --shadow-xl: 12px 12px 0px rgba(17, 24, 39, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,9 +38,23 @@
   }
 }
 
+html {
+  /* เพิ่มขนาด font เริ่มต้น (1rem จะใหญ่ขึ้น) ทำให้ทั้งเว็บอ่านง่ายและดูโดดเด่นขึ้น */
+  font-size: 110%; 
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  /* เพิ่มลายจุด (Dot grid) บางๆ พื้นหลังให้ดู Creative มากขึ้น */
+  background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+  background-size: 24px 24px;
 }
+
+/* เพิ่มเส้นขอบหนาๆ ให้กับการ์ดและปุ่มที่มีเงาหลักๆ เพื่อให้ได้ฟีลลิ่ง ilovecreatives มากขึ้น */
+.shadow-md, .shadow-lg, .shadow-xl {
+  border: 2px solid #111827 !important;
+}
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
