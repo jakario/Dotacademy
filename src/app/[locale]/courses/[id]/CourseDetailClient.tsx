@@ -167,9 +167,9 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
   const remainingQuizzes = totalQuizzes - passedQuizzes;
 
   return (
-    <div id="main-content" className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans">
+    <div id="main-content" className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       {/* Premium Header */}
-      <header className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-20">
+      <header className="bg-slate-50/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">
@@ -181,7 +181,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
               </h1>
             </div>
           </div>
-          <Link href="/courses" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
+          <Link href="/courses" className="text-sm font-semibold text-slate-600 hover:text-white transition-colors flex items-center gap-1.5">
             &larr; กลับหน้ารวม
           </Link>
         </div>
@@ -204,15 +204,15 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
         
         {/* Sidebar / Menu */}
         <aside className="w-full lg:w-1/3 flex-shrink-0">
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden sticky top-24 shadow-xl">
+          <div className="bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200/50 overflow-hidden sticky top-24 shadow-xl">
             
             {/* Progress Section */}
-            <div className="p-6 bg-slate-800/80 border-b border-slate-700/50">
-              <h2 className="text-base font-bold text-slate-200 mb-3">ความคืบหน้าการเรียน</h2>
+            <div className="p-6 bg-white/80 border-b border-slate-200/50">
+              <h2 className="text-base font-bold text-slate-800 mb-3">ความคืบหน้าการเรียน</h2>
               
               {totalVideos > 0 ? (
                 <div>
-                  <div className="flex justify-between text-xs text-slate-400 mb-1.5 font-medium">
+                  <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-medium">
                     <span>ดูวิดีโอประกอบบทเรียน</span>
                     <span className="text-blue-400 font-bold">{completedVideos} / {totalVideos} คลิป ({totalVideos > 0 ? Math.round((completedVideos / totalVideos) * 100) : 0}%)</span>
                   </div>
@@ -222,7 +222,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                     aria-valuemin={0}
                     aria-valuemax={100}
                     aria-label={`ความคืบหน้าการดูวิดีโอ ${completedVideos} จาก ${totalVideos} คลิป`}
-                    className="w-full h-2 bg-slate-700 rounded-full overflow-hidden"
+                    className="w-full h-2 bg-slate-100 rounded-full overflow-hidden"
                   >
                     <div 
                       className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-500 ease-out"
@@ -231,15 +231,15 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                   </div>
                 </div>
               ) : (
-                <p className="text-xs text-slate-400">หลักสูตรนี้เป็นเนื้อหาประเภทเอกสารอ่าน</p>
+                <p className="text-xs text-slate-600">หลักสูตรนี้เป็นเนื้อหาประเภทเอกสารอ่าน</p>
               )}
             </div>
 
             {/* Quiz Progress Section */}
             {totalQuizzes > 0 && (
-              <div className="p-6 bg-slate-800/80 border-b border-slate-700/50">
-                <h2 className="text-base font-bold text-slate-200 mb-3">ผลการทดสอบ</h2>
-                <div className="flex justify-between text-xs text-slate-400 mb-1.5 font-medium">
+              <div className="p-6 bg-white/80 border-b border-slate-200/50">
+                <h2 className="text-base font-bold text-slate-800 mb-3">ผลการทดสอบ</h2>
+                <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-medium">
                   <span>ทำแบบทดสอบผ่านแล้ว</span>
                   <span className="text-emerald-400 font-bold">{passedQuizzes} / {totalQuizzes} บท</span>
                 </div>
@@ -252,7 +252,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                   aria-valuemin={0}
                   aria-valuemax={100}
                   aria-label={`ความคืบหน้าการทดสอบ ผ่านแล้ว ${passedQuizzes} จาก ${totalQuizzes} บท`}
-                  className="w-full h-2 bg-slate-700 rounded-full overflow-hidden"
+                  className="w-full h-2 bg-slate-100 rounded-full overflow-hidden"
                 >
                   <div 
                     className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500 ease-out"
@@ -274,7 +274,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                       className={`w-full flex items-center justify-between p-3 rounded-xl text-sm font-semibold transition-all ${
                         isActive 
                           ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/20' 
-                          : 'text-slate-300 hover:bg-slate-700/40 hover:text-white'
+                          : 'text-slate-700 hover:bg-slate-100/40 hover:text-white'
                       }`}
                     >
                       <span className="truncate">ตอนที่ {sIdx + 1}: {section.title}</span>
@@ -282,7 +282,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                     </Link>
 
                     {isActive && (
-                      <ul className="space-y-1 pl-3 mt-1.5 border-l border-slate-700">
+                      <ul className="space-y-1 pl-3 mt-1.5 border-l border-slate-200">
                         {section.resources.map((res) => {
                           const isCompleted = completedResources.includes(res.id);
                           const isVideo = res.type === 'VIDEO';
@@ -291,7 +291,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                             <li key={res.id}>
                               <a 
                                 href={`#resource-${res.id}`} 
-                                className="group flex items-center justify-between p-2 rounded-lg text-xs text-slate-400 hover:text-white transition-all"
+                                className="group flex items-center justify-between p-2 rounded-lg text-xs text-slate-600 hover:text-white transition-all"
                               >
                                 <div className="flex items-center gap-2 truncate pr-2">
                                   <span className="flex-shrink-0">
@@ -326,7 +326,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                                           e.stopPropagation();
                                           markAsCompleted(res.id);
                                         }}
-                                        className="px-1.5 py-0.5 text-[8px] bg-slate-700 hover:bg-blue-600 rounded text-slate-300 hover:text-white transition-colors"
+                                        className="px-1.5 py-0.5 text-[8px] bg-slate-100 hover:bg-blue-600 rounded text-slate-700 hover:text-white transition-colors"
                                       >
                                         อ่านแล้ว
                                       </button>
@@ -350,7 +350,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
         <main className="w-full lg:w-2/3 space-y-10">
           {activeSection ? (
             <div className="space-y-6">
-              <h2 className="text-2xl font-black text-slate-200 border-b border-slate-800 pb-3">
+              <h2 className="text-2xl font-black text-slate-800 border-b border-slate-200 pb-3">
                 ตอนที่ {course.sections.indexOf(activeSection) + 1}: {activeSection.title}
               </h2>
               
@@ -363,10 +363,10 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                   <div 
                     id={`resource-${res.id}`} 
                     key={res.id} 
-                    className="bg-slate-800/30 rounded-2xl border border-slate-700/40 p-6 sm:p-8 scroll-mt-24 shadow-sm hover:border-slate-700 transition-colors"
+                    className="bg-white/30 rounded-2xl border border-slate-200/40 p-6 sm:p-8 scroll-mt-24 shadow-sm hover:border-slate-200 transition-colors"
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-800">
-                      <h3 className="text-xl font-bold text-slate-100 flex items-center gap-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-200">
+                      <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
                         {isVideo ? (
                           <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
                         ) : (
@@ -398,20 +398,20 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                     </div>
 
                     {res.type === 'TEXT' && (
-                      <div className="prose prose-invert prose-slate max-w-none text-slate-300 whitespace-pre-wrap leading-relaxed font-sans">
+                      <div className="prose prose-invert prose-slate max-w-none text-slate-700 whitespace-pre-wrap leading-relaxed font-sans">
                         {res.content}
                       </div>
                     )}
 
                     {res.type === 'PDF' && res.content && (
-                      <div className="bg-slate-900/60 p-6 rounded-xl border border-slate-700/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div className="bg-slate-50/60 p-6 rounded-xl border border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center text-xl font-bold flex-shrink-0">
                             PDF
                           </div>
                           <div>
-                            <h4 className="font-bold text-slate-200">{res.title}</h4>
-                            <p className="text-xs text-slate-400 mt-0.5">เอกสารประกอบการเรียนรู้ (คลิกปุ่มเพื่อเปิดอ่านหรือดาวน์โหลด)</p>
+                            <h4 className="font-bold text-slate-800">{res.title}</h4>
+                            <p className="text-xs text-slate-600 mt-0.5">เอกสารประกอบการเรียนรู้ (คลิกปุ่มเพื่อเปิดอ่านหรือดาวน์โหลด)</p>
                           </div>
                         </div>
                         <a
@@ -431,7 +431,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                     )}
                     
                     {isVideo && res.content && (
-                      <div className="aspect-w-16 aspect-h-9 w-full bg-slate-950 rounded-xl overflow-hidden shadow-inner border border-slate-800">
+                      <div className="aspect-w-16 aspect-h-9 w-full bg-slate-950 rounded-xl overflow-hidden shadow-inner border border-slate-200">
                         {videoId ? (
                           <YouTubePlayer 
                             videoId={videoId} 
@@ -440,7 +440,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                           />
                         ) : (
                           <div className="flex flex-col items-center justify-center p-8 text-center h-[300px]">
-                            <p className="text-sm text-slate-400 mb-4">ไม่พบลิงก์วิดีโอในระบบหรือฟอร์แมตไม่ถูกต้อง</p>
+                            <p className="text-sm text-slate-600 mb-4">ไม่พบลิงก์วิดีโอในระบบหรือฟอร์แมตไม่ถูกต้อง</p>
                             <a 
                               href={res.content} 
                               target="_blank" 
@@ -460,9 +460,9 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
 
               {/* Section Quiz at the bottom of section content */}
               {activeSection.quiz && loaded && (
-                <div className="bg-slate-800/20 border border-slate-800 rounded-2xl p-6 text-center space-y-3 mt-6">
-                  <h4 className="font-bold text-slate-300">เรียนรู้เนื้อหาของบทนี้ครบถ้วนแล้ว?</h4>
-                  <p className="text-xs text-slate-400">กรุณาทำแบบทดสอบท้ายบทเพื่อประเมินผลสัมฤทธิ์ของบทเรียนนี้</p>
+                <div className="bg-white/20 border border-slate-200 rounded-2xl p-6 text-center space-y-3 mt-6">
+                  <h4 className="font-bold text-slate-700">เรียนรู้เนื้อหาของบทนี้ครบถ้วนแล้ว?</h4>
+                  <p className="text-xs text-slate-600">กรุณาทำแบบทดสอบท้ายบทเพื่อประเมินผลสัมฤทธิ์ของบทเรียนนี้</p>
                   
                   {(() => {
                     const sectionVideos = activeSection.resources.filter(r => r.type === 'VIDEO');
@@ -479,14 +479,14 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                         )}
                         <Link
                           href={`/courses/${course.id}/quiz?sectionId=${activeSection.id}`}
-                          className={`inline-block py-2.5 px-6 font-bold rounded-xl text-sm transition-all shadow-lg hover:-translate-y-0.5 ${isQuizPassed ? 'bg-slate-700 hover:bg-slate-600 text-white shadow-slate-900/50' : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-blue-500/10'}`}
+                          className={`inline-block py-2.5 px-6 font-bold rounded-xl text-sm transition-all shadow-lg hover:-translate-y-0.5 ${isQuizPassed ? 'bg-slate-100 hover:bg-slate-200 text-white shadow-slate-900/50' : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-blue-500/10'}`}
                         >
                           {isQuizPassed ? 'ทำแบบทดสอบอีกครั้ง' : `ทำแบบทดสอบ: ${activeSection.quiz.title}`}
                         </Link>
                       </div>
                     ) : (
                       <div className="inline-flex flex-col items-center gap-2">
-                        <span className="py-2 px-5 bg-slate-800 border border-slate-700 text-slate-500 font-bold rounded-xl text-xs cursor-not-allowed">
+                        <span className="py-2 px-5 bg-white border border-slate-200 text-slate-500 font-bold rounded-xl text-xs cursor-not-allowed">
                           🔒 แบบทดสอบท้ายบท (ล็อกอยู่ - กรุณาชมวิดีโอให้จบก่อน)
                         </span>
                         <button
@@ -524,8 +524,8 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
               )}
             </div>
           ) : (
-            <div className="bg-slate-800/30 rounded-2xl border border-slate-700/40 p-8 text-center">
-              <p className="text-slate-400 text-sm">ไม่พบหัวข้อการเรียนรู้นี้</p>
+            <div className="bg-white/30 rounded-2xl border border-slate-200/40 p-8 text-center">
+              <p className="text-slate-600 text-sm">ไม่พบหัวข้อการเรียนรู้นี้</p>
             </div>
           )}
         </main>
@@ -534,10 +534,10 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
       {/* Reward Winner Modal */}
       {wonReward && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-amber-500/40 rounded-3xl shadow-2xl p-8 sm:p-12 text-center max-w-lg w-full relative animate-in zoom-in-95 duration-300">
+          <div className="bg-slate-50 border border-amber-500/40 rounded-3xl shadow-2xl p-8 sm:p-12 text-center max-w-lg w-full relative animate-in zoom-in-95 duration-300">
             <button 
               onClick={() => setWonReward(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+              className="absolute top-4 right-4 text-slate-600 hover:text-white transition-colors"
               aria-label="ปิดหน้าต่างแสดงความยินดี"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
