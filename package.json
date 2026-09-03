@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^0.0.55",
-    "@ai-sdk/groq": "^4.0.37",
     "@ai-sdk/openai": "^0.0.72",
     "@ai-sdk/react": "^4.0.30",
     "@next-auth/prisma-adapter": "^1.0.7",
