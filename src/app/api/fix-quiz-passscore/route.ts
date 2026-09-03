@@ -9,7 +9,7 @@ export async function GET() {
       select: {
         id: true, passScore: true,
         section: { select: { title: true, order: true } },
-        questions: { select: { id: true, question: true }, orderBy: { order: 'asc' } }
+        questions: { select: { id: true, question: true }, orderBy: { id: 'asc' } }
       },
       orderBy: { section: { order: 'asc' } }
     });
