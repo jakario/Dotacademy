@@ -136,9 +136,9 @@ ${contextText ? `ข้อมูลอ้างอิงเพิ่มเติ
 4. หากเป็นคำถามเฉพาะงานที่ไม่มีในระบบ แนะนำให้ส่งคำถามตรงผ่านเมนู Cross-Dept Q&A
     `;
 
-    // 5. Generate and stream the response using Groq
+    // 5. Generate and stream the response using Groq (Qwen 3.6 27B)
     const result = await streamText({
-      model: groq('openai/gpt-oss-120b'),
+      model: groq('qwen/qwen3.6-27b'),
       system: systemPrompt,
       messages: messages,
     });
