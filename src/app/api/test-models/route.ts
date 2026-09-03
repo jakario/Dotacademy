@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const models = ['openai/gpt-oss-20b', 'qwen/qwen3.8-27b', 'openai/gpt-oss-120b'];
+  const models = ['qwen/qwen3.6-27b', 'groq/compound-mini', 'groq/compound', 'allam-2-7b'];
   const results: any = {};
 
   for (const model of models) {
@@ -14,8 +14,8 @@ export async function GET() {
         },
         body: JSON.stringify({
           model,
-          messages: [{ role: 'user', content: 'ตอบสั้นๆ: สวัสดี' }],
-          max_tokens: 30
+          messages: [{ role: 'user', content: 'สวัสดี' }],
+          max_tokens: 10
         })
       });
       const data = await res.json();
