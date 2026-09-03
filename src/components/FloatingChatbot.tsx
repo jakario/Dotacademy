@@ -69,19 +69,36 @@ export default function FloatingChatbot() {
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
-          {messages.map(m => (
-            <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[85%] rounded-2xl px-4 py-2 shadow-sm text-sm ${
-                m.role === 'user' 
-                  ? 'bg-blue-600 text-white rounded-tr-sm' 
-                  : 'bg-white border border-slate-200 text-slate-700 rounded-tl-sm'
-              }`}>
-                <div className="prose prose-sm prose-p:leading-relaxed max-w-none whitespace-pre-wrap break-words" style={{ color: 'inherit' }}>
-                  {m.content}
+          {messages.map(m => {
+            const cleanContent = m.role === 'assistant' 
+              ? m.content.replace(/<think>[\s\S]*?(?:<\/think>|$)/g, '').trim()
+              : m.content;
+
+            if (!cleanContent && m.role === 'assistant') {
+              return (
+                <div key={m.id} className="flex justify-start">
+                  <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-sm px-4 py-2 shadow-sm text-xs text-slate-500 flex items-center gap-2 italic">
+                    <span className="inline-block w-2.5 h-2.5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                    Mr. Wick กำลังเรียบเรียงคำตอบ...
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[85%] rounded-2xl px-4 py-2 shadow-sm text-sm ${
+                  m.role === 'user' 
+                    ? 'bg-blue-600 text-white rounded-tr-sm' 
+                    : 'bg-white border border-slate-200 text-slate-700 rounded-tl-sm'
+                }`}>
+                  <div className="prose prose-sm prose-p:leading-relaxed max-w-none whitespace-pre-wrap break-words" style={{ color: 'inherit' }}>
+                    {cleanContent}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
           {isLoading && (
             <div className="flex justify-start">
               <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm flex items-center gap-2">
