@@ -1,29 +1,28 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const models = ['qwen/qwen3.6-27b', 'groq/compound-mini', 'groq/compound', 'allam-2-7b'];
-  const results: any = {};
-
-  for (const model of models) {
-    try {
-      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          messages: [{ role: 'user', content: 'สวัสดี' }],
-          max_tokens: 10
-        })
-      });
-      const data = await res.json();
-      results[model] = data.choices ? data.choices[0]?.message?.content : data.error?.message;
-    } catch (e: any) {
-      results[model] = e.message;
-    }
+  try {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'qwen/qwen3.6-27b',
+        messages: [
+          { role: 'system', content: 'คุณคือผู้ช่วย AI ชื่อ Mr. Wick ของกรมการท่องเที่ยว ให้ข้อมูลมาตรฐานแหล่งท่องเที่ยวอย่างสุภาพ' },
+          { role: 'user', content: 'มีคู่มือมาตรฐานแหล่งท่องเที่ยวเชิงนิเวศไหม และมีเกณฑ์สำคัญอย่างไร' }
+        ],
+        max_tokens: 300
+      })
+    });
+    const data = await res.json();
+    return NextResponse.json({ 
+      success: true, 
+      answer: data.choices ? data.choices[0]?.message?.content : data.error 
+    });
+  } catch (e: any) {
+    return NextResponse.json({ success: false, error: e.message });
   }
-
-  return NextResponse.json({ results });
 }
