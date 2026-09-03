@@ -137,18 +137,12 @@ ${contextText ? `ข้อมูลอ้างอิงเพิ่มเติ
 - จัดข้อความให้อ่านง่าย เว้นบรรทัดสะอาดตา
     `;
 
-    // 5. Generate and stream the response using Groq (Qwen 3.6 with hidden reasoning)
+    // 5. Generate and stream the response using Groq (GPT-OSS 120B - Direct conversational model, zero thinking tags)
     const result = await streamText({
-      model: groq('qwen/qwen3.6-27b'),
+      model: groq('openai/gpt-oss-120b'),
       system: systemPrompt,
       messages: messages.slice(-5),
       maxTokens: 800,
-      providerOptions: {
-        groq: {
-          reasoningFormat: 'hidden',
-          reasoningEffort: 'none',
-        },
-      },
     });
 
     return result.toDataStreamResponse();
