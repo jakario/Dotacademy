@@ -5,11 +5,10 @@ import { checkRateLimit } from "@/lib/rateLimit";
 import { prisma } from '@/lib/prisma';
 import { embed, streamText, Message } from 'ai';
 import { google } from '@ai-sdk/google';
-import { createOpenAI } from '@ai-sdk/openai';
+import { createGroq } from '@ai-sdk/groq';
 
-// Initialize Groq provider using OpenAI SDK wrapper
-const groq = createOpenAI({
-  baseURL: 'https://api.groq.com/openai/v1',
+// Initialize native Groq provider
+const groq = createGroq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
@@ -125,23 +124,31 @@ ${docsText || 'สามารถดูได้ที่คลังควา�
    - เชิงสุขภาพ (น้ำพุร้อนธรรมชาติ): คุณภาพน้ำ มาตรฐานความปลอดภัย และสุขลักษณะ
    - นันทนาการและศิลปะวิทยาการ: ความปลอดภัยและกิจกรรมเสริมการเรียนรู้
    - เชิงสร้างสรรค์ (Creative Tourism): ประสบการณ์ตรงที่นักท่องเที่ยวได้ลงมือปฏิบัติจริง (Hands-on) ร่วมกับชุมชน
-2. เกณฑ์การประเมินมาตรฐานความยั่งยืน 4 มิติ:
-   - การบริหารจัดการอย่างยั่งยืน, เศรษฐกิจ-สังคมชุมชน, วัฒนธรรมมรดกท้องถิ่น, สิ่งแวดล้อม (Carrying Capacity และ Universal Design)
+2. เกณฑ์การประเมินมาตรฐานความยั่งยืน 4 มิติ (สรุปกระชับ):
+   - มิติที่ 1 ด้านการบริหารจัดการอย่างยั่งยืน: โครงสร้างการบริหาร แผนพัฒนา และการติดตามประเมินผล
+   - มิติที่ 2 ด้านเศรษฐกิจและสังคม: การกระจายรายได้สู่ชุมชน และการมีส่วนร่วมของคนในท้องถิ่น
+   - มิติที่ 3 ด้านวัฒนธรรมและมรดกท้องถิ่น: การอนุรักษ์วิถีชีวิต ภูมิปัญญา และอัตลักษณ์ท้องถิ่น
+   - มิติที่ 4 ด้านสิ่งแวดล้อม: การอนุรักษ์ทรัพยากรธรรมชาติ ควบคุม Carrying Capacity และจัดทำสิ่งอำนวยความสะดวกตามหลัก Universal Design
 
 ${contextText ? `ข้อมูลอ้างอิงเพิ่มเติม:\n${contextText}\n` : ''}
 แนวทางการตอบ:
-1. หากผู้ใช้ถามเรื่องข้อสอบ ให้แนะนำเกณฑ์ผ่านและเนื้อหาแบบทดสอบ
-2. หากผู้ใช้ถามเกี่ยวกับ "มาตรฐานคุณภาพแหล่งท่องเที่ยว", "เกณฑ์การประเมิน", "การท่องเที่ยวเชิงนิเวศ/สร้างสรรค์" หรือ "คู่มือกองแหล่ง" ให้อธิบายหลักเกณฑ์สำคัญตาม 4 มิติ และประเภทของแหล่งท่องเที่ยว พร้อมทั้งระบุชื่อคู่มือที่เกี่ยวข้อง และแนะนำว่าสามารถดาวน์โหลดฉบับเต็มได้ที่เมนู "คลังความรู้ (KM Library)" หรือในบทเรียนหลักสูตรเอกสารความรู้ครับ
-3. หากคำถามเป็นเรื่องทั่วไปเกี่ยวกับการท่องเที่ยว สามารถตอบจากความรู้พื้นฐานได้
-4. หากเป็นคำถามเฉพาะงานที่ไม่มีในระบบ แนะนำให้ส่งคำถามตรงผ่านเมนู Cross-Dept Q&A
+- ตอบเป็นภาษาไทยทันที สั้น กระชับ สุภาพ ตรงประเด็น ไม่ต้องเกริ่นนำยืดยาว
+- หากถามเรื่อง "เกณฑ์การประเมิน 4 มิติ" ให้ตอบสรุป 4 ข้อย่อยสั้นๆ พร้อมแนะนำชื่อคู่มือและบอกว่าดาวน์โหลดฉบับเต็มได้ที่เมนู "คลังความรู้ (KM Library)" หรือหน้าบทเรียน
+- จัดข้อความให้อ่านง่าย เว้นบรรทัดสะอาดตา
     `;
 
-    // 5. Generate and stream the response using Groq (Qwen 3.6 27B)
+    // 5. Generate and stream the response using Groq (Qwen 3.6 with hidden reasoning)
     const result = await streamText({
       model: groq('qwen/qwen3.6-27b'),
       system: systemPrompt,
       messages: messages.slice(-5),
-      maxTokens: 1000,
+      maxTokens: 800,
+      providerOptions: {
+        groq: {
+          reasoningFormat: 'hidden',
+          reasoningEffort: 'none',
+        },
+      },
     });
 
     return result.toDataStreamResponse();
