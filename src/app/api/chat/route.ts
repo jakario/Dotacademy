@@ -136,9 +136,9 @@ ${contextText ? `ข้อมูลอ้างอิงเพิ่มเติ
 4. หากเป็นคำถามเฉพาะงานที่ไม่มีในระบบ แนะนำให้ส่งคำถามตรงผ่านเมนู Cross-Dept Q&A
     `;
 
-    // 5. Generate and stream the response using Groq (Llama 3.3 70B)
+    // 5. Generate and stream the response using Groq
     const result = await streamText({
-      model: groq('llama-3.3-70b-versatile'),
+      model: groq('openai/gpt-oss-120b'),
       system: systemPrompt,
       messages: messages,
     });
