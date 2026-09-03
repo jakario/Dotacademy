@@ -5,10 +5,11 @@ import { checkRateLimit } from "@/lib/rateLimit";
 import { prisma } from '@/lib/prisma';
 import { embed, streamText, Message } from 'ai';
 import { google } from '@ai-sdk/google';
-import { createGroq } from '@ai-sdk/groq';
+import { createOpenAI } from '@ai-sdk/openai';
 
-// Initialize native Groq provider
-const groq = createGroq({
+// Initialize Groq provider using OpenAI SDK wrapper
+const groq = createOpenAI({
+  baseURL: 'https://api.groq.com/openai/v1',
   apiKey: process.env.GROQ_API_KEY,
 });
 
