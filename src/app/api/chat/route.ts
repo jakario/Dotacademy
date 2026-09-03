@@ -58,93 +58,87 @@ export async function POST(req: Request) {
       // Fallback: Continue without RAG context
     }
 
-    // Fetch all published courses to always provide general course information
+    // Fetch top published courses
     const availableCourses = await prisma.course.findMany({
       where: { isPublished: true },
-      select: { title: true, description: true },
-      take: 50
+      select: { title: true },
+      take: 10
     });
-    const coursesText = availableCourses.map(c => `- ${c.title}: ${c.description || 'ไม่มีคำอธิบาย'}`).join('\n');
+    const coursesText = availableCourses.map(c => `- ${c.title}`).join('\n');
 
-    // Fetch Quizzes to provide exam information
+    // Fetch top Quizzes
     const availableQuizzes = await prisma.quiz.findMany({
       select: { title: true, passScore: true, section: { select: { course: { select: { title: true } } } } },
-      take: 50
+      take: 10
     });
-    const quizzesText = availableQuizzes.map(q => `- บททดสอบ: "${q.title}" (ในหลักสูตร: ${q.section?.course?.title}) ต้องผ่านที่คะแนน ${q.passScore}%`).join('\n');
+    const quizzesText = availableQuizzes.map(q => `- ${q.title} (${q.section?.course?.title}): ผ่านเกณฑ์ ${q.passScore}%`).join('\n');
 
-    // Fetch FAQs for Knowledge Hub Integration
+    // Fetch FAQs
     const availableFaqs = await prisma.fAQ.findMany({
       include: { department: { select: { name: true } } },
-      take: 50
+      take: 8
     });
-    const faqsText = availableFaqs.map(f => `- Q: ${f.question} (ตอบโดย ${f.department?.name || 'ทั่วไป'})\n  A: ${f.answer}`).join('\n\n');
+    const faqsText = availableFaqs.map(f => `- Q: ${f.question}\n  A: ${f.answer?.substring(0, 150)}`).join('\n');
 
-    // Fetch Departments for Knowledge Hub Integration
+    // Fetch Departments
     const availableDepartments = await prisma.department.findMany({
-      select: { name: true, description: true, duties: true },
-      take: 50
+      select: { name: true, description: true },
+      take: 8
     });
-    const deptsText = availableDepartments.map(d => `- หน่วยงาน: ${d.name}\n  ภารกิจ: ${d.description || 'ไม่มี'}\n  อำนาจหน้าที่:\n${d.duties || 'ไม่มีข้อมูลระบุ'}`).join('\n\n');
+    const deptsText = availableDepartments.map(d => `- ${d.name}: ${d.description || 'หน่วยงานในสังกัดกรมการท่องเที่ยว'}`).join('\n');
 
-    // Fetch KM Documents / Standards Manuals for Knowledge Hub Integration
+    // Fetch KM Documents / Standards Manuals (Tourism Standards)
     const availableDocs = await prisma.document.findMany({
-      select: { title: true, category: true, url: true },
-      take: 100
+      select: { title: true, url: true },
+      take: 25
     });
-    const docsText = availableDocs.map(d => `- [${d.category}] ${d.title} (ดาวน์โหลดได้ที่: ${d.url})`).join('\n');
+    const docsText = availableDocs.map(d => `- ${d.title} (ดาวน์โหลด: ${d.url})`).join('\n');
 
     // 3. Prepare the context from similar resources
-    const contextText = similarResources.map(r => `Title: ${r.title}\nContent: ${r.content?.substring(0, 1000)}`).join('\n\n');
+    const contextText = similarResources.map(r => `Title: ${r.title}\nContent: ${r.content?.substring(0, 500)}`).join('\n\n');
 
     // 4. Create the system prompt
-    const systemPrompt = `คุณคือผู้ช่วย AI ชื่อ Mr. Wick สำหรับ DOT Knowledge & Learning Hub ของกรมการท่องเที่ยว
-คุณมีหน้าที่ตอบคำถามอย่างสุภาพ ชัดเจน และอิงจากข้อมูลที่มีอยู่ในระบบเท่านั้น หากไม่รู้หรือไม่แน่ใจให้ตอบว่าไม่ทราบ
+    const systemPrompt = `คุณคือผู้ช่วย AI ชื่อ Mr. Wick ประจำระบบ DOT Knowledge & Learning Hub ของกรมการท่องเที่ยว
+ตอบคำถามอย่างกระชับ สุภาพ ชัดเจน และเป็นมิตร อ้างอิงข้อมูลของกรมการท่องเที่ยว
 
-ข้อมูลหลักสูตรทั้งหมดที่มีในระบบ:
+ข้อมูลหลักสูตรในระบบ:
 ${coursesText}
 
-ข้อมูลหน่วยงานและอำนาจหน้าที่ในกรมการท่องเที่ยว:
+ข้อมูลหน่วยงานในกรมการท่องเที่ยว:
 ${deptsText}
 
-ข้อมูลแบบทดสอบทั้งหมดที่มีในระบบ:
+ข้อมูลแบบทดสอบ:
 ${quizzesText}
 
 ข้อมูลคำถามที่พบบ่อย (FAQ):
-${faqsText || 'ยังไม่มีคำถาม-ตอบในระบบ'}
+${faqsText || 'ไม่มีคำถามพบบ่อย'}
 
-ข้อมูลเอกสารคู่มือมาตรฐานคุณภาพแหล่งท่องเที่ยวและคลังความรู้ (KM Library):
-${docsText || 'ยังไม่มีเอกสารในระบบ'}
+คู่มือมาตรฐานคุณภาพแหล่งท่องเที่ยว (KM Library):
+${docsText || 'สามารถดูได้ที่คลังความรู้ KM Library'}
 
 ความรู้เฉพาะทางด้านมาตรฐานคุณภาพแหล่งท่องเที่ยว (กองพัฒนาแหล่งท่องเที่ยว กรมการท่องเที่ยว):
-1. มาตรฐานคุณภาพแหล่งท่องเที่ยว แบ่งตามประเภทหลัก:
-   - แหล่งท่องเที่ยวเชิงนิเวศ (Eco-tourism): เน้นการอนุรักษ์ระบบนิเวศ ความหลากหลายทางชีวภาพ การมีส่วนร่วมของชุมชนท้องถิ่น และการให้ความรู้ด้านการอนุรักษ์
-   - แหล่งท่องเที่ยวทางธรรมชาติ: ครอบคลุม ธรณีสัณฐาน, น้ำตก, ถ้ำ, แก่ง, เกาะ, ชายหาด เน้นความปลอดภัย การจัดการสิ่งแวดล้อม และการรักษาสภาพธรรมชาติ
-   - แหล่งท่องเที่ยวทางประวัติศาสตร์และวัฒนธรรม: เน้นคุณค่าทางโบราณคดี ความถูกต้องทางประวัติศาสตร์ การอนุรักษ์ และการบริหารจัดการท่องเที่ยวที่ไม่ทำลายมรดก
-   - แหล่งท่องเที่ยวเชิงเกษตร: วิถีเกษตรปลอดภัย การเรียนรู้ การแปรรูปผลิตภัณฑ์ และสุขอนามัย
-   - แหล่งท่องเที่ยวเชิงสุขภาพ (น้ำพุร้อนธรรมชาติ): คุณภาพน้ำ มาตรฐานความปลอดภัย สุขลักษณะ และบริการที่ส่งเสริมสุขภาพ
-   - แหล่งท่องเที่ยวประเภทนันทนาการและศิลปะวิทยาการ: ความปลอดภัย กิจกรรมเสริมการเรียนรู้
-   - แหล่งท่องเที่ยวเชิงสร้างสรรค์ (Creative Tourism): เน้นประสบการณ์ตรงที่นักท่องเที่ยวได้ลงมือปฏิบัติ (Hands-on Experience) ร่วมกับเจ้าของวัฒนธรรม
+1. ประเภทมาตรฐานคุณภาพแหล่งท่องเที่ยว:
+   - เชิงนิเวศ (Eco-tourism): การอนุรักษ์ระบบนิเวศ ความหลากหลายทางชีวภาพ การมีส่วนร่วมของชุมชนท้องถิ่น และการให้ความรู้ด้านการอนุรักษ์
+   - ทางธรรมชาติ: ธรณีสัณฐาน, น้ำตก, ถ้ำ, แก่ง, เกาะ, ชายหาด เน้นความปลอดภัย การจัดการสิ่งแวดล้อม และการรักษาสภาพธรรมชาติ
+   - ทางประวัติศาสตร์และวัฒนธรรม: คุณค่าทางโบราณคดี ความถูกต้องทางประวัติศาสตร์ และการท่องเที่ยวที่ไม่ทำลายมรดก
+   - เชิงเกษตร: วิถีเกษตรปลอดภัย การเรียนรู้ การแปรรูปผลิตภัณฑ์
+   - เชิงสุขภาพ (น้ำพุร้อนธรรมชาติ): คุณภาพน้ำ มาตรฐานความปลอดภัย และสุขลักษณะ
+   - นันทนาการและศิลปะวิทยาการ: ความปลอดภัยและกิจกรรมเสริมการเรียนรู้
+   - เชิงสร้างสรรค์ (Creative Tourism): ประสบการณ์ตรงที่นักท่องเที่ยวได้ลงมือปฏิบัติจริง (Hands-on) ร่วมกับชุมชน
 2. เกณฑ์การประเมินมาตรฐานความยั่งยืน 4 มิติ:
-   - ด้านการบริหารจัดการอย่างยั่งยืน (Sustainable Management)
-   - ด้านเศรษฐกิจและสังคมที่ชุมชนได้รับประโยชน์ (Socio-Economic Benefits)
-   - ด้านวัฒนธรรมและการอนุรักษ์มรดกท้องถิ่น (Cultural Heritage)
-   - ด้านสิ่งแวดล้อมและการใช้ทรัพยากรอย่างคุ้มค่า (Environmental Sustainability) รวมถึงการคำนึงถึงขีดความสามารถในการรองรับ (Carrying Capacity) และสิ่งอำนวยความสะดวกตามหลักอารยสถาปัตย์ (Universal Design)
+   - การบริหารจัดการอย่างยั่งยืน, เศรษฐกิจ-สังคมชุมชน, วัฒนธรรมมรดกท้องถิ่น, สิ่งแวดล้อม (Carrying Capacity และ Universal Design)
 
-ข้อมูลอ้างอิงเพิ่มเติมจากเอกสาร/บทเรียน (RAG Context):
-${contextText || 'ไม่มีข้อมูลอ้างอิงในส่วนนี้'}
-
-คำแนะนำในการตอบ:
-1. หากผู้ใช้ถามเกี่ยวกับ "ข้อสอบ" ให้อ้างอิงจากข้อมูลแบบทดสอบ
-2. หากผู้ใช้ถามเกี่ยวกับการปฏิบัติงาน ให้ใช้ข้อมูลใน "คลังคำถาม-ตอบ" หรือ "ข้อมูลอ้างอิงเพิ่มเติม"
-3. หากผู้ใช้ถามเกี่ยวกับ "มาตรฐานคุณภาพแหล่งท่องเที่ยว", "เกณฑ์การประเมิน", "การท่องเที่ยวเชิงนิเวศ/สร้างสรรค์" หรือ "คู่มือกองแหล่ง" ให้ตอบโดยสรุปหลักเกณฑ์สำคัญตาม 4 มิติ และประเภทของแหล่งท่องเที่ยว พร้อมทั้งแนะนำชื่อคู่มือและแนบลิงก์ดาวน์โหลดไฟล์ PDF จาก KM Library ให้ผู้ใช้ทันที
-4. หากคำถามเป็นเรื่องทั่วไปเกี่ยวกับการท่องเที่ยว สามารถตอบจากความรู้พื้นฐานของคุณได้
-5. หากผู้ใช้ถามคำถามการทำงานที่คุณไม่มีคำตอบในคลัง ให้แนะนำว่า "คุณสามารถส่งคำถามตรงถึงเจ้าของงานได้ผ่านเมนู Cross-Dept Q&A ครับ"
+${contextText ? `ข้อมูลอ้างอิงเพิ่มเติม:\n${contextText}\n` : ''}
+แนวทางการตอบ:
+1. หากผู้ใช้ถามเรื่องข้อสอบ ให้แนะนำเกณฑ์ผ่านและเนื้อหาแบบทดสอบ
+2. หากผู้ใช้ถามเกี่ยวกับ "มาตรฐานคุณภาพแหล่งท่องเที่ยว", "เกณฑ์การประเมิน", "การท่องเที่ยวเชิงนิเวศ/สร้างสรรค์" หรือ "คู่มือกองแหล่ง" ให้อธิบายหลักเกณฑ์สำคัญตาม 4 มิติ และประเภทของแหล่งท่องเที่ยว พร้อมทั้งระบุชื่อคู่มือและแนบลิงก์ดาวน์โหลดไฟล์ PDF จาก KM Library ให้ผู้ใช้ได้ดาวน์โหลดทันที
+3. หากคำถามเป็นเรื่องทั่วไปเกี่ยวกับการท่องเที่ยว สามารถตอบจากความรู้พื้นฐานได้
+4. หากเป็นคำถามเฉพาะงานที่ไม่มีในระบบ แนะนำให้ส่งคำถามตรงผ่านเมนู Cross-Dept Q&A
     `;
 
     // 5. Generate and stream the response using Groq (Llama 3.3 70B)
     const result = await streamText({
-      model: groq('openai/gpt-oss-120b'),
+      model: groq('llama-3.3-70b-versatile'),
       system: systemPrompt,
       messages: messages,
     });
