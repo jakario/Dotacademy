@@ -397,10 +397,11 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                       )}
                     </div>
 
-                    {res.type === 'TEXT' && (
-                      <div className="prose prose-invert prose-slate max-w-none text-slate-700 whitespace-pre-wrap leading-relaxed font-sans">
-                        {res.content}
-                      </div>
+                    {(res.type === 'TEXT' || res.type === 'HTML') && (
+                      <div 
+                        className="prose prose-slate max-w-none text-slate-800 leading-relaxed font-sans"
+                        dangerouslySetInnerHTML={{ __html: res.content || '' }}
+                      />
                     )}
 
                     {res.type === 'PDF' && res.content && (
