@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], variable: "--font-noto-thai" });
 
 export const metadata: Metadata = {
-  title: "ระบบการเรียนรู้และจัดการความรู้ DOT Knowledge & Learning ของกรมการท่องเที่ยว",
+  title: "DOT Knowledge & Learning | กรมการท่องเที่ยว",
   description: "ระบบการเรียนรู้และจัดการความรู้ กรมการท่องเที่ยว สำหรับการเรียนรู้ด้านการท่องเที่ยว มัคคุเทศก์ และมาตรฐานธุรกิจนำเที่ยว",
 };
 
