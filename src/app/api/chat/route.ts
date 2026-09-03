@@ -140,7 +140,8 @@ ${contextText ? `ข้อมูลอ้างอิงเพิ่มเติ
     const result = await streamText({
       model: groq('qwen/qwen3.6-27b'),
       system: systemPrompt,
-      messages: messages,
+      messages: messages.slice(-5),
+      maxTokens: 1000,
     });
 
     return result.toDataStreamResponse();
