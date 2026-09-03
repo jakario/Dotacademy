@@ -6,6 +6,7 @@ export async function GET() {
     const courseId = 'cmsr6jrd5000367gw0wyi1qx4';
     const sectionId = 'cmsr6jrd5000767gwswe3f5hr';
 
+    // Validate section
     const section = await prisma.section.findUnique({ where: { id: sectionId } });
     if (!section) return NextResponse.json({ success: false, error: 'Section not found' }, { status: 404 });
 
@@ -39,9 +40,41 @@ export async function GET() {
     }
     newContent += `</ul><hr/><br/>`;
 
-    // PREPEND
-    const updatedContent = newContent + (section.content || '');
-    await prisma.section.update({ where: { id: sectionId }, data: { content: updatedContent } });
+    // Fetch existing resources in this section
+    const resources = await prisma.resource.findMany({
+      where: { sectionId: sectionId },
+      orderBy: { order: 'asc' }
+    });
+
+    if (resources.length > 0) {
+      // Find the first TEXT or HTML resource to prepend to, OR just prepend to the very first resource if it's text
+      const firstRes = resources[0];
+      if (firstRes.type === 'HTML' || firstRes.type === 'TEXT') {
+         const updatedContent = newContent + (firstRes.content || '');
+         await prisma.resource.update({ where: { id: firstRes.id }, data: { content: updatedContent }});
+      } else {
+         // Create a new resource at order -1
+         await prisma.resource.create({
+           data: {
+             title: 'ดาวน์โหลดคู่มือมาตรฐานคุณภาพ',
+             type: 'HTML',
+             content: newContent,
+             sectionId: sectionId,
+             order: -1
+           }
+         });
+      }
+    } else {
+       await prisma.resource.create({
+           data: {
+             title: 'ดาวน์โหลดคู่มือมาตรฐานคุณภาพ',
+             type: 'HTML',
+             content: newContent,
+             sectionId: sectionId,
+             order: 1
+           }
+       });
+    }
 
     let kmAdded = 0;
     for (const file of pdfFiles) {
@@ -56,7 +89,7 @@ export async function GET() {
         kmAdded++;
       }
     }
-    return NextResponse.json({ success: true, message: 'Section prepended & KM added', kmAdded });
+    return NextResponse.json({ success: true, message: 'Resource prepended & KM added', kmAdded });
   } catch (e: any) {
     return NextResponse.json({ success: false, error: e.message }, { status: 500 });
   }
