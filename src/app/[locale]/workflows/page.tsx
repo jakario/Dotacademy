@@ -5,8 +5,8 @@ import { redirect } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 
 export const metadata = {
-  title: 'Workflow & Matrix | DOT Knowledge Hub',
-  description: 'กระบวนการทำงานและจุดเชื่อมต่อ (Hand-off) ระหว่างฝ่าย',
+  title: 'ผังกระบวนการทำงาน Workflow | DOT Knowledge',
+  description: 'กระบวนการทำงานและจุดเชื่อมต่อ (Hand-off) ระหว่างฝ่าย กรมการท่องเที่ยว',
 };
 
 export default async function WorkflowsPage() {

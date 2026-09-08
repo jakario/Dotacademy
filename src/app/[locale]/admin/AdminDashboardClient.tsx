@@ -122,7 +122,7 @@ export default function AdminDashboardClient({ initialCourses, stats }: AdminDas
             </div>
             <div>
               <h1 className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
-                ระบบจัดการหลังบ้าน DOT Academy
+                ระบบจัดการหลังบ้าน DOT Knowledge
               </h1>
               <p className="text-xs text-slate-400">สำหรับผู้ดูแลระบบและวิทยากรฝึกอบรม</p>
             </div>

@@ -42,7 +42,10 @@ export default function AdminLibraryPage() {
     }
   }, []);
 
-  useEffect(() => { fetchData(); }, [fetchData]);
+  useEffect(() => { 
+    document.title = "จัดการคลังความรู้ KM | DOT Knowledge Admin";
+    fetchData(); 
+  }, [fetchData]);
 
   const openCreate = () => { setEditingId(null); setForm(emptyForm); setShowModal(true); };
   const openEdit = (doc: Document) => {

@@ -12,6 +12,7 @@ function LoginFormComponent() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    document.title = "เข้าสู่ระบบ | DOT Knowledge";
     const urlError = searchParams.get("error");
     if (urlError) {
       if (urlError === "OAuthCallback") {

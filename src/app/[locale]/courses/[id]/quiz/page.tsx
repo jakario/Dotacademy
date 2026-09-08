@@ -3,6 +3,17 @@ import { notFound } from "next/navigation";
 import QuizClient from "./QuizClient";
 import { getOptionalSession } from "@/lib/authOptional";
 
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ sectionId?: string }> }) {
+  const { sectionId } = await searchParams;
+  if (!sectionId) return { title: 'แบบทดสอบ | DOT Knowledge' };
+  const quiz = await prisma.quiz.findUnique({
+    where: { sectionId },
+    include: { section: { select: { title: true } } }
+  });
+  if (!quiz) return { title: 'แบบทดสอบ | DOT Knowledge' };
+  return { title: `แบบทดสอบ: ${quiz.section?.title || 'ประจำบทเรียน'} | DOT Knowledge` };
+}
+
 export default async function QuizPage({
   params,
   searchParams

@@ -1,7 +1,7 @@
-﻿import VerifyClient from './VerifyClient';
+import VerifyClient from './VerifyClient';
 
 export const metadata = {
-  title: 'ตรวจสอบใบประกาศนียบัตร | DOT Academy',
+  title: 'ตรวจสอบใบประกาศนียบัตร | DOT Knowledge',
   description: 'ตรวจสอบความถูกต้องของใบประกาศนียบัตร จากกรมการท่องเที่ยว',
 };
 

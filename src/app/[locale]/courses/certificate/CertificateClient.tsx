@@ -205,7 +205,7 @@ export default function CertificateClient() {
               </span>
             </div>
             <div className="w-auto px-4 border-t border-slate-400 pt-1.5 font-bold text-slate-900 whitespace-nowrap text-sm">
-              ( ผู้ดูแลระบบ DOT Academy )
+              ( ผู้ดูแลระบบ DOT Knowledge )
             </div>
             <p className="text-[10px] text-slate-600 font-semibold mt-0.5">ผู้จัดการอบรม</p>
           </div>
