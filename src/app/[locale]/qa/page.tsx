@@ -5,8 +5,8 @@ import { redirect } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 
 export const metadata = {
-  title: 'Cross-Department Q&A | DOT Knowledge Hub',
-  description: 'ถาม-ตอบปัญหาข้ามสายงาน ตรงถึงเจ้าของงาน',
+  title: 'ถาม-ตอบข้ามสายงาน Q&A | DOT Knowledge',
+  description: 'ถาม-ตอบปัญหาข้ามสายงาน ตรงถึงเจ้าของงาน กรมการท่องเที่ยว',
 };
 
 export default async function QAPage() {

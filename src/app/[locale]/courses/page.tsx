@@ -5,7 +5,7 @@ import { authOptions } from "@/lib/auth";
 import CoursesClient from "./CoursesClient";
 
 export const metadata: Metadata = {
-  title: "หลักสูตรทั้งหมด | DOT Academy",
+  title: "หลักสูตรทั้งหมด | DOT Knowledge",
   description: "หลักสูตรการเรียนรู้ออนไลน์ กรมการท่องเที่ยว",
 };
 

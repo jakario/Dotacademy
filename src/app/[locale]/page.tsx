@@ -7,8 +7,8 @@ import { prisma } from '@/lib/prisma';
 import GoogleLoginButton from '@/components/GoogleLoginButton';
 
 export const metadata: Metadata = {
-  title: "หน้าแรก | DOT Academy ระบบการเรียนรู้ออนไลน์ กรมการท่องเที่ยว",
-  description: "ยินดีต้อนรับสู่บ้านหลังใหม่ กรมการท่องเที่ยว แหล่งเรียนรู้ออนไลน์ด้านการท่องเที่ยวและมาตรฐานธุรกิจนำเที่ยว",
+  title: "หน้าแรก | DOT Knowledge & Learning | กรมการท่องเที่ยว",
+  description: "ระบบการเรียนรู้และจัดการความรู้ กรมการท่องเที่ยว แหล่งเรียนรู้ออนไลน์ด้านการท่องเที่ยวและมาตรฐานธุรกิจนำเที่ยว",
 };
 
 export const dynamic = 'force-dynamic';

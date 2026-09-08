@@ -4,6 +4,16 @@ import { notFound } from "next/navigation";
 import CourseDetailClient from "./CourseDetailClient";
 import { getOptionalSession } from "@/lib/authOptional";
 
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const course = await prisma.course.findUnique({
+    where: { id },
+    select: { title: true }
+  });
+  if (!course) return { title: 'ไม่พบหลักสูตร | DOT Knowledge' };
+  return { title: `${course.title} | DOT Knowledge` };
+}
+
 export default async function CourseDetailPage({
   params
 }: {

@@ -7,8 +7,8 @@ import { Link } from '@/i18n/routing';
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const dept = await prisma.department.findUnique({ where: { id } });
-  if (!dept) return { title: 'Not Found' };
-  return { title: `${dept.name} | DOT Knowledge Hub` };
+  if (!dept) return { title: 'ไม่พบข้อมูลหน่วยงาน | DOT Knowledge' };
+  return { title: `${dept.name} | DOT Knowledge` };
 }
 
 export default async function DepartmentDetailPage({ params }: { params: Promise<{ id: string }> }) {
