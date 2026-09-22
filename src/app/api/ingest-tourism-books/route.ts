@@ -112,7 +112,7 @@ export async function GET(req: Request) {
             gen_random_uuid()::text,
             ${resource.id},
             ${contextualBatch[j]},
-            ${embeddings[j]}::vector,
+            ${JSON.stringify(embeddings[j])}::vector,
             NOW()
           )
         `;
