@@ -31,6 +31,13 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const fileName = searchParams.get('file');
+    const deleteId = searchParams.get('delete_id');
+
+    if (deleteId) {
+      await prisma.$executeRaw`DELETE FROM "ResourceEmbedding" WHERE "resourceId" = ${deleteId}`;
+      await prisma.resource.delete({ where: { id: deleteId } });
+      return NextResponse.json({ success: true, message: `Deleted resource ${deleteId}` });
+    }
 
     if (!fileName) {
       // Return list of available files
