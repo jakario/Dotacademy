@@ -45,7 +45,10 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'File not found' }, { status: 404 });
     }
 
-    const content = fs.readFileSync(filePath, 'utf-8');
+    let content = fs.readFileSync(filePath, 'utf-8');
+    
+    // Sanitize null bytes which cause PostgreSQL error 22000
+    content = content.replace(/\0/g, '');
     
     // Convert to HTML briefly for display in resource (since type='HTML' is supported)
     // We don't have marked imported in this file yet, we can just save it as TEXT and let frontend handle it or simple replace
