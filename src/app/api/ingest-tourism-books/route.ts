@@ -110,7 +110,7 @@ export async function GET(req: Request) {
         const batch = chunks.slice(i, i + 10);
         const contextualBatch = batch.map(c => `Topic: ${title}\nContent: ${c}`);
         const { embeddings } = await embedMany({
-          model: google.textEmbeddingModel('gemini-embedding-2'),
+          model: google.textEmbeddingModel('text-embedding-004'),
           values: contextualBatch,
         });
         for (let j = 0; j < embeddings.length; j++) {
@@ -150,7 +150,7 @@ export async function GET(req: Request) {
       const contextualBatch = batchChunks.map(c => `Topic: ${title}\nContent: ${c}`);
 
       const { embeddings } = await embedMany({
-        model: google.textEmbeddingModel('gemini-embedding-2'),
+        model: google.textEmbeddingModel('text-embedding-004'),
         values: contextualBatch,
       });
 
