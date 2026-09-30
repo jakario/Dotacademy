@@ -34,6 +34,12 @@ export async function GET(req: Request) {
     const batchIndex = parseInt(searchParams.get('batch') || '0');
     const batchSize = parseInt(searchParams.get('batchSize') || '3'); // chunks per batch
 
+    if (deleteId === 'ALTER_TO_3072') {
+      await prisma.$executeRawUnsafe(`DELETE FROM "ResourceEmbedding"`);
+      await prisma.$executeRawUnsafe(`ALTER TABLE "ResourceEmbedding" ALTER COLUMN embedding TYPE vector(3072)`);
+      return NextResponse.json({ success: true, message: 'Altered to vector(3072) and cleared old embeddings' });
+    }
+
     if (deleteId) {
       await prisma.$executeRaw`DELETE FROM "ResourceEmbedding" WHERE "resourceId" = ${deleteId}`;
       await prisma.resource.delete({ where: { id: deleteId } });
