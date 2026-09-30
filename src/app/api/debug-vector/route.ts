@@ -7,22 +7,22 @@ export async function GET() {
   try {
     // Count existing embeddings
     const countResult: any[] = await prisma.$queryRaw`
-      SELECT COUNT(*)::int as count FROM "ResourceEmbedding"
+      SELECT COUNT(*)::text as count FROM "ResourceEmbedding"
     `;
 
     // Sample one embedding to check its actual dimension
-    let sampleDim = null;
+    let sampleDim = 'unknown';
     try {
       const sample: any[] = await prisma.$queryRaw`
-        SELECT vector_dims(embedding)::int as dims FROM "ResourceEmbedding" LIMIT 1
+        SELECT vector_dims(embedding)::text as dims FROM "ResourceEmbedding" LIMIT 1
       `;
-      sampleDim = sample[0]?.dims;
+      sampleDim = sample[0]?.dims ?? 'no data';
     } catch (e: any) {
       sampleDim = `Error: ${e.message}`;
     }
 
     return NextResponse.json({
-      embeddingCount: countResult[0]?.count ?? 0,
+      embeddingCount: countResult[0]?.count ?? '0',
       sampleDimension: sampleDim
     });
   } catch (error: any) {
