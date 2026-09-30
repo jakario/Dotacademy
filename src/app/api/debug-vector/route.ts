@@ -3,28 +3,36 @@ import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
-    // Count existing embeddings
-    const countResult: any[] = await prisma.$queryRaw`
-      SELECT COUNT(*)::text as count FROM "ResourceEmbedding"
-    `;
+    const { searchParams } = new URL(req.url);
+    const action = searchParams.get('action') || 'info';
 
-    // Sample one embedding to check its actual dimension
-    let sampleDim = 'unknown';
-    try {
-      const sample: any[] = await prisma.$queryRaw`
-        SELECT vector_dims(embedding)::text as dims FROM "ResourceEmbedding" LIMIT 1
-      `;
-      sampleDim = sample[0]?.dims ?? 'no data';
-    } catch (e: any) {
-      sampleDim = `Error: ${e.message}`;
+    if (action === 'info') {
+      // Use string aggregation to avoid BigInt issues
+      const result: any[] = await prisma.$queryRawUnsafe(
+        `SELECT 
+          (SELECT count(*)::int FROM "ResourceEmbedding") as cnt,
+          (SELECT array_length(embedding::real[], 1) FROM "ResourceEmbedding" LIMIT 1) as dims`
+      );
+      return NextResponse.json({
+        embeddingCount: Number(result[0]?.cnt ?? 0),
+        sampleDimension: Number(result[0]?.dims ?? 0)
+      });
     }
 
-    return NextResponse.json({
-      embeddingCount: countResult[0]?.count ?? '0',
-      sampleDimension: sampleDim
-    });
+    if (action === 'alter3072') {
+      // ALTER column from vector(768) to vector(3072) 
+      await prisma.$executeRawUnsafe(`
+        ALTER TABLE "ResourceEmbedding" 
+        ALTER COLUMN embedding TYPE vector(3072)
+      `);
+      // Also clear existing embeddings since they're the wrong dimension
+      await prisma.$executeRawUnsafe(`DELETE FROM "ResourceEmbedding"`);
+      return NextResponse.json({ success: true, message: 'Column altered to vector(3072) and old embeddings cleared' });
+    }
+
+    return NextResponse.json({ error: 'Use action=info or action=alter3072' });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
