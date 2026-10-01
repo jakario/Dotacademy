@@ -87,15 +87,15 @@ model Resource {
   createdAt DateTime           @default(now())
   updatedAt DateTime           @updatedAt
   progress  UserProgress[]
-  embedding ResourceEmbedding?
+  embeddings ResourceEmbedding[]
 }
 
 model ResourceEmbedding {
-  id         String                     @id @default(cuid())
-  resourceId String                     @unique
-  resource   Resource                   @relation(fields: [resourceId], references: [id], onDelete: Cascade)
-  content    String                     @db.Text
-  embedding  Unsupported("vector(768)")
+  id         String                      @id @default(cuid())
+  resourceId String
+  resource   Resource                    @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  content    String                      @db.Text
+  embedding  Unsupported("vector(3072)")
 
   createdAt DateTime @default(now())
 }

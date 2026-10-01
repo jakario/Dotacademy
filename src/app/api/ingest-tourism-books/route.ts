@@ -40,6 +40,11 @@ export async function GET(req: Request) {
       return NextResponse.json({ success: true, message: 'Altered to vector(3072) and cleared old embeddings' });
     }
 
+    if (deleteId === 'DROP_UNIQUE') {
+      await prisma.$executeRawUnsafe(`DROP INDEX IF EXISTS "ResourceEmbedding_resourceId_key"`);
+      return NextResponse.json({ success: true, message: 'Dropped unique index on resourceId' });
+    }
+
     if (deleteId) {
       await prisma.$executeRaw`DELETE FROM "ResourceEmbedding" WHERE "resourceId" = ${deleteId}`;
       await prisma.resource.delete({ where: { id: deleteId } });
