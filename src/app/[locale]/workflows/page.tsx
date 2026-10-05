@@ -15,7 +15,7 @@ export default async function WorkflowsPage() {
     redirect('/login');
   }
 
-  let workflows = [];
+  let workflows: any[] = [];
   try {
     workflows = await prisma.workflow.findMany({
       include: {
