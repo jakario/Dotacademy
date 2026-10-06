@@ -11,43 +11,43 @@ export const metadata: Metadata = {
 
 export default async function CoursesPage() {
   const session = await getServerSession(authOptions);
-  const courses = await prisma.course.findMany({
+  
+  // Parallelize the course fetching and quiz status fetching
+  let coursesPromise = prisma.course.findMany({
     where: { isPublished: true },
     include: {
       instructor: true,
-      _count: {
-        select: { sections: true, enrollments: true }
-      }
+      _count: { select: { sections: true, enrollments: true } }
     },
     orderBy: { order: 'asc' }
   });
+
+  let quizzesPromise = prisma.quiz.findMany({ select: { id: true } });
+  
+  let passedAttemptsPromise = session?.user 
+    ? prisma.quizAttempt.findMany({
+        where: { userId: (session.user as any).id, passed: true },
+        select: { quizId: true }
+      })
+    : Promise.resolve([]);
+
+  const [courses, allQuizzes, passedAttempts] = await Promise.all([
+    coursesPromise,
+    quizzesPromise,
+    passedAttemptsPromise
+  ]);
 
   const isAdminOrInstructor = session && (["ADMIN", "SUPER_ADMIN"].includes((session.user as any).role) || (session.user as any).role === 'INSTRUCTOR');
 
   // Verify if student has passed all quizzes in the platform
   let hasPassedAll = false;
-  let totalQuizzes = 0;
+  let totalQuizzes = allQuizzes.length;
   let passedQuizzes = 0;
-  if (session && session.user) {
-    const userId = (session.user as any).id;
-    const allQuizzes = await prisma.quiz.findMany({
-      select: { id: true }
-    });
-    totalQuizzes = allQuizzes.length;
-    
-    if (totalQuizzes > 0) {
-      const passedAttempts = await prisma.quizAttempt.findMany({
-        where: {
-          userId,
-          passed: true
-        },
-        select: {
-          quizId: true
-        }
-      });
-      const passedQuizIds = new Set(passedAttempts.map(a => a.quizId));
-      passedQuizzes = passedQuizIds.size;
-      hasPassedAll = allQuizzes.every(q => passedQuizIds.has(q.id));
+  
+  if (session && session.user && totalQuizzes > 0) {
+    const passedQuizIds = new Set(passedAttempts.map(a => a.quizId));
+    passedQuizzes = passedQuizIds.size;
+    hasPassedAll = allQuizzes.every(q => passedQuizIds.has(q.id));
     }
   }
 

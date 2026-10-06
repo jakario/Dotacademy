@@ -44,17 +44,24 @@ async function getSiteSettings(): Promise<Record<string, string>> {
 }
 
 export default async function HomePage() {
-  const t = await getTranslations('Index');
-  const session = await getServerSession(authOptions);
-  const s = await getSiteSettings();
+  // Parallelize data fetching
+  const [t, session, s] = await Promise.all([
+    getTranslations('Index'),
+    getServerSession(authOptions),
+    getSiteSettings()
+  ]);
 
   let userName = session?.user?.name;
   if (session && (session.user as any).id) {
-    const dbUser = await prisma.user.findUnique({ 
-      where: { id: (session.user as any).id }, 
-      select: { name: true } 
-    });
-    if (dbUser?.name) userName = dbUser.name;
+    // We can fetch DB user separately as it depends on session, 
+    // but ideally we should avoid hitting DB if session already has name.
+    if (!userName) {
+      const dbUser = await prisma.user.findUnique({ 
+        where: { id: (session.user as any).id }, 
+        select: { name: true } 
+      });
+      if (dbUser?.name) userName = dbUser.name;
+    }
   }
   
   return (
