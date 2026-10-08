@@ -48,7 +48,6 @@ export default async function CoursesPage() {
     const passedQuizIds = new Set(passedAttempts.map(a => a.quizId));
     passedQuizzes = passedQuizIds.size;
     hasPassedAll = allQuizzes.every(q => passedQuizIds.has(q.id));
-    }
   }
 
   return (

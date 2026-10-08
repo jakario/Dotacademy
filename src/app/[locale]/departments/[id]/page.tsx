@@ -37,7 +37,7 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
         <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 sm:p-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8 border-b border-slate-100 pb-8">
             <div className="flex items-center gap-6">
-              <div className="text-7xl">{dept.icon || '๐ข'}</div>
+              <div className="text-7xl">{dept.icon || '🏢'}</div>
               <div>
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                   {dept.name}
@@ -46,7 +46,7 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
               </div>
             </div>
             <Link href="/departments" className="px-5 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold rounded-xl transition-colors">
-              &larr; เธ เธฅเธฑเธšเธซเธ™เน‰เธฒเธฃเธงเธก
+              &larr; กลับหน้ารวม
             </Link>
           </div>
           
@@ -78,7 +78,7 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
           {/* Workflows */}
           <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
             <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <span className="text-amber-500">๐”</span> Workflows
+              <span className="text-amber-500">🔄</span> Workflows
             </h3>
             {dept.workflows.length > 0 ? (
               <ul className="space-y-4">
@@ -91,7 +91,7 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
               </ul>
             ) : (
               <div className="text-center py-8 text-slate-400 bg-slate-50 rounded-xl border border-dashed border-slate-200">
-                เธขเธฑเธเนเธกเนเธกเธตเธเนเธญเธกเธนเธฅเธเธฃเธฐเธเธงเธเธเธฒเธฃเธ—เธณเธเธฒเธ
+                ยังไม่มีข้อมูลกระบวนการทำงาน
               </div>
             )}
           </div>
@@ -99,7 +99,7 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
           {/* Documents */}
           <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
             <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <span className="text-blue-500">๐“</span> KM Library
+              <span className="text-blue-500">📚</span> KM Library
             </h3>
             {dept.documents.length > 0 ? (
               <ul className="space-y-4">
@@ -112,14 +112,14 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
                       </span>
                     </div>
                     <a href={doc.url} target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-800 font-semibold text-sm bg-blue-50 px-3 py-1.5 rounded-lg">
-                      เธ”เธฒเธงเธเนเนเธซเธฅเธ”
+                      ดาวน์โหลด
                     </a>
                   </li>
                 ))}
               </ul>
             ) : (
               <div className="text-center py-8 text-slate-400 bg-slate-50 rounded-xl border border-dashed border-slate-200">
-                เธขเธฑเธเนเธกเนเธกเธตเน€เธญเธเธชเธฒเธฃเนเธเธฃเธฐเธเธ
+                ยังไม่มีเอกสารในระบบ
               </div>
             )}
           </div>
@@ -128,7 +128,7 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
         {/* FAQs */}
         <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
           <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-            <span className="text-emerald-500">๐’ฌ</span> เธเธณเธ–เธฒเธกเธ—เธตเนเธเธเธเนเธญเธข (Q&A)
+            <span className="text-emerald-500">💬</span> คำถามที่พบบ่อย (Q&A)
           </h3>
           {dept.faqs.length > 0 ? (
             <div className="space-y-4">
@@ -141,7 +141,7 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
             </div>
           ) : (
             <div className="text-center py-12 text-slate-400 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
-              เธขเธฑเธเนเธกเนเธกเธตเธเธณเธ–เธฒเธกเธ—เธตเนเธเธเธเนเธญเธข
+              ยังไม่มีคำถามที่พบบ่อย
             </div>
           )}
         </div>
