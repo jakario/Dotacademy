@@ -536,33 +536,57 @@ export async function GET() {
     for (const data of QUIZ_DATA) {
       const section = SECTIONS[data.sectionIdx];
 
-      // Find existing Quiz for section
-      const existingQuiz = await prisma.quiz.findUnique({
-        where: { sectionId: section.id },
-        include: { questions: { include: { options: true } } },
-      });
-
-      // Safely cleanup old questions & options if quiz exists
-      if (existingQuiz) {
-        for (const q of existingQuiz.questions) {
-          await prisma.option.deleteMany({ where: { questionId: q.id } });
-        }
-        await prisma.question.deleteMany({ where: { quizId: existingQuiz.id } });
-
-        // Update title and passScore
-        await prisma.quiz.update({
-          where: { id: existingQuiz.id },
-          data: {
-            title: section.title,
-            passScore: 80,
-          },
+      try {
+        // Check if section exists
+        const existingSection = await prisma.section.findUnique({
+          where: { id: section.id },
         });
 
-        // Add 5 new questions
+        if (!existingSection) {
+          results.push({ section: section.title, status: 'SECTION_NOT_FOUND' });
+          continue;
+        }
+
+        // Check if quiz exists for section
+        const existingQuiz = await prisma.quiz.findUnique({
+          where: { sectionId: section.id },
+          include: {
+            questions: {
+              include: { options: true }
+            }
+          }
+        });
+
+        let targetQuizId = existingQuiz?.id;
+
+        if (existingQuiz) {
+          // Clean up old attempts/options/questions to avoid foreign key issues
+          await prisma.quizAttempt.deleteMany({ where: { quizId: existingQuiz.id } });
+          for (const q of existingQuiz.questions) {
+            await prisma.option.deleteMany({ where: { questionId: q.id } });
+          }
+          await prisma.question.deleteMany({ where: { quizId: existingQuiz.id } });
+          await prisma.quiz.update({
+            where: { id: existingQuiz.id },
+            data: { title: section.title, passScore: 80 }
+          });
+        } else {
+          const newQuiz = await prisma.quiz.create({
+            data: {
+              title: section.title,
+              passScore: 80,
+              sectionId: section.id,
+            }
+          });
+          targetQuizId = newQuiz.id;
+        }
+
+        // Insert questions 1 by 1
+        let count = 0;
         for (const qData of data.questions) {
           await prisma.question.create({
             data: {
-              quizId: existingQuiz.id,
+              quizId: targetQuizId!,
               text: qData.text,
               options: {
                 create: qData.options.map((opt) => ({
@@ -572,47 +596,27 @@ export async function GET() {
               },
             },
           });
+          count++;
         }
 
         results.push({
           section: section.title,
-          quizId: existingQuiz.id,
-          questionsCount: data.questions.length,
-          status: 'UPDATED',
+          quizId: targetQuizId,
+          questionsAdded: count,
+          status: 'SUCCESS',
         });
-      } else {
-        // Create new quiz with 5 questions
-        const newQuiz = await prisma.quiz.create({
-          data: {
-            title: section.title,
-            passScore: 80,
-            sectionId: section.id,
-            questions: {
-              create: data.questions.map((q) => ({
-                text: q.text,
-                options: {
-                  create: q.options.map((opt) => ({
-                    text: opt.text,
-                    isCorrect: opt.isCorrect,
-                  })),
-                },
-              })),
-            },
-          },
-        });
-
+      } catch (err: any) {
         results.push({
           section: section.title,
-          quizId: newQuiz.id,
-          questionsCount: data.questions.length,
-          status: 'CREATED',
+          status: 'FAILED',
+          error: err?.message || String(err),
         });
       }
     }
 
     return NextResponse.json({
       success: true,
-      message: 'Successfully imported 50 quiz questions into 10 sections!',
+      message: 'Processed 10 course sections',
       results,
     });
   } catch (error: any) {
