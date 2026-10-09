@@ -32,16 +32,22 @@ const DEFAULTS: Record<string, string> = {
   workflow_icon: '🔄',
 };
 
-async function getSiteSettings(): Promise<Record<string, string>> {
-  try {
-    const rows = await prisma.siteSettings.findMany();
-    const s = { ...DEFAULTS };
-    for (const row of rows) { s[row.key] = row.value; }
-    return s;
-  } catch {
-    return DEFAULTS;
-  }
-}
+import { unstable_cache } from 'next/cache';
+
+const getSiteSettings = unstable_cache(
+  async (): Promise<Record<string, string>> => {
+    try {
+      const rows = await prisma.siteSettings.findMany();
+      const s = { ...DEFAULTS };
+      for (const row of rows) { s[row.key] = row.value; }
+      return s;
+    } catch {
+      return DEFAULTS;
+    }
+  },
+  ['site-settings-key'],
+  { revalidate: 3600, tags: ['site-settings'] }
+);
 
 export default async function HomePage() {
   // Parallelize data fetching
