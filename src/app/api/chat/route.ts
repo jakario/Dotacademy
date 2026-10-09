@@ -58,40 +58,35 @@ export async function POST(req: Request) {
       // Fallback: Continue without RAG context
     }
 
-    // Fetch top published courses
-    const availableCourses = await prisma.course.findMany({
-      where: { isPublished: true },
-      select: { title: true },
-      take: 10
-    });
+    // Fetch context data in parallel for maximum speed
+    const [availableCourses, availableQuizzes, availableFaqs, availableDepartments, availableDocs] = await Promise.all([
+      prisma.course.findMany({
+        where: { isPublished: true },
+        select: { title: true },
+        take: 10
+      }),
+      prisma.quiz.findMany({
+        select: { title: true, passScore: true, section: { select: { course: { select: { title: true } } } } },
+        take: 10
+      }),
+      prisma.fAQ.findMany({
+        include: { department: { select: { name: true } } },
+        take: 8
+      }),
+      prisma.department.findMany({
+        select: { name: true, description: true },
+        take: 8
+      }),
+      prisma.document.findMany({
+        select: { title: true },
+        take: 50
+      })
+    ]);
+
     const coursesText = availableCourses.map(c => `- ${c.title}`).join('\n');
-
-    // Fetch top Quizzes
-    const availableQuizzes = await prisma.quiz.findMany({
-      select: { title: true, passScore: true, section: { select: { course: { select: { title: true } } } } },
-      take: 10
-    });
     const quizzesText = availableQuizzes.map(q => `- ${q.title} (${q.section?.course?.title}): ผ่านเกณฑ์ ${q.passScore}%`).join('\n');
-
-    // Fetch FAQs
-    const availableFaqs = await prisma.fAQ.findMany({
-      include: { department: { select: { name: true } } },
-      take: 8
-    });
     const faqsText = availableFaqs.map(f => `- Q: ${f.question}\n  A: ${f.answer?.substring(0, 150)}`).join('\n');
-
-    // Fetch Departments
-    const availableDepartments = await prisma.department.findMany({
-      select: { name: true, description: true },
-      take: 8
-    });
     const deptsText = availableDepartments.map(d => `- ${d.name}: ${d.description || 'หน่วยงานในสังกัดกรมการท่องเที่ยว'}`).join('\n');
-
-    // Fetch KM Documents / Standards Manuals / Registry Manuals
-    const availableDocs = await prisma.document.findMany({
-      select: { title: true },
-      take: 50
-    });
     const docsText = availableDocs.map(d => `- ${d.title}`).join('\n');
 
     // 3. Prepare the context from similar resources

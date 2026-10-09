@@ -39,6 +39,8 @@ model User {
   askedQuestions    QATicket[]         @relation("AskedQuestions")
   answeredQuestions QATicket[]         @relation("AnsweredQuestions")
   certificates      Certificate[]
+
+  @@index([departmentId])
 }
 
 model Course {
@@ -60,6 +62,9 @@ model Course {
   updatedAt    DateTime      @updatedAt
   rewardClaims RewardClaim[]
   certificates Certificate[]
+
+  @@index([isPublished])
+  @@index([instructorId])
 }
 
 model Section {
@@ -73,6 +78,8 @@ model Section {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([courseId])
 }
 
 model Resource {
@@ -88,6 +95,8 @@ model Resource {
   updatedAt DateTime           @updatedAt
   progress  UserProgress[]
   embeddings ResourceEmbedding[]
+
+  @@index([sectionId])
 }
 
 model ResourceEmbedding {
@@ -98,6 +107,8 @@ model ResourceEmbedding {
   embedding  Unsupported("vector(3072)")
 
   createdAt DateTime @default(now())
+
+  @@index([resourceId])
 }
 
 model CourseEnrollment {
@@ -110,6 +121,8 @@ model CourseEnrollment {
   createdAt DateTime @default(now())
 
   @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
 }
 
 model Quiz {
@@ -137,6 +150,8 @@ model Question {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([quizId])
 }
 
 model Option {
@@ -146,6 +161,8 @@ model Option {
 
   questionId String
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([questionId])
 }
 
 model QuizAttempt {
@@ -160,6 +177,9 @@ model QuizAttempt {
   quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([quizId])
 }
 
 model UserProgress {
@@ -174,6 +194,8 @@ model UserProgress {
   updatedAt DateTime @updatedAt
 
   @@unique([userId, resourceId])
+  @@index([userId])
+  @@index([resourceId])
 }
 
 model Account {
