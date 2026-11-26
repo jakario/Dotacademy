@@ -4,6 +4,11 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import CertificateClient from "./CertificateClient";
 
+export const metadata = {
+  title: "ใบประกาศนียบัตร | DOT Knowledge",
+  description: "ใบประกาศนียบัตรการผ่านการเรียนรู้ กรมการท่องเที่ยว",
+};
+
 export default async function CertificatePage() {
   const session = await getServerSession(authOptions);
   if (!session || !session.user) {

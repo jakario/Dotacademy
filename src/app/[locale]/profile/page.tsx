@@ -6,6 +6,11 @@ import { getLocale } from 'next-intl/server';
 
 export const dynamic = 'force-dynamic';
 
+export const metadata = {
+  title: 'โปรไฟล์ของฉัน | DOT Knowledge',
+  description: 'ข้อมูลส่วนตัวและความคืบหน้าการเรียนรู้ กรมการท่องเที่ยว',
+};
+
 export default async function ProfilePage() {
   const session = await getServerSession(authOptions);
   const locale = await getLocale();

@@ -158,7 +158,7 @@ export default function VerifyClient() {
           </div>
           <div className="bg-slate-50 px-6 py-4 border-t border-slate-100">
             <p className="text-xs text-slate-500 text-center">
-              ระบบตรวจสอบใบประกาศนียบัตรนี้ใช้สำหรับตรวจสอบความถูกต้องของเอกสารที่ออกโดย DOT Academy เท่านั้น
+              ระบบตรวจสอบใบประกาศนียบัตรนี้ใช้สำหรับตรวจสอบความถูกต้องของเอกสารที่ออกโดย DOT Knowledge เท่านั้น
             </p>
           </div>
         </div>

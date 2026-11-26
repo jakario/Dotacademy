@@ -7,11 +7,11 @@ import WorkflowClient from './WorkflowClient';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  if (id === 'demo-1') return { title: 'Demo Workflow | DOT Knowledge Hub' };
+  if (id === 'demo-1') return { title: 'ตัวอย่างผังงาน | DOT Knowledge' };
   
   const wf = await prisma.workflow.findUnique({ where: { id } });
-  if (!wf) return { title: 'Not Found' };
-  return { title: `${wf.title} | DOT Knowledge Hub` };
+  if (!wf) return { title: 'ไม่พบข้อมูล | DOT Knowledge' };
+  return { title: `${wf.title} | DOT Knowledge` };
 }
 
 const demoNodes = [

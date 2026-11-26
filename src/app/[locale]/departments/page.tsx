@@ -5,8 +5,8 @@ import { redirect } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 
 export const metadata = {
-  title: 'Department 101 | DOT Knowledge Hub',
-  description: 'รู้จักงานแต่ละฝ่ายใน 2 นาที โครงสร้างและภารกิจ',
+  title: 'Department 101 โครงสร้างหน่วยงาน | DOT Knowledge',
+  description: 'รู้จักงานแต่ละฝ่ายใน 2 นาที โครงสร้างและภารกิจ กรมการท่องเที่ยว',
 };
 
 export default async function DepartmentsPage() {

@@ -86,7 +86,10 @@ export default function AdminSettingsPage() {
     }
   }, []);
 
-  useEffect(() => { fetchSettings(); }, [fetchSettings]);
+  useEffect(() => { 
+    document.title = "ตั้งค่าระบบ | DOT Knowledge Admin";
+    fetchSettings(); 
+  }, [fetchSettings]);
 
   const handleChange = (key: string, value: string) => {
     setSettings(prev => ({ ...prev, [key]: value }));

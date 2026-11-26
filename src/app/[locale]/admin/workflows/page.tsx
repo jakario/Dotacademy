@@ -2,6 +2,11 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
+export const metadata = {
+  title: "จัดการผังกระบวนการทำงาน | DOT Knowledge Admin",
+  description: "จัดการระบบแผนผัง Workflow กรมการท่องเที่ยว",
+};
+
 export default async function AdminWorkflowsPage() {
   const session = await getServerSession(authOptions);
   if (!session || (session.user as any).role === 'STUDENT') {

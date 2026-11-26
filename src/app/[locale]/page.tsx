@@ -7,8 +7,8 @@ import { prisma } from '@/lib/prisma';
 import GoogleLoginButton from '@/components/GoogleLoginButton';
 
 export const metadata: Metadata = {
-  title: "หน้าแรก | DOT Academy ระบบการเรียนรู้ออนไลน์ กรมการท่องเที่ยว",
-  description: "ยินดีต้อนรับสู่บ้านหลังใหม่ กรมการท่องเที่ยว แหล่งเรียนรู้ออนไลน์ด้านการท่องเที่ยวและมาตรฐานธุรกิจนำเที่ยว",
+  title: "หน้าแรก | DOT Knowledge & Learning | กรมการท่องเที่ยว",
+  description: "ระบบการเรียนรู้และจัดการความรู้ กรมการท่องเที่ยว แหล่งเรียนรู้ออนไลน์ด้านการท่องเที่ยวและมาตรฐานธุรกิจนำเที่ยว",
 };
 
 export const dynamic = 'force-dynamic';
@@ -32,29 +32,42 @@ const DEFAULTS: Record<string, string> = {
   workflow_icon: '🔄',
 };
 
-async function getSiteSettings(): Promise<Record<string, string>> {
-  try {
-    const rows = await prisma.siteSettings.findMany();
-    const s = { ...DEFAULTS };
-    for (const row of rows) { s[row.key] = row.value; }
-    return s;
-  } catch {
-    return DEFAULTS;
-  }
-}
+import { unstable_cache } from 'next/cache';
+
+const getSiteSettings = unstable_cache(
+  async (): Promise<Record<string, string>> => {
+    try {
+      const rows = await prisma.siteSettings.findMany();
+      const s = { ...DEFAULTS };
+      for (const row of rows) { s[row.key] = row.value; }
+      return s;
+    } catch {
+      return DEFAULTS;
+    }
+  },
+  ['site-settings-key'],
+  { revalidate: 3600, tags: ['site-settings'] }
+);
 
 export default async function HomePage() {
-  const t = await getTranslations('Index');
-  const session = await getServerSession(authOptions);
-  const s = await getSiteSettings();
+  // Parallelize data fetching
+  const [t, session, s] = await Promise.all([
+    getTranslations('Index'),
+    getServerSession(authOptions),
+    getSiteSettings()
+  ]);
 
   let userName = session?.user?.name;
   if (session && (session.user as any).id) {
-    const dbUser = await prisma.user.findUnique({ 
-      where: { id: (session.user as any).id }, 
-      select: { name: true } 
-    });
-    if (dbUser?.name) userName = dbUser.name;
+    // We can fetch DB user separately as it depends on session, 
+    // but ideally we should avoid hitting DB if session already has name.
+    if (!userName) {
+      const dbUser = await prisma.user.findUnique({ 
+        where: { id: (session.user as any).id }, 
+        select: { name: true } 
+      });
+      if (dbUser?.name) userName = dbUser.name;
+    }
   }
   
   return (
@@ -100,7 +113,7 @@ export default async function HomePage() {
         ) : (
           <div className="pt-8 w-full">
             {/* Course Academy — Hero Card */}
-            <Link href="/courses" className="mb-8 block p-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl shadow-lg border border-blue-400 hover:shadow-xl hover:-translate-y-1 transition-all text-left group w-full">
+            <Link href="/courses" className="mb-8 block p-8 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl shadow-lg border border-blue-300 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-left group w-full">
               <div className="flex items-center gap-6">
                 <div className="text-6xl group-hover:scale-110 transition-transform bg-white/20 p-4 rounded-xl">{s.course_academy_icon}</div>
                 <div>

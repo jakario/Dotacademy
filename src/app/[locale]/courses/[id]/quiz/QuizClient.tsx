@@ -8,7 +8,7 @@ type Option = { id: string; text: string };
 type Question = { id: string; text: string; options: Option[] };
 type Quiz = { id: string; title: string; questions: Question[] };
 
-export default function QuizClient({ quiz, courseId }: { quiz: Quiz, courseId: string }) {
+export default function QuizClient({ quiz, courseId, isGuest }: { quiz: Quiz, courseId: string, isGuest?: boolean }) {
   const router = useRouter();
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,7 +46,7 @@ export default function QuizClient({ quiz, courseId }: { quiz: Quiz, courseId: s
   if (result) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center px-4 py-12">
-        <div className="bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl p-8 sm:p-12 text-center max-w-2xl w-full">
+        <div className="bg-slate-50 border border-slate-200 rounded-3xl shadow-2xl p-8 sm:p-12 text-center max-w-2xl w-full">
 
           {/* Reward Winner Banner */}
           {result.wonReward && (
@@ -71,7 +71,7 @@ export default function QuizClient({ quiz, courseId }: { quiz: Quiz, courseId: s
           <h2 className="text-2xl font-bold mb-2 text-white">
             {result.passed ? '✅ ผ่านการทดสอบ' : '❌ ยังไม่ผ่านการทดสอบ'}
           </h2>
-          <p className="text-slate-400 mb-8">
+          <p className="text-slate-600 mb-8">
             คุณตอบถูก{' '}
             <span className="font-bold text-white">{result.correctCount}</span>{' '}จาก{' '}
             <span className="font-bold text-white">{result.totalQuestions}</span> ข้อ
@@ -96,7 +96,7 @@ export default function QuizClient({ quiz, courseId }: { quiz: Quiz, courseId: s
             )}
             <Link
               href={`/courses/${courseId}`}
-              className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold rounded-xl transition-colors text-center"
+              className="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-xl transition-colors text-center"
             >
               กลับไปที่บทเรียน
             </Link>
@@ -132,13 +132,22 @@ export default function QuizClient({ quiz, courseId }: { quiz: Quiz, courseId: s
         ))}
       </div>
       <div className="mt-8 flex justify-end">
-        <button
-          onClick={handleSubmit}
-          disabled={isSubmitting}
-          className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl shadow-md hover:bg-blue-700 disabled:opacity-50 transition-all"
-        >
-          {isSubmitting ? "กำลังส่งคำตอบ..." : "ส่งคำตอบ"}
-        </button>
+        {isGuest ? (
+          <Link
+            href="/login"
+            className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl shadow-md transition-all text-center"
+          >
+            เข้าสู่ระบบเพื่อส่งคำตอบ
+          </Link>
+        ) : (
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl shadow-md hover:bg-blue-700 disabled:opacity-50 transition-all"
+          >
+            {isSubmitting ? "กำลังส่งคำตอบ..." : "ส่งคำตอบ"}
+          </button>
+        )}
       </div>
     </div>
   );

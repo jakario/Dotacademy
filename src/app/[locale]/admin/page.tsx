@@ -7,6 +7,11 @@ import AdminDashboardClient from "./AdminDashboardClient";
 
 export const dynamic = 'force-dynamic';
 
+export const metadata = {
+  title: "แดชบอร์ดผู้ดูแลระบบ | DOT Knowledge Admin",
+  description: "ระบบจัดการหลังบ้าน DOT Knowledge สำหรับผู้ดูแลระบบและวิทยากรฝึกอบรม",
+};
+
 export default async function AdminDashboardPage() {
   const session = await getServerSession(authOptions);
 

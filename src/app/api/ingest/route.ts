@@ -13,7 +13,7 @@ export async function POST() {
     // 1. Fetch resources that don't have embeddings yet
     const resources = await prisma.resource.findMany({
       where: {
-        embedding: null,
+        embeddings: { none: {} },
         type: {
           in: ['TEXT', 'HTML']
         },

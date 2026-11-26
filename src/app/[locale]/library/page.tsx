@@ -5,8 +5,8 @@ import { redirect } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 
 export const metadata = {
-  title: 'KM Library | DOT Knowledge Hub',
-  description: 'คลังแบบฟอร์ม เอกสารอ้างอิง และคัมภีร์งาน',
+  title: 'คลังความรู้ KM Library | DOT Knowledge',
+  description: 'คลังแบบฟอร์ม เอกสารอ้างอิง และคู่มือมาตรฐานคุณภาพ กรมการท่องเที่ยว',
 };
 
 export default async function LibraryPage() {

@@ -6,6 +6,17 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import CourseEditClient from "./CourseEditClient";
 
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const course = await prisma.course.findUnique({
+    where: { id },
+    select: { title: true }
+  });
+  return {
+    title: course ? `แก้ไขหลักสูตร: ${course.title} | DOT Knowledge Admin` : `แก้ไขหลักสูตร | DOT Knowledge Admin`
+  };
+}
+
 export default async function AdminCourseEditPage({
   params
 }: {

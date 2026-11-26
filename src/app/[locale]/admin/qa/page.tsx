@@ -34,7 +34,10 @@ export default function AdminQAPage() {
     }
   }, []);
 
-  useEffect(() => { fetchTickets(); }, [fetchTickets]);
+  useEffect(() => { 
+    document.title = "จัดการคำถาม-ตอบ Q&A | DOT Knowledge Admin";
+    fetchTickets(); 
+  }, [fetchTickets]);
 
   const handleAnswer = async (id: string) => {
     if (!answerText.trim()) { toast.error('กรุณาพิมพ์คำตอบ'); return; }
