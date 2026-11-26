@@ -1,18 +1,17 @@
 import { NextResponse } from 'next/server';
-import { google } from '@ai-sdk/google';
-import { generateText } from 'ai';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  const googleKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+  if (!googleKey) return NextResponse.json({ error: 'No google key' });
+
   try {
-    const res = await generateText({
-      model: google('gemini-3.8-flash'),
-      prompt: 'สวัสดีครับ',
-      maxTokens: 20,
-    });
-    return NextResponse.json({ status: 'OK', text: res.text });
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${googleKey}`);
+    const data = await res.json();
+    const modelNames = data.models ? data.models.map((m: any) => m.name) : data;
+    return NextResponse.json({ models: modelNames });
   } catch (e: any) {
-    return NextResponse.json({ status: 'FAILED', error: e.message });
+    return NextResponse.json({ error: e.message });
   }
 }
